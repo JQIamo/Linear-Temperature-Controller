@@ -1,0 +1,43 @@
+Qty	Value	Device	Package	Parts	Description	DIGIKEY	PARTNO			Ordered	
+1		INA159	VSSOP8	IC2	"INA159 Difference Amplifier, Texas Instruments"	296-18688-1-ND				2	
+1		ML16	ML16	ENC_HEADER	HARTING					10	
+7		PINHD-1X2	1X02	"JP2, JP3, JP4, JP5, JP7, JP8, JP9"	PIN HEADER						
+1		PINHD-1X4	1X04	JP6	PIN HEADER						
+1		PINHD-2X2	2X02	JP1	PIN HEADER						
+1		TS6001	SOT-23	IC6	2.5V Reference IC	TS6001BIG325TCT-ND				2	
+1		WTC3243	WTC3293	U1							
+1	.1uF	CAP0805	805	C6	SMT Capacitor						
+2	0	RES0805	805	"R16, R17"	SMT Resistor						
+2	1.5k	RES0805	805	"R2, R4"	SMT Resistor						
+1	1000pF	CAP0805	805	C3	SMT Capacitor						
+2	100k 1%	RES0805	805	"R15, R19"	SMT Resistor						
+2	100nF	CAP0805	805	"C4, C27"	SMT Capacitor						
+2	10k	64XR	64XPOT	"R6, R7"		987-1068-ND				4	
+7	10k	RES0805	805	"R9, R10, R11, R12, R13, R14, R18"	SMT Resistor						
+8	10k	R_SMDR0805	R_0805	"R20, R21, R22, R23, R24, R25, R26, R27"							
+2	10nF	C-USC0805	C0805	"CL1, CL2"	"CAPACITOR, American symbol"						
+2	10nF	CAP0805	805	"C1, C7"	SMT Capacitor						
+2	10uF	C-USC0805	C0805	"CR1, CR2"	"CAPACITOR, American symbol"						
+2	10uF	C-USC0805K	C0805K	"CP2, CP6"	"CAPACITOR, American symbol"						
+4	10uF	CAP0805	805	"C2, C5, C8, C30"	SMT Capacitor						
+1	20k	RES0805	805	R5	SMT Resistor						
+2	220uF	CPOL-USF	PANASONIC_F	"CP1, CP4"	"POLARIZED CAPACITOR, American symbol"	PCE3955CT-ND				4	
+1	2x8Header	ML16	ML16	LCD_HEADER1	HARTING		S9171-ND			see above	
+2	3.5k	RES0805	805	"R1, R3"	SMT Resistor						
+1	35k	RES0805	805	R8	SMT Resistor						
+2	47uF	CPOL-USCT7343	CT7343	"CP3, CP5"	"POLARIZED CAPACITOR, American symbol"	495-1571-1-ND				4	
+1	587-1757-1-ND	L_FERRITE_SMD	L_FERRITE_1810	LP2		587-1757-1-ND				2	
+1	AD5262	AD5262	TSSOP16	IC4	AD5262 dual circuit digital pot	AD5262BRUZ200-ND				2	
+1	AD5624R	AD5624R	MSOP10	IC3	AD5624R Quad Output DAC w/internal Vref	AD5624RBRMZ-3-ND				2	
+2	DNP	RES0805	805	"RI, RP"	SMT Resistor						
+5	Ferrite 1k	INDUCTOR-0805	805	"L1, L2, L3, L4, L5"	SMT Inductor.	445-5223-1-ND				10	
+1	LM393D	LM393D	SO08	IC1	COMPARATOR	296-1015-5-ND					
+2	MMBT3904	MMBT3904	SOT-23	"T1, T2"	NPN TRANSISTOR	MMBT3904-FDICT-ND				4	
+1	OP27	OPAMP-SO	SO08	IC5	"Basic Op Amp. Be sure to check actual pinout of your device, and"						
+1	TEENSY_3.1+4	TEENSY_3.1+4	TEENSY_3.1+4	U$1	"Footprint for Teensy 3.1 board using all through-holes, i.e. the entire perimeter plus the 4 through-holes inboard (A10,A11,AREF, VUSB)"						
+2	TEST_PAD150	TEST_PAD150	TESTPAD	"TP1, TP2"	1206 test pad	A106143CT-ND				20	
+					Power supply	CDPM1000-ND				1	
+											
+	Not ordered					490-9741-1-ND				50	"1000pF, 50V, 10% 0805 Cer Cap"
+						490-5523-1-ND				50	"10uF, 25V 10% 0805 Cer Cap"
+						490-1664-1-ND				50	"10000pF, 50V, 10% Cer Cap"
