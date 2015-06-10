@@ -1,7 +1,18 @@
 #include <SPI.h>
 #include <SerialCommand.h>
 #include "Teensy_TempController.h"
+#include "Encoder.h"
+#include "LCD.h"
+#include "AD5262.h"
+
+
 SerialCommand sCmd;
+
+//Initialize digipot object:
+#define POT1_MAX 227500UL
+#define POT1_MIN 1100UL
+AD5262 dPOT(CS_POT1,SCK_B,MOSI_B,POT1_MAX,POT1_MIN);
+
 
 void unrecognizedCmd(const char *command){
   Serial.println("UNRECOGNIZED COMMAND");
@@ -11,28 +22,31 @@ void helloWorld(){
   Serial.println("Hello World");
 }
 
-void writeDigiPOT(byte address, byte value){
-  //Make sure communication lines are initialized
-  digitalWrite(SCK_B, LOW);
-  digitalWrite(CS_POT1,LOW);
-  //digitalWrite(MOSI_B, LOW);
-  
-  uint16_t data = word(address,value); //Combine address and value bits
-  int send_bit;
-	for (int i = 8; i >= 0; i--){
-		send_bit = (data >> i) & 0x01;	// mask out i_th bit
-										// start MSB first
-		digitalWrite(MOSI_B, send_bit);
-		delayMicroseconds(1);
-	
-		digitalWrite(SCK_B, HIGH);
-		delayMicroseconds(1);
-		digitalWrite(SCK_B, LOW);
-		delayMicroseconds(1);
-	}
-  //Set chip select pin back to high
-  digitalWrite(CS_POT1,HIGH);
-}
+//
+
+//moved to library
+//void writeDigiPOT(byte address, byte value){
+//  //Make sure communication lines are initialized
+//  digitalWrite(SCK_B, LOW);
+//  digitalWrite(CS_POT1,LOW);
+//  //digitalWrite(MOSI_B, LOW);
+//  
+//  uint16_t data = word(address,value); //Combine address and value bits
+//  int send_bit;
+//	for (int i = 8; i >= 0; i--){
+//		send_bit = (data >> i) & 0x01;	// mask out i_th bit
+//										// start MSB first
+//		digitalWrite(MOSI_B, send_bit);
+//		delayMicroseconds(1);
+//	
+//		digitalWrite(SCK_B, HIGH);
+//		delayMicroseconds(1);
+//		digitalWrite(SCK_B, LOW);
+//		delayMicroseconds(1);
+//	}
+//  //Set chip select pin back to high
+//  digitalWrite(CS_POT1,HIGH);
+//}
 
 void writeDAC(byte command, byte address, word data)
 {
@@ -100,18 +114,19 @@ void setDAC(byte ch, double val){
     data = (4095*val/(2*Vref)); //DAC transfer function for 12bit DAC, internal ref voltage
   }
   
-  data = (data << 4); //bit shift by 4 bits is needed to move command bits to right location, shift would be 2 bits for 14 bit or 0 for 16 bit DAC
+  data <<= 4; //bit shift by 4 bits is needed to move command bits to right location, shift would be 2 bits for 14 bit or 0 for 16 bit DAC
   writeDAC(B00011000,ch,data);
 }
 
 void test(){
-  byte command = B00011000; 
-  byte address = 0; 
-  word value = (1641 << 4); 
    //writeDigiPOT(address, value);
    //writeDAC(B00111000,0,1); //enable internal voltage reference (1.247V actual)
    //writeDAC(command,address,value);
-   setDAC(0,0);
+   //setDAC(0,0);
+   dPOT.setP(100);
+   Serial.println(dPOT.getVal(0));
+   Serial.println(dPOT.getR(0));
+   Serial.println(dPOT.getP());
 }
 
 
@@ -121,9 +136,9 @@ void setup() {
   //Eventually make these objects and move these initialization lines to a constructor
   pinMode(MOSI_B, OUTPUT);
   pinMode(SCK_B, OUTPUT);
-  pinMode(CS_POT1, OUTPUT);
+  //pinMode(CS_POT1, OUTPUT);
   pinMode(CS_DAC,OUTPUT);
-  digitalWrite(CS_POT1,HIGH);
+  //digitalWrite(CS_POT1,HIGH);
   digitalWrite(CS_DAC,HIGH);
   
   Serial.begin(9600);
