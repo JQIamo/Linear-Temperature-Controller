@@ -13,13 +13,22 @@ SerialCommand sCmd;
 #define POT1_MIN 1100UL
 AD5262 dPOT(CS_POT1,SCK_B,MOSI_B,POT1_MAX,POT1_MIN);
 
+#define VREF 2.5
+#define ANALOG_READ_BITS 12
+
+//Define constants used to convert temp to voltage
+//Current values use the Steinhart-Hart model and the following thermistor:
+//Epcos B57862S0103F040 (digikey PN 495-2166-ND), 10kOhm, NTC
+#define STEINHART_A    1.1254e-3
+#define STEINHART_B    2.3469e-4
+#define STEINHART_C    0.8584e-7
+#define BIAS_CURRENT   100e-6
+
+#define MIN_TEMP    10.0
+#define MAX_TEMP    35.0
 
 void unrecognizedCmd(const char *command){
   Serial.println("UNRECOGNIZED COMMAND");
-}
-
-void helloWorld(){
-  Serial.println("Hello World");
 }
 
 //
@@ -96,6 +105,58 @@ void setDACrefV(boolean onoff){
   writeDAC(B00111000,0,onoff); //enable internal voltage reference (1.247V actual)
 }
 
+//read voltage at specified analog pin
+float getVoltage(byte analogPin){
+  int val = analogRead(analogPin);
+  int maxReading = (1 << ANALOG_READ_BITS) - 1;
+  float voltage = VREF*(float(val)/maxReading);
+  return voltage;
+}
+
+//read temperature (assumes 10kOhm NTC thermistor, typically Digikey PN: 495-2166-ND)
+double getTemp(){
+
+  //get voltage across the thermistor:
+  float V = getVoltage(ACT_T1);
+  
+  //calculate resistance of thermistor, assuming 100uA of bias current
+  double R = V/BIAS_CURRENT;
+  
+  //calculate temp based on Steinhart-Hart equation: 1/T = A + B ln(R) + C ln(R)^3
+  double T  = 1/(STEINHART_A + STEINHART_B*log(R) + STEINHART_C*pow(log(R),3.0));
+  
+  //convert from K to C
+  T -= 273.15;
+  
+  return T;
+}
+
+//calculate and write set voltage given a desired set temperature (in Celcius)
+void setTemp(double T){
+  
+  //Make sure desired temp is within the desired range
+  if (T > MAX_TEMP){
+    T = MAX_TEMP;
+  } else if (T < MIN_TEMP) {
+    T = MIN_TEMP;
+  }
+  
+  //convert from C to K:
+  T += 273.15;
+  
+  //calculate resistance of thermistor at desired temp using the inverse of the Steinhart-Hart equation:
+  double x = (STEINHART_A-(1/T))/STEINHART_C;
+  double y = sqrt( pow(STEINHART_B/(3*STEINHART_C),3) + pow(x/2,2));
+  double R = exp(pow(y-x/2,1.0/3) - pow(y+x/2,1.0/3));
+  
+  double setV = BIAS_CURRENT*R;
+  
+  //setDAC(0,setV);
+  
+}
+
+
+
 void setDAC(byte ch, double val){
   if (ch > 4) {
     return; //channel isn't valid, return without doing anything
@@ -123,10 +184,15 @@ void test(){
    //writeDAC(B00111000,0,1); //enable internal voltage reference (1.247V actual)
    //writeDAC(command,address,value);
    //setDAC(0,0);
-   dPOT.setP(100);
-   Serial.println(dPOT.getVal(0));
-   Serial.println(dPOT.getR(0));
-   Serial.println(dPOT.getP());
+   //dPOT.setI(20.1);
+   //Serial.println(dPOT.getVal(1));
+   //Serial.println(dPOT.getR(1));
+   //Serial.println(dPOT.getI());
+   int val;
+   //Serial.println(getVoltage(VMON1),4);
+   //Serial.println(getTemp(),10);
+   setTemp(25);
+   
 }
 
 
@@ -141,9 +207,16 @@ void setup() {
   //digitalWrite(CS_POT1,HIGH);
   digitalWrite(CS_DAC,HIGH);
   
-  Serial.begin(9600);
+  //Set Up Analog Read Pins
+  pinMode(VMON1,INPUT);
+  pinMode(ACT_T1,INPUT);
+  analogReference(EXTERNAL);
+  analogReadResolution(ANALOG_READ_BITS);
+  analogReadAveraging(10);
   
-  sCmd.addCommand("H",helloWorld);
+  
+  Serial.begin(9600);
+
   sCmd.addCommand("T",test);
   sCmd.setDefaultHandler(unrecognizedCmd);
   Serial.println("ready");
@@ -152,7 +225,15 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
+//  int val;
+//  float voltage;
+//  float Vref = 2.5;
+//  val = analogRead(VMON1);
+//  voltage = Vref*(val/4095.0);
+//  Serial.println(voltage,4);
+//  sCmd.readSerial();
+//  delay(500);
+
   sCmd.readSerial();
 
 }

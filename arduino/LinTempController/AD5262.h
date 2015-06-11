@@ -51,7 +51,7 @@ class AD5262
         void setP(byte);
         
         //set the integrator time constant (in seconds)
-        void setI(double);
+        void setI(float);
 		
 	// read current value
 	byte getVal(byte);
@@ -61,20 +61,23 @@ class AD5262
         
         //read current proportional gain
         byte getP();
+        
+        //read current integrator time constant
+        float getI();
 		
     private:
         // Instance variables that hold pinout mapping
 	byte _CS_PIN, _SCK_PIN, _MOSI_PIN;
 		
 	// Instance variables that hold the current set value for channel 0 and channel 1
-	byte _val0, _val1, _val[2];
+	byte _val[2];
 
         // Instance variables that are used to calibrate and store the desired proportional, integral, or resistance value
-	unsigned long _R_MIN, _R_MAX, _R1, _R2, _R[2];
+	unsigned long _R_MIN, _R_MAX, _R[2];
 
         byte _Pgain, _P_MAX, _P_MIN;
         
-        double _Itc;
+        float _Itc, _Itc_MAX, _Itc_MIN;
 };
 
 #endif

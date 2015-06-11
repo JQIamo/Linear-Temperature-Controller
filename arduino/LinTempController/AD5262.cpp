@@ -43,10 +43,10 @@ AD5262::AD5262(byte CS_PIN, byte SCK_PIN, byte MOSI_PIN, unsigned long R_MAX, un
     _MOSI_PIN = MOSI_PIN;
     _R_MAX = R_MAX;
     _R_MIN = R_MIN;
-    _P_MIN = 100/((100000/_R_MIN)+1);
-    _P_MAX = 100/((100000/_R_MAX)+1);
-    Serial.println(_P_MIN);
-    Serial.println(_P_MAX);
+    _P_MIN = 100.0/((100000.0/_R_MIN)+1.0);
+    _P_MAX = 100.0/((100000.0/_R_MAX)+1.0);
+    _Itc_MIN = 0.53*(100000.0/_R_MAX + 1.0);
+    _Itc_MAX = 0.53*(100000.0/_R_MIN + 1.0);
 
     // sets up the pinmodes for output
     pinMode(_CS_PIN, OUTPUT);
@@ -75,17 +75,7 @@ void AD5262::writeDigiPOT(byte address, byte value){
   digitalWrite(_CS_PIN,LOW);
   //digitalWrite(_MOSI_PIN, LOW);
   
-  uint16_t data;
-  
-//  if (address == 0) {
-//	_val0 = value;
-//	data = word(address,value);  //Combine address and value bits
-//  } else {
-//	_val1 = value;
-//	data = word(address,value);  //Combine address and value bits
-//  }
-
-  data = word(address,value);
+  uint16_t data = word(address,value);
   _val[address] = value;
     
   int send_bit;
@@ -114,7 +104,7 @@ void AD5262::setR(byte address, unsigned long R){
     val = 255;
     _R[address] = _R_MIN;
   } else {
-    val = (float)(-255.0/_R_MAX)*R+255.0;
+    val = (-255.0/_R_MAX)*R+255.0;
     _R[address] = R;
   }
   
@@ -133,14 +123,31 @@ void AD5262::setP(byte P){
     Rp = _R_MIN;
   } else {
     _Pgain = P;
-    Rp = 100000/( (100/P) - 1 );
+    Rp = 100000.0/( (100.0/P) - 1.0 );
   }
   setR(0,Rp);
 }
 
+//Set Integrator Time Constant
+//From WTC3243 datasheet Rp = (100,000 / (1.89*Itc-1 ), or Itc = 0.53*( 100,000/RI + 1 ) (seconds)
+void AD5262::setI(float Itc){
+  unsigned long Rp;
+  if (Itc > _Itc_MAX) {
+    _Itc = _Itc_MAX;      //May want to limit this to 10 sec or something reasonable, the calibration is off at the high end
+    Rp = _R_MIN;
+  } else if (Itc < _Itc_MIN) {
+    _Itc = _Itc_MIN;
+    Rp = _R_MAX;
+  } else {
+    _Itc = Itc;
+    Rp = 100000.0/( 1.89*Itc - 1.0 );
+  }
+  setR(1,Rp);
+}
+
 //getValue - returns current set  value
 byte AD5262::getVal(byte address){
-	return _val[address];
+  return _val[address];
 }
 
 //getR - returns current resistance
@@ -151,5 +158,10 @@ unsigned long AD5262::getR(byte address){
 //getP - returns current proportional gain setting
 byte AD5262::getP(){
   return _Pgain;
+}
+
+//getI - returns current integrator time constant setting
+float AD5262::getI(){
+  return _Itc;
 }
 
