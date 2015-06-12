@@ -1,77 +1,90 @@
 #include "Menu.h"
 
-Menu::Menu(int num_of_modes, String *mode_labels) {
+
+Menu::Menu(int num_of_modes) {
 	num_of_modes_ = num_of_modes;
-	menu_select_ = false;
+	in_menu_ = false;
 	current_mode_ = 0;
-	for(int i = 0; i < num_of_modes_; i++) {
-		mode_labels_[i] = mode_labels[i];
-	}
 }
 
-void Menu::attach_mode(int mode_num, void (*mode_loop)()) {
-	mode_loops_[mode_num] = mode_loop;
+
+/*
+	Setup Methods
+*/
+void Menu::attach_mode(String menu_name, void (*menu_function)(Menu* this_menu)) {
+	menu_name_ = menu_name;
+	menu_function_ = menu_function;
 }
 
-void Menu::attach_menu_knob(Encoder *knob_select) {
-	knob_select_ = knob_select;
+void Menu::attach_mode(int mode_num, String mode_name, void (*mode_function)()) {
+	mode_names_[mode_num] = mode_name;
+	mode_functions_[mode_num] = mode_function;
 }
 
-void Menu::attach_knob_to_mode(int mode, Encoder *knob) {
-	knobs_[mode] = knob;
+void Menu::attach_mode(int mode_num, String submenu_name, Menu *submenu) {
+	// mode_names_[mode_num] = submenu_name;
+	// mode_functions_[mode_num] = submenu->point_to_self;
 }
 
-void Menu::attach_mode_select(void (*mode_select)(Menu *this_menu)) {
-	mode_select_ = mode_select;
-}
 
-void Menu::run_current_mode() {
-	if (menu_select_ == false) {
-		(mode_loops_[current_mode_])();
+/*
+	Execute modes
+*/
+void Menu::run_mode() {
+	if (in_menu_ == false) {
+		mode_functions_[current_mode_]();
 	}
 	else {
-		mode_select_(this);
+		menu_function_(this);
 	}
 }
 
 void Menu::run_mode(int mode_number) {
-	mode_loops_[mode_number]();
+	mode_functions_[mode_number]();
 }
 
-void Menu::switch_to_mode(int mode_number) {
-	menu_select_ = false;
-	current_mode_ = mode_number % num_of_modes_;
-}
 
-void Menu::switch_to_select() {
-	menu_select_ = true;
+/*
+	Switching between modes
+*/
+void Menu::switch_to_menu() {
+	in_menu_ = true;
 }
 
 void Menu::increment_mode_number() {
 	current_mode_ = (current_mode_ + 1) % num_of_modes_;
 }
 
-bool Menu::menu_select() {
-	return menu_select_;
+void Menu::switch_to_mode(int mode_number) {
+	in_menu_ = false;
+	current_mode_ = mode_number % num_of_modes_;
+}
+
+
+/*
+	Getting the menu state
+*/
+bool Menu::in_menu() {
+	return in_menu_;
 }
 
 int Menu::current_mode() {
 	return current_mode_;
 }
 
-String Menu::current_mode_label() {
-	return mode_labels_[current_mode_];
-}
-
-String Menu::mode_label(int i) {
-	return mode_labels_[i];
-}
-
-Encoder* Menu::current_knob() {
-	if (menu_select_) {
-		return knob_select_;
-	}
+String Menu::mode_name() {
+	if (in_menu_)
+		return menu_name_;
 	else {
-		return knobs_[current_mode_];
+		return mode_names_[current_mode_];
 	}
 }
+
+String Menu::mode_name(int i) {
+	return mode_names_[i];
+}
+
+Menu* Menu::point_to_self() {
+	return this;
+}
+

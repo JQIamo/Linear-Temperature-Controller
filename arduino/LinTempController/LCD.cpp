@@ -38,6 +38,11 @@ void LCD::init(){
     delay(10);
 }
 
+
+
+/*
+    Base methods (write commands for other types are derived from these)
+*/
 void LCD::write(char data){
     digitalWrite(pin_chip_select_, LOW);
     digitalWrite(pin_register_select_, HIGH);
@@ -45,19 +50,6 @@ void LCD::write(char data){
     SPI.transfer(data);
     delay(2);
     digitalWrite(pin_chip_select_, HIGH);
-}
-
-void LCD::write(const char text[], byte addr) {
-    addr += 0x80;   // additional bit set in DB7;
-    LCD::write_cmd(addr);
-    for(int i = 0; text[i] != '\0' && i < 16; i++){
-        LCD::write(text[i]);
-    }
-}
-
-void LCD::write(dtext_t text){
-    LCD::write(text[0], 0x00);
-    LCD::write(text[1], 0x40);
 }
 
 void LCD::write_cmd(byte data){
@@ -71,12 +63,44 @@ void LCD::write_cmd(byte data){
     digitalWrite(pin_chip_select_, HIGH);
 }
 
-void LCD::clear(){
-    LCD::write_cmd(0x01);
+
+
+/*
+    Derived methods (in order of increasing abstraction)
+*/
+void LCD::write(dtext_t text){
+    LCD::write(text[0], 0x00);
+    LCD::write(text[1], 0x40);
 }
 
-void LCD::write(String data, byte addr) {
-    LCD::write(data.c_str(), addr);
+void LCD::write(const char text[], byte addr) {
+    addr += 0x80;   // additional bit set in DB7;
+    LCD::write_cmd(addr);
+    for(int i = 0; text[i] != '\0' && i < 16; i++){
+        LCD::write(text[i]);
+    }
+}
+
+void LCD::write(String text, byte addr) {
+    LCD:write(text.c_str(), addr);
+}
+
+void LCD::flash_string(String text, byte position) {
+    for(int i = 0; i < 5; i++) {
+            LCD::write(text, position);
+            delay(100);
+            LCD::clear();
+        }
+        delay(300);
+}
+
+
+
+/*
+    Clearing the display
+*/
+void LCD::clear(){
+    LCD::write_cmd(0x01);
 }
 
 void LCD::clear_1st_line(){

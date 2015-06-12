@@ -1,42 +1,38 @@
+#ifndef Menu_h
+#define Menu_h
 #include "Arduino.h"
-#include "Encoder.h"
-#define Encoder_h
 
 class Menu {
  public:
- 	// Constructor and initialization methods:
-	Menu(int num_of_modes, String *mode_labels);
-	void attach_mode_select(void (*mode_select)(Menu* this_menu));
-	void attach_mode(int mode_num, void (*mode_loop)());
-	void attach_menu_knob(Encoder *knob_select);
-	void attach_knob_to_mode(int mode, Encoder *knob);
+	Menu(int num_of_modes);
+	void attach_mode(String menu_name, void (*mode_select)(Menu* this_menu));
+	void attach_mode(int mode_num, String mode_name, void (*mode_loop)());
+	void attach_mode(int mode_num, String submenu_name, Menu *submenu);
 
-	// Run a particular mode:
-	void run_current_mode();
+	// Run the current mode or a given mode once:
+	void run_mode();
 	void run_mode(int mode_number);
 
 	// Switch various modes or increment mode number:
-	void switch_to_select();
+	void switch_to_menu();
 	void increment_mode_number();
 	void switch_to_mode(int mode_number);
 
-	// Return the menu_select_ state and current_mode_label:
-	bool menu_select();
+	// Return the in_menu_ state, mode names, and other info:
+	bool in_menu();
 	int current_mode();
-	String current_mode_label();
-	String mode_label(int i);
-	Encoder* current_knob();
-
-
+	String mode_name();
+	String mode_name(int i);
+	Menu* point_to_self();
 
  private:
  	int num_of_modes_;
  	int current_mode_;
- 	bool menu_select_;
- 	Encoder *knob_select_;
- 	String mode_labels_[6]; // Note: the max number of modes is 6.
- 	Encoder *knobs_[6]; //
- 	void (*mode_loops_[6])();
- 	void (*mode_select_)(Menu* this_menu);
-
+ 	bool in_menu_;
+ 	String menu_name_;
+ 	String mode_names_[15]; // Note: the max number of modes is 15.
+ 	void (*menu_function_)(Menu* this_menu);
+ 	void (*mode_functions_[15])();
 };
+
+#endif

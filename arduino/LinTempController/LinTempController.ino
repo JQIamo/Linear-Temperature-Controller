@@ -8,6 +8,14 @@
 
 SerialCommand sCmd;
 
+LCD lcd(RST_LCD, RS_LCD, CS_LCD);
+Encoder enc_test1(ENC_A1,ENC_B1,ENC_SW1);
+
+Encoder enc_ch_select(ENC_A2,ENC_B2,21);
+Encoder enc_set_t(ENC_A1,ENC_B1,ENC_SW1);
+Encoder enc_set_pgain(ENC_A1,ENC_B1,ENC_SW1);
+Encoder enc_set_Itc(ENC_A1,ENC_B1,ENC_SW1);
+
 //Initialize digipot object:
 #define POT1_MAX 227500UL
 #define POT1_MIN 1100UL
@@ -30,6 +38,18 @@ AD5262 dPOT(CS_POT1,SCK_B,MOSI_B,POT1_MAX,POT1_MIN);
 void unrecognizedCmd(const char *command){
   Serial.println("UNRECOGNIZED COMMAND");
 }
+
+void test_press_event(Encoder *this_encoder) {
+  this_encoder->increment_step_size();
+}
+
+void test_hold_event(Encoder *this_encoder) {
+  lcd.write("hold...",0x00);
+  delay(2000);
+  lcd.clear();
+}
+
+
 
 //
 
@@ -191,10 +211,13 @@ void test(){
    int val;
    //Serial.println(getVoltage(VMON1),4);
    //Serial.println(getTemp(),10);
-   setTemp(25);
+   lcd.write("CH 1     23.48 C", 0x00);
+   lcd.write("Out Mon   19.99V", 0x40);
    
 }
-
+void interruptWrapper(){
+  enc_test1.interrupt();
+}
 
 void setup() {
   // put your setup code here, to run once:
@@ -214,12 +237,34 @@ void setup() {
   analogReadResolution(ANALOG_READ_BITS);
   analogReadAveraging(10);
   
+  //Set up encoder pins:
+  pinMode(ENC_A1,INPUT);
+  pinMode(ENC_B1,INPUT);
+  pinMode(ENC_SW1,INPUT);
+  pinMode(ENC_A2,INPUT);
+  pinMode(ENC_B2,INPUT);
+  pinMode(21,INPUT);
+  
+  //Initialize the LCD
+  SPI.begin();
+  lcd.init();
+  
+  attachInterrupt(ENC_A1, interruptWrapper, CHANGE);
+  enc_test1.attach_button_press_event(test_press_event);
+  enc_test1.attach_button_hold_event(test_hold_event);
+  
+  enc_test1.init(1.0, 0.0, 100.0);
+  double step_sizes[]={1,5,10};
+  String step_labels[]={"LSB","5 sec","10 apples"};
+  enc_test1.define_step_sizes(3,step_sizes,step_labels);
+  
   
   Serial.begin(9600);
 
   sCmd.addCommand("T",test);
   sCmd.setDefaultHandler(unrecognizedCmd);
   Serial.println("ready");
+    
 
 }
 
@@ -233,6 +278,11 @@ void loop() {
 //  Serial.println(voltage,4);
 //  sCmd.readSerial();
 //  delay(500);
+  //Serial.println(enc_test1.position());
+  double currPos = enc_test1.position();
+  lcd.write("Curr Pos: " + String(currPos),0x00);
+  enc_test1.button_events();
+  //delay(500);
 
   sCmd.readSerial();
 
