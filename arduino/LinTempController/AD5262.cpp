@@ -131,18 +131,18 @@ void AD5262::setP(byte P){
 //Set Integrator Time Constant
 //From WTC3243 datasheet Rp = (100,000 / (1.89*Itc-1 ), or Itc = 0.53*( 100,000/RI + 1 ) (seconds)
 void AD5262::setI(float Itc){
-  unsigned long Rp;
+  unsigned long Ri;
   if (Itc > _Itc_MAX) {
     _Itc = _Itc_MAX;      //May want to limit this to 10 sec or something reasonable, the calibration is off at the high end
-    Rp = _R_MIN;
+    Ri = _R_MIN;
   } else if (Itc < _Itc_MIN) {
     _Itc = _Itc_MIN;
-    Rp = _R_MAX;
+    Ri = _R_MAX;
   } else {
     _Itc = Itc;
-    Rp = 100000.0/( 1.89*Itc - 1.0 );
+    Ri = 100000.0/( 1.89*Itc - 1.0 );
   }
-  setR(1,Rp);
+  setR(1,Ri);
 }
 
 //getValue - returns current set  value

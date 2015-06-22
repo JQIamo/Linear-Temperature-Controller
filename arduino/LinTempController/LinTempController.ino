@@ -4,6 +4,8 @@
 #include "Encoder.h"
 #include "LCD.h"
 #include "AD5262.h"
+#include "WTC3243.h"
+#include "TempContSettings.h"
 
 
 SerialCommand sCmd;
@@ -234,8 +236,8 @@ void setup() {
   pinMode(VMON1,INPUT);
   pinMode(ACT_T1,INPUT);
   analogReference(EXTERNAL);
-  analogReadResolution(ANALOG_READ_BITS);
-  analogReadAveraging(10);
+  analogReadResolution(Settings::analog_read_bits);
+  analogReadAveraging(Settings::analog_read_avg);
   
   //Set up encoder pins:
   pinMode(ENC_A1,INPUT);
