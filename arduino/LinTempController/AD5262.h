@@ -48,10 +48,10 @@ class AD5262
         void setR(byte, unsigned long);
         
         //set the proportional gain (in A/V)
-        void setP(byte);
+        //void setP(byte);
         
         //set the integrator time constant (in seconds)
-        void setI(float);
+        //void setI(float);
 		
 	// read current value
 	byte getVal(byte);
@@ -60,10 +60,10 @@ class AD5262
         unsigned long getR(byte);
         
         //read current proportional gain
-        byte getP();
+        //byte getP();
         
         //read current integrator time constant
-        float getI();
+        //float getI();
 		
     private:
         // Instance variables that hold pinout mapping
@@ -75,9 +75,9 @@ class AD5262
         // Instance variables that are used to calibrate and store the desired proportional, integral, or resistance value
 	unsigned long _R_MIN, _R_MAX, _R[2];
 
-        byte _Pgain, _P_MAX, _P_MIN;
+        //byte _Pgain, _P_MAX, _P_MIN;
         
-        float _Itc, _Itc_MAX, _Itc_MIN;
+        //float _Itc, _Itc_MAX, _Itc_MIN;
 };
 
 #endif

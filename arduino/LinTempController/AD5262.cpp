@@ -43,10 +43,10 @@ AD5262::AD5262(byte CS_PIN, byte SCK_PIN, byte MOSI_PIN, unsigned long R_MAX, un
     _MOSI_PIN = MOSI_PIN;
     _R_MAX = R_MAX;
     _R_MIN = R_MIN;
-    _P_MIN = 100.0/((100000.0/_R_MIN)+1.0);
-    _P_MAX = 100.0/((100000.0/_R_MAX)+1.0);
-    _Itc_MIN = 0.53*(100000.0/_R_MAX + 1.0);
-    _Itc_MAX = 0.53*(100000.0/_R_MIN + 1.0);
+    //_P_MIN = 100.0/((100000.0/_R_MIN)+1.0);
+    //_P_MAX = 100.0/((100000.0/_R_MAX)+1.0);
+    //_Itc_MIN = 0.53*(100000.0/_R_MAX + 1.0);
+    //_Itc_MAX = 0.53*(100000.0/_R_MIN + 1.0);
 
     // sets up the pinmodes for output
     pinMode(_CS_PIN, OUTPUT);
@@ -111,39 +111,39 @@ void AD5262::setR(byte address, unsigned long R){
   writeDigiPOT(address,val);
 }
 
-//Set Proportional Value
-//From WTC3243 datasheet Rp = (100,000 / (100/PGAIN)-1 ), or PGAIN = 100/( 100,000/RP + 1 ) (A/V)
-void AD5262::setP(byte P){
-  unsigned long Rp;
-  if (P > _P_MAX) {
-    _Pgain = _P_MAX;
-    Rp = _R_MAX;
-  } else if (P < _P_MIN) {
-    _Pgain = _P_MIN;
-    Rp = _R_MIN;
-  } else {
-    _Pgain = P;
-    Rp = 100000.0/( (100.0/P) - 1.0 );
-  }
-  setR(0,Rp);
-}
+////Set Proportional Value
+////From WTC3243 datasheet Rp = (100,000 / (100/PGAIN)-1 ), or PGAIN = 100/( 100,000/RP + 1 ) (A/V)
+//void AD5262::setP(byte P){
+//  unsigned long Rp;
+//  if (P > _P_MAX) {
+//    _Pgain = _P_MAX;
+//    Rp = _R_MAX;
+//  } else if (P < _P_MIN) {
+//    _Pgain = _P_MIN;
+//    Rp = _R_MIN;
+//  } else {
+//    _Pgain = P;
+//    Rp = 100000.0/( (100.0/P) - 1.0 );
+//  }
+//  setR(0,Rp);
+//}
 
 //Set Integrator Time Constant
 //From WTC3243 datasheet Rp = (100,000 / (1.89*Itc-1 ), or Itc = 0.53*( 100,000/RI + 1 ) (seconds)
-void AD5262::setI(float Itc){
-  unsigned long Ri;
-  if (Itc > _Itc_MAX) {
-    _Itc = _Itc_MAX;      //May want to limit this to 10 sec or something reasonable, the calibration is off at the high end
-    Ri = _R_MIN;
-  } else if (Itc < _Itc_MIN) {
-    _Itc = _Itc_MIN;
-    Ri = _R_MAX;
-  } else {
-    _Itc = Itc;
-    Ri = 100000.0/( 1.89*Itc - 1.0 );
-  }
-  setR(1,Ri);
-}
+//void AD5262::setI(float Itc){
+//  unsigned long Ri;
+//  if (Itc > _Itc_MAX) {
+//    _Itc = _Itc_MAX;      //May want to limit this to 10 sec or something reasonable, the calibration is off at the high end
+//    Ri = _R_MIN;
+//  } else if (Itc < _Itc_MIN) {
+//    _Itc = _Itc_MIN;
+//    Ri = _R_MAX;
+//  } else {
+//    _Itc = Itc;
+//    Ri = 100000.0/( 1.89*Itc - 1.0 );
+//  }
+//  setR(1,Ri);
+//}
 
 //getValue - returns current set  value
 byte AD5262::getVal(byte address){
@@ -156,12 +156,12 @@ unsigned long AD5262::getR(byte address){
 }
 
 //getP - returns current proportional gain setting
-byte AD5262::getP(){
-  return _Pgain;
-}
+//byte AD5262::getP(){
+//  return _Pgain;
+//}
 
 //getI - returns current integrator time constant setting
-float AD5262::getI(){
-  return _Itc;
-}
+//float AD5262::getI(){
+//  return _Itc;
+//}
 

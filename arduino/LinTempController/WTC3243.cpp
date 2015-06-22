@@ -33,8 +33,10 @@
 #include "WTC3243.h"
 #include "TempContSettings.h"
 #include "AD5262.h"
+#include "AD56X4R.h"
 
-WTC3243::WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN, byte DAC_CH, byte VMON_PIN, byte ACT_T_PIN, unsigned long R_MIN, unsigned long R_MAX) : _dPOT(CS_POT, SCK_PIN, MOSI_PIN, R_MAX, R_MIN)
+
+WTC3243::WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN, byte DAC_CH, byte VMON_PIN, byte ACT_T_PIN, unsigned long R_MIN, unsigned long R_MAX, AD56X4R &dac) : _dPOT(CS_POT, SCK_PIN, MOSI_PIN, R_MAX, R_MIN)
 { 
 	_CS_POT = CS_POT;
 	_SCK_PIN = SCK_PIN;
@@ -48,8 +50,8 @@ WTC3243::WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN, byte
         _R_MIN = R_MIN;
 	_R_MAX = R_MAX;
 
-	_P_MIN = max(100.0/((100000.0/_R_MIN)+1.0),Settings::prop_min);
-	_P_MAX = min(100.0/((100000.0/_R_MAX)+1.0),Settings::prop_max);
+	_P_MIN = max(100.0/((100000.0/_R_MIN) + 1.0),Settings::prop_min);
+	_P_MAX = min(100.0/((100000.0/_R_MAX) + 1.0),Settings::prop_max);
     	_Itc_MIN = max(0.53*(100000.0/_R_MAX + 1.0),Settings::int_tc_min);
     	_Itc_MAX = min(0.53*(100000.0/_R_MIN + 1.0),Settings::int_tc_max);
 
@@ -59,6 +61,8 @@ WTC3243::WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN, byte
 	//set up pin modes for analog inputs
 	pinMode(_VMON_PIN,INPUT);
 	pinMode(_ACT_T_PIN,INPUT);
+
+        AD56X4R& _dac = dac;
 
   	//set up analog read settings in setup()
 	//analogReference(EXTERNAL);
@@ -133,7 +137,7 @@ float WTC3243::getI(){
 //Set desired temperature voltage
 void WTC3243::setTempV(double V){
 	_setV = V;
-	//finalize this after making DAC class
+        _dac->setVoltage(_DAC_CH,V);
 }
 
 //Set desired temperature
@@ -157,14 +161,15 @@ void WTC3243::setTemp(double T){
   	double y = sqrt( pow(_STEINHART_B/(3*_STEINHART_C),3) + pow(x/2,2));
   	double R = exp(pow(y-x/2,1.0/3) - pow(y+x/2,1.0/3));
   
-  	double setV = _BIAS_CURRENT*R;
-  
+  	_setV = _BIAS_CURRENT*R;
+        
+        _dac->setVoltage(_DAC_CH,_setV);
   	//setDAC(_DAC_CH,setV);
 
 }
 
 //read voltage at specified analog pin
-float readVoltage(byte analogPin){
+float WTC3243::readVoltage(byte analogPin){
   int val = analogRead(analogPin);
   int maxReading = (1 << Settings::analog_read_bits) - 1;
   float voltage = Settings::analog_vref*(float(val)/maxReading);

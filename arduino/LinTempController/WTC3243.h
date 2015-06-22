@@ -34,13 +34,14 @@
 
 #include "Arduino.h"
 #include "AD5262.h"
+#include "AD56X4R.h"
 
 class WTC3243
 {
 	public:
 		//Constructor function
 		//Do I need the DAC_CS pin here or can I use a global variable?
-		WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN , byte DAC_Ch, byte VMON, byte ACT_T, unsigned long R_MIN, unsigned long R_MAX);
+		WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN , byte DAC_Ch, byte VMON, byte ACT_T, unsigned long R_MIN, unsigned long R_MAX, AD56X4R &dac);
 
 		void init(double _BIAS_CURRENT, double _STEINHART_A, double _STEINHART_B, double _STEINHART_C, float _MIN_TEMP, float _MAX_TEMP);
 
@@ -91,6 +92,9 @@ class WTC3243
 
                 //Instance digipot object
 		AD5262 _dPOT;
+
+                //Instance DAC object
+                AD56X4R* _dac;
 
 	private:
 		//Instance variables that hold pin mappings
