@@ -83,7 +83,7 @@ void AD56X4R::setVoltage(byte ch, double Vout){
 			_val[ch] = 0;
 			_voltage[ch] = 0.0;
 		} else {
-			data = (maxVal*Vout/_volt_max); //DAC transfer function
+			data = round(maxVal*Vout/_volt_max); //DAC transfer function
 			_val[ch] = data;
 			_voltage[ch] = Vout;
 		}
@@ -93,15 +93,13 @@ void AD56X4R::setVoltage(byte ch, double Vout){
 			bit_shift = 4;
 		} else if (_dac_precision == 14) {
 			bit_shift = 2;
-		} else if (_dac_precision == 16) {
+		} else {
 			bit_shift = 0;
 		}
 		
 		//bit shift (depends on DAC precision) is needed to move command bits to right location:
-                Serial.println(data);
 		data <<= bit_shift;
-		writeDAC(B0001100,ch,data);
-		
+		writeDAC(B00011000,ch,data);		
 }
 		
 //Send an actual command to the DAC. This version uses a software emulated SPI protocol
@@ -131,7 +129,6 @@ void AD56X4R::writeDAC(byte command, byte address, word data){
 	}
   
   // Send the data word. Must be sent byte by byte, MSB first.
-  
   uint16_t second = data;
   	for (int i = 15; i >= 0; i--){
 		send_bit = (second >> i) & 0x01;	// mask out i_th bit

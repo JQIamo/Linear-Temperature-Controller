@@ -10,10 +10,10 @@ namespace Settings
 	const float dac_vref(1.247); //value of DAC's internal voltage reference
         const byte dac_bits(12); //number of bits used by DAC
 	
-	const byte prop_max(60);  //max allowed proportional gain (V/A)
+	const byte prop_max(65);  //max allowed proportional gain (V/A)
 	const byte prop_min(1);  //min allowed proportional gain (V/A)
 	const float int_tc_min(0.5); //min allowed integrator time constant (sec)
-	const float int_tc_max(10.0); //max allowed integrator time constant (sec)
+	const float int_tc_max(10.0); //max allowed integrator time constant (sec) (above 3.4sec each turn of rot encoder doesn't always change pot value)
 
 }
 

@@ -41,7 +41,7 @@ class WTC3243
 	public:
 		//Constructor function
 		//Do I need the DAC_CS pin here or can I use a global variable?
-		WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN , byte DAC_Ch, byte VMON, byte ACT_T, unsigned long R_MIN, unsigned long R_MAX, AD56X4R &dac);
+		WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN , byte DAC_Ch, byte VMON, byte ACT_T, unsigned long R_MIN, unsigned long R_MAX);
 
 		void init(double _BIAS_CURRENT, double _STEINHART_A, double _STEINHART_B, double _STEINHART_C, float _MIN_TEMP, float _MAX_TEMP);
 
@@ -70,16 +70,19 @@ class WTC3243
 		float getI();
 
 		//Set desired temperature voltage
-		void setTempV(double V);
+		void setTempV(double V, AD56X4R& dac);
 
 		//Set desired temperature
-		void setTemp(double temp);
+		void setTemp(double temp, AD56X4R& dac);
 
                 //Read voltage at specified analog input pin
                 float readVoltage(byte analogPin);
 
 		//Get the measured temperature
 		float getActTemp();
+
+                //Get the voltage across the TEC/heater
+                float getOutputVoltage();
 
 		//Get the temperature set point
 		float getTempSetPt();
@@ -94,7 +97,7 @@ class WTC3243
 		AD5262 _dPOT;
 
                 //Instance DAC object
-                AD56X4R* _dac;
+                //AD56X4R* _dac;
 
 	private:
 		//Instance variables that hold pin mappings

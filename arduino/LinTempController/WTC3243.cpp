@@ -36,7 +36,7 @@
 #include "AD56X4R.h"
 
 
-WTC3243::WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN, byte DAC_CH, byte VMON_PIN, byte ACT_T_PIN, unsigned long R_MIN, unsigned long R_MAX, AD56X4R &dac) : _dPOT(CS_POT, SCK_PIN, MOSI_PIN, R_MAX, R_MIN)
+WTC3243::WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN, byte DAC_CH, byte VMON_PIN, byte ACT_T_PIN, unsigned long R_MIN, unsigned long R_MAX) : _dPOT(CS_POT, SCK_PIN, MOSI_PIN, R_MAX, R_MIN)
 { 
 	_CS_POT = CS_POT;
 	_SCK_PIN = SCK_PIN;
@@ -61,8 +61,6 @@ WTC3243::WTC3243(byte CS_POT, byte SCK_PIN, byte MOSI_PIN, byte CS_DAC_PIN, byte
 	//set up pin modes for analog inputs
 	pinMode(_VMON_PIN,INPUT);
 	pinMode(_ACT_T_PIN,INPUT);
-
-        AD56X4R& _dac = dac;
 
   	//set up analog read settings in setup()
 	//analogReference(EXTERNAL);
@@ -135,14 +133,14 @@ float WTC3243::getI(){
 }
 
 //Set desired temperature voltage
-void WTC3243::setTempV(double V){
+void WTC3243::setTempV(double V, AD56X4R &dac){
 	_setV = V;
-        _dac->setVoltage(_DAC_CH,V);
+        dac.setVoltage(_DAC_CH,V);
 }
 
 //Set desired temperature
 //finalize after making DAC class
-void WTC3243::setTemp(double T){
+void WTC3243::setTemp(double T, AD56X4R &dac){
 
 	  //Make sure desired temp is within the desired range
 	if (T > _MAX_TEMP){
@@ -163,7 +161,7 @@ void WTC3243::setTemp(double T){
   
   	_setV = _BIAS_CURRENT*R;
         
-        _dac->setVoltage(_DAC_CH,_setV);
+        dac.setVoltage(_DAC_CH,_setV);
   	//setDAC(_DAC_CH,setV);
 
 }
@@ -195,6 +193,18 @@ float WTC3243::getActTemp(){
   
   	return T;
 
+}
+
+//Get the voltage across the TEC/heater
+float WTC3243::getOutputVoltage(){
+  
+        //revisit this after getting a better idea for transfer function/calibration
+        float Vout = readVoltage(_VMON_PIN);
+        
+        Vout = 20.0*Vout-25.0;
+        
+        return Vout;
+  
 }
 
 //Get the temperature set point
