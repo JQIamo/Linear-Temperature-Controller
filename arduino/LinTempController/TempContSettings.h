@@ -5,7 +5,7 @@ namespace Settings
 {
 	const float analog_vref(2.5);  //value of voltage reference used for analog inputs
 	const byte analog_read_bits(12); //precision for analog inputs
-	const byte analog_read_avg(10); //number of analog measurements to average over
+	const byte analog_read_avg(32); //number of analog measurements to average over, max of 32
 
 	const float dac_vref(1.247); //value of DAC's internal voltage reference
         const byte dac_bits(12); //number of bits used by DAC
@@ -14,6 +14,12 @@ namespace Settings
 	const byte prop_min(1);  //min allowed proportional gain (V/A)
 	const float int_tc_min(0.5); //min allowed integrator time constant (sec)
 	const float int_tc_max(10.0); //max allowed integrator time constant (sec) (above 3.4sec each turn of rot encoder doesn't always change pot value)
+
+        const unsigned long save_interval(3600000UL); //1 hr = 3600000 milliseconds
+        
+        extern int addressTempSetPt;
+        extern int addressItc;
+        extern int addressPgain;
 
 }
 
