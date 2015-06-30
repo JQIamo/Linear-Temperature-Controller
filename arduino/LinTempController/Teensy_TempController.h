@@ -50,7 +50,7 @@
 #define ACT_T1		A11
 
 //Are these needed: MON_OUT (A14/DAC), 2.5 Voltage ref (AREF), 
-
+#define ANALOG_OUT_PIN    A14
 
 //! @}
 

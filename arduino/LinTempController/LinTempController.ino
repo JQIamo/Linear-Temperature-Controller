@@ -55,6 +55,10 @@ void test_hold_event(Encoder *this_encoder) {
   writeSettingstoMemory();
 }
 
+void secondary_hold_event(Encoder *this_encoder) {
+  Serial.println("HELD");
+}
+
 
 void test() {
   //writeDigiPOT(address, value);
@@ -76,11 +80,12 @@ void test() {
 
   //Serial.println(tempCont._dPOT.getR(1));
 
-  tempCont.setTemp(25.0, dac);
+  //tempCont.setTemp(25.0, dac);
   //tempCont.setTempV(1.03,dac);
   //dac.setVoltage(0,2.3);
   //setDAC(0,.75);
   //dac.setIntRefV(1);
+  analogWrite(ANALOG_OUT_PIN,4095);
 
 }
 
@@ -109,7 +114,10 @@ void mode_temp_tune() {
   }
 
   //update display
-  lcd.write("SetT(" + enc_set_t.step_size_label() + ") " + String(newSetTemp, 2) + "C", 0x040);
+  char lineToDisplay[17];
+  snprintf(lineToDisplay, 17, "SetT(%3s) %5.2fC", enc_set_t.step_size_label().c_str(), newSetTemp);
+  //lcd.write("SetT(" + enc_set_t.step_size_label() + ") " + String(newSetTemp, 2) + "C", 0x040);
+  lcd.write(lineToDisplay, 0x040);
 }
 
 void mode_pgain_tune() {
@@ -171,11 +179,15 @@ void monitorTemp() {
 
 void writeSettingstoMemory() {
       //save settings to EEPROM
+      
+    lcd.write(" Settings Saved ",0x40);
+    
     cli(); //clear interrupts, not sure if this is necessary 
     EEPROM.updateFloat(Settings::addressTempSetPt, tempCont.getTempSetPt());
     EEPROM.updateByte(Settings::addressPgain, tempCont.getP());
     EEPROM.updateFloat(Settings::addressItc, tempCont.getI());
     sei(); //set interrupts
+    delay(1500);
 }
 
 //Declare variables used to store EEPROM addresses:
@@ -187,6 +199,8 @@ int Settings::addressItc;
 
 void setup() {
   // put your setup code here, to run once:
+  
+  Serial.begin(9600);
 
   //get address for EEPROM saved variables:
   Settings::addressTempSetPt = EEPROM.getAddress(sizeof(float));
@@ -204,7 +218,7 @@ void setup() {
   //Set Up Analog Read Pins
   analogReference(EXTERNAL);
   analogReadResolution(Settings::analog_read_bits);
-  analogReadAveraging(Settings::analog_read_avg);
+  analogReadAveraging(Settings::analog_read_avg); 
 
   //Set up encoder pins:
   pinMode(ENC_A1, INPUT);
@@ -223,7 +237,7 @@ void setup() {
 
   //Read temp set pt from memory (or if that value is out of bounds, initialize to 20.0 C
   float initialTempSetPt = EEPROM.readFloat(Settings::addressTempSetPt);
-  if (initialTempSetPt < Ch1::min_temp || initialTempSetPt > Ch1::max_temp){
+  if (isnan(initialTempSetPt) || initialTempSetPt < Ch1::min_temp || initialTempSetPt > Ch1::max_temp){
     initialTempSetPt = 20.0;
   }
   enc_set_t.init(initialTempSetPt, Ch1::min_temp, Ch1::max_temp);
@@ -231,7 +245,7 @@ void setup() {
   String temp_step_labels[] = {".01", "0.1", "1.0"};
   enc_set_t.define_step_sizes(3, temp_step_sizes, temp_step_labels);
   enc_set_t.attach_button_press_event(incrementStepSize_pressEvent);
-  enc_set_t.attach_button_press_event(test_hold_event); //This is probably just for testing
+  enc_set_t.attach_button_hold_event(test_hold_event); //This is probably just for testing
 
   byte initialPgain = EEPROM.readByte(Settings::addressPgain);
   if (initialPgain < Settings::prop_min || initialPgain > Settings::prop_max){
@@ -242,23 +256,24 @@ void setup() {
   String pgain_step_labels[] = {"1", "5"};
   enc_set_pgain.define_step_sizes(2, pgain_step_sizes, pgain_step_labels);
   enc_set_pgain.attach_button_press_event(incrementStepSize_pressEvent);
-  enc_set_pgain.attach_button_press_event(test_hold_event); //This is probably just for testing
+  enc_set_pgain.attach_button_hold_event(test_hold_event); //This is probably just for testing
 
 
   float initialItc = EEPROM.readFloat(Settings::addressItc);
-  if (initialItc < Settings::int_tc_min || initialItc > Settings::int_tc_max){
-    initialTempSetPt = 1.0;
+  if (isnan(initialItc) || initialItc < Settings::int_tc_min || initialItc > Settings::int_tc_max){
+    initialItc = 1.0;
   }
   enc_set_Itc.init(initialItc, Settings::int_tc_min, Settings::int_tc_max);
   double itc_step_sizes[] = {0.1, 0.5, 1.0};
   String itc_step_labels[] = {"0.1", "0.5", "1.0"};
   enc_set_Itc.define_step_sizes(3, itc_step_sizes, itc_step_labels);
   enc_set_Itc.attach_button_press_event(incrementStepSize_pressEvent);
-  enc_set_Itc.attach_button_press_event(test_hold_event); //This is probably just for testing
+  enc_set_Itc.attach_button_hold_event(test_hold_event); //This is probably just for testing
 
   
   attachInterrupt(ENC_A2, chSelectInterruptWrapper, CHANGE);
   enc_ch_select.init(50000, 0, 100000);
+  enc_ch_select.attach_button_hold_event(secondary_hold_event);//Just for testing right now
 
   attachInterrupt(ENC_A1, interruptWrapper, CHANGE);
   main_menu.attach_mode(0, "Temperature", mode_temp_tune);
@@ -276,7 +291,7 @@ void setup() {
   //enc_test1.define_step_sizes(3,step_sizes,step_labels);
 
 
-  Serial.begin(9600);
+  
 
   sCmd.addCommand("T", test);
   sCmd.setDefaultHandler(unrecognizedCmd);
@@ -294,6 +309,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
+  enc_ch_select.button_events();
 
   monitorTemp(); //function that displays the current measured temperature (of selected channel)
   main_menu.switch_to_mode(int(enc_ch_select.position()) % 4);  //turning ch select knob changes the menu mode
@@ -302,7 +318,7 @@ void loop() {
   sCmd.readSerial();
 
   if (timer.check() == 1) {
-    //writeSettingstoMemory();
+    writeSettingstoMemory();
   }
 
 }

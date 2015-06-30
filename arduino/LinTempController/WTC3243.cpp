@@ -98,7 +98,7 @@ void WTC3243::setP(byte P){
 		_Pgain = P;
 	}
 	
-	Rp = 100000.0/( (100.0/P) - 1.0 );
+	Rp = round(100000.0/( (100.0/P) - 1.0 ));
 	_dPOT.setR(0,Rp);
 }
 	
@@ -118,7 +118,7 @@ void WTC3243::setI(float Itc){
    
 	}
 
-	Ri = 100000.0/( 1.89*Itc - 1.0 );
+	Ri = round(100000.0/( 1.89*Itc - 1.0 ));
 	_dPOT.setR(1,Ri);
 }
 
@@ -200,8 +200,12 @@ float WTC3243::getOutputVoltage(){
   
         //revisit this after getting a better idea for transfer function/calibration
         float Vout = readVoltage(_VMON_PIN);
+        float div10 = 0.103;
+        float div2 = 0.4997;
         
-        Vout = 20.0*Vout-25.0;
+        Vout = ((Vout/div2) - Settings::analog_vref)/div10;
+        
+        //Vout = 20.0*Vout-25.0;
         
         return Vout;
   
