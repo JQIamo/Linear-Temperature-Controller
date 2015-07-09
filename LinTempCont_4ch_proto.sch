@@ -316,6 +316,15 @@
 <wire x1="-0.1778" y1="-0.0762" x2="-0.1778" y2="0.0762" width="0.0254" layer="51"/>
 <text x="-2.159" y="0.6858" size="0.889" layer="25">&gt;NAME</text>
 </package>
+<package name="C_MLCC_0603">
+<wire x1="-1.275" y1="0.7" x2="-1.275" y2="-0.7" width="0.127" layer="21"/>
+<wire x1="-1.275" y1="-0.7" x2="1.275" y2="-0.7" width="0.127" layer="21"/>
+<wire x1="1.275" y1="-0.7" x2="1.275" y2="0.7" width="0.127" layer="21"/>
+<wire x1="1.275" y1="0.7" x2="-1.275" y2="0.7" width="0.127" layer="21"/>
+<smd name="P$1" x="-0.75" y="0" dx="0.8" dy="0.8" layer="1"/>
+<smd name="P$2" x="0.75" y="0" dx="0.8" dy="0.8" layer="1"/>
+<text x="-1.3" y="0.8" size="1.016" layer="25" font="vector">&gt;NAME</text>
+</package>
 </packages>
 <symbols>
 <symbol name="CAP">
@@ -415,6 +424,15 @@
 </technologies>
 </device>
 <device name="0201" package="0201">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0603.SMALL" package="C_MLCC_0603">
 <connects>
 <connect gate="G$1" pin="P$1" pad="P$1"/>
 <connect gate="G$1" pin="P$2" pad="P$2"/>
@@ -13192,7 +13210,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="VDD11" library="supply1" deviceset="VDD" device=""/>
 <part name="U$1" library="mcu-accessories" deviceset="TEENSY_3.1+4" device=""/>
-<part name="L2" library="rlc-jqi" deviceset="INDUCTOR" device="-0603" value="Ferrite 1k"/>
+<part name="L2" library="rlc-jqi" deviceset="INDUCTOR" device="-0805" value="Ferrite 1k"/>
 <part name="AGND20" library="supply1" deviceset="AGND" device=""/>
 <part name="R20" library="jqi_passives" deviceset="R_SMD" device="R0603" value="10k"/>
 <part name="R21" library="jqi_passives" deviceset="R_SMD" device="R0603" value="10k"/>
@@ -13296,7 +13314,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <part name="TP8" library="Lin-Temp-Controller" deviceset="TESTPT" device=""/>
 <part name="ENC1" library="connector-jqi" deviceset="PEC09" device=""/>
 <part name="R19" library="rlc-jqi" deviceset="RES" device="0603" value="10k"/>
-<part name="R28" library="rlc-jqi" deviceset="RES" device="0603" value="10k"/>
+<part name="R28" library="jqi_passives" deviceset="R_SMD" device="R0603" value="10k"/>
 <part name="R29" library="rlc-jqi" deviceset="RES" device="0603" value="10k"/>
 <part name="C16" library="rcl" deviceset="C-EU" device="C0603" value="10nF"/>
 <part name="C17" library="rcl" deviceset="C-EU" device="C0603" value="10nF"/>
@@ -13310,7 +13328,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="ENC2" library="connector-jqi" deviceset="PEC09" device=""/>
 <part name="R32" library="rlc-jqi" deviceset="RES" device="0603" value="10k"/>
-<part name="R33" library="rlc-jqi" deviceset="RES" device="0603" value="10k"/>
+<part name="R33" library="jqi_passives" deviceset="R_SMD" device="R0603" value="10k"/>
 <part name="R34" library="rlc-jqi" deviceset="RES" device="0603" value="10k"/>
 <part name="C18" library="rcl" deviceset="C-EU" device="C0603" value="10nF"/>
 <part name="C19" library="rcl" deviceset="C-EU" device="C0603" value="10nF"/>
@@ -13732,7 +13750,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 </segment>
 <segment>
 <wire x1="68.58" y1="-77.47" x2="68.58" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="R28" gate="G$1" pin="P$2"/>
+<pinref part="R28" gate="G$1" pin="2"/>
 <pinref part="VDD12" gate="G$1" pin="VDD"/>
 <wire x1="68.58" y1="-76.2" x2="68.58" y2="-82.55" width="0.1524" layer="91"/>
 </segment>
@@ -13748,7 +13766,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 </segment>
 <segment>
 <wire x1="180.34" y1="-77.47" x2="180.34" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="R33" gate="G$1" pin="P$2"/>
+<pinref part="R33" gate="G$1" pin="2"/>
 <pinref part="VDD16" gate="G$1" pin="VDD"/>
 <wire x1="180.34" y1="-76.2" x2="180.34" y2="-82.55" width="0.1524" layer="91"/>
 </segment>
@@ -13874,7 +13892,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 </net>
 <net name="ENC_A2" class="0">
 <segment>
-<pinref part="R33" gate="G$1" pin="P$1"/>
+<pinref part="R33" gate="G$1" pin="1"/>
 <wire x1="180.34" y1="-92.71" x2="180.34" y2="-95.25" width="0.1524" layer="91"/>
 <pinref part="ENC2" gate="G$1" pin="A"/>
 <wire x1="202.946" y1="-95.25" x2="190.5" y2="-95.25" width="0.1524" layer="91"/>
@@ -13932,7 +13950,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 </net>
 <net name="ENC_A1" class="0">
 <segment>
-<pinref part="R28" gate="G$1" pin="P$1"/>
+<pinref part="R28" gate="G$1" pin="1"/>
 <wire x1="68.58" y1="-92.71" x2="68.58" y2="-95.25" width="0.1524" layer="91"/>
 <pinref part="ENC1" gate="G$1" pin="A"/>
 <wire x1="91.186" y1="-95.25" x2="78.74" y2="-95.25" width="0.1524" layer="91"/>
