@@ -13499,6 +13499,8 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <part name="AGND41" library="supply1" deviceset="AGND" device=""/>
 <part name="VDD42" library="supply1" deviceset="VDD" device=""/>
 <part name="AGND42" library="supply1" deviceset="AGND" device=""/>
+<part name="TP27" library="Lin-Temp-Controller" deviceset="TESTPT" device=""/>
+<part name="AGND43" library="supply1" deviceset="AGND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13614,6 +13616,8 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <instance part="VDD10" gate="G$1" x="335.28" y="106.68"/>
 <instance part="JP4" gate="G$1" x="233.68" y="93.98" rot="R180"/>
 <instance part="L5" gate="G$1" x="304.8" y="99.06" rot="R180"/>
+<instance part="TP27" gate="G$1" x="193.04" y="-27.94"/>
+<instance part="AGND43" gate="VR1" x="193.04" y="-35.56"/>
 </instances>
 <busses>
 </busses>
@@ -13719,6 +13723,11 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <wire x1="284.48" y1="86.36" x2="254" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="JP4" gate="G$1" pin="1"/>
 <wire x1="236.22" y1="91.44" x2="254" y2="91.44" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="TP27" gate="G$1" pin="P$1"/>
+<pinref part="AGND43" gate="VR1" pin="AGND"/>
+<wire x1="193.04" y1="-30.48" x2="193.04" y2="-33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VDD" class="0">

@@ -57,6 +57,11 @@ void test_hold_event(Encoder *this_encoder) {
 
 void secondary_hold_event(Encoder *this_encoder) {
   Serial.println("HELD");
+  lcd.init();
+}
+
+void secondary_press_event(Encoder *this_encoder) {
+  Serial.println("PUSH");
 }
 
 
@@ -85,7 +90,8 @@ void test() {
   //dac.setVoltage(0,2.3);
   //setDAC(0,.75);
   //dac.setIntRefV(1);
-  analogWrite(ANALOG_OUT_PIN,4095);
+  Serial.println("here");
+  lcd.init();
 
 }
 
@@ -186,7 +192,7 @@ void writeSettingstoMemory() {
     EEPROM.updateFloat(Settings::addressTempSetPt, tempCont.getTempSetPt());
     EEPROM.updateByte(Settings::addressPgain, tempCont.getP());
     EEPROM.updateFloat(Settings::addressItc, tempCont.getI());
-    sei(); //set interrupts
+    sei(); //set interrupts 
     delay(1500);
 }
 
@@ -230,6 +236,7 @@ void setup() {
 
   //Initialize the LCD
   SPI.begin();
+  delay(100);
   lcd.init();
 
   //Initialize the temperature controller:
@@ -273,6 +280,7 @@ void setup() {
   
   attachInterrupt(ENC_A2, chSelectInterruptWrapper, CHANGE);
   enc_ch_select.init(50000, 0, 100000);
+  enc_ch_select.attach_button_press_event(secondary_press_event); 
   enc_ch_select.attach_button_hold_event(secondary_hold_event);//Just for testing right now
 
   attachInterrupt(ENC_A1, interruptWrapper, CHANGE);

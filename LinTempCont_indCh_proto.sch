@@ -160,20 +160,20 @@
 <description>Library for a linear temperature controller based on Team Wavelength's WTC3243 chip</description>
 <packages>
 <package name="WTC3293">
-<pad name="P$4" x="-11.43" y="0" drill="0.9652"/>
-<pad name="P$3" x="-11.43" y="2.54" drill="0.9652"/>
-<pad name="P$2" x="-11.43" y="5.08" drill="0.9652"/>
-<pad name="P$1" x="-11.43" y="7.62" drill="0.9652"/>
-<pad name="P$5" x="-11.43" y="-2.54" drill="0.9652"/>
-<pad name="P$6" x="-11.43" y="-5.08" drill="0.9652"/>
-<pad name="P$7" x="-11.43" y="-7.62" drill="0.9652"/>
-<pad name="P$11" x="11.43" y="0" drill="0.9652"/>
-<pad name="P$12" x="11.43" y="2.54" drill="0.9652"/>
-<pad name="P$13" x="11.43" y="5.08" drill="0.9652"/>
-<pad name="P$14" x="11.43" y="7.62" drill="0.9652"/>
-<pad name="P$10" x="11.43" y="-2.54" drill="0.9652"/>
-<pad name="P$9" x="11.43" y="-5.08" drill="0.9652"/>
-<pad name="P$8" x="11.43" y="-7.62" drill="0.9652"/>
+<pad name="P$4" x="-11.43" y="0" drill="0.9652" shape="long"/>
+<pad name="P$3" x="-11.43" y="2.54" drill="0.9652" shape="long"/>
+<pad name="P$2" x="-11.43" y="5.08" drill="0.9652" shape="long"/>
+<pad name="P$1" x="-11.43" y="7.62" drill="0.9652" shape="long"/>
+<pad name="P$5" x="-11.43" y="-2.54" drill="0.9652" shape="long"/>
+<pad name="P$6" x="-11.43" y="-5.08" drill="0.9652" shape="long"/>
+<pad name="P$7" x="-11.43" y="-7.62" drill="0.9652" shape="long"/>
+<pad name="P$11" x="11.43" y="0" drill="0.9652" shape="long"/>
+<pad name="P$12" x="11.43" y="2.54" drill="0.9652" shape="long"/>
+<pad name="P$13" x="11.43" y="5.08" drill="0.9652" shape="long"/>
+<pad name="P$14" x="11.43" y="7.62" drill="0.9652" shape="long"/>
+<pad name="P$10" x="11.43" y="-2.54" drill="0.9652" shape="long"/>
+<pad name="P$9" x="11.43" y="-5.08" drill="0.9652" shape="long"/>
+<pad name="P$8" x="11.43" y="-7.62" drill="0.9652" shape="long"/>
 <hole x="-12.0142" y="11.938" drill="3.175"/>
 <hole x="12.0142" y="11.938" drill="3.175"/>
 <hole x="12.0142" y="-12.065" drill="3.175"/>
@@ -210,15 +210,6 @@
 <wire x1="-2.5" y1="3.5" x2="-3" y2="3.5" width="0.127" layer="21"/>
 <wire x1="-3" y1="3.5" x2="-3" y2="4.3" width="0.127" layer="21"/>
 <wire x1="-2.5" y1="3.5" x2="-2.5" y2="2" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="2" x2="-2.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.7" x2="-2.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.4" x2="-2.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.1" x2="-2.5" y2="0.6" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="0.6" x2="-1" y2="0.6" width="0.127" layer="21"/>
-<wire x1="-1" y1="0.6" x2="-1" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-1" y1="1.1" x2="-1" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-1" y1="1.4" x2="-1" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-1" y1="1.7" x2="-1" y2="2" width="0.127" layer="21"/>
 <wire x1="-1" y1="2" x2="-1" y2="2.3" width="0.127" layer="21"/>
 <wire x1="-1" y1="2.3" x2="-1" y2="2.6" width="0.127" layer="21"/>
 <wire x1="-1" y1="2.6" x2="-1" y2="2.9" width="0.127" layer="21"/>
@@ -229,10 +220,6 @@
 <wire x1="-2.4" y1="2.6" x2="-1" y2="2.6" width="0.127" layer="21"/>
 <wire x1="-2.4" y1="2.3" x2="-1" y2="2.3" width="0.127" layer="21"/>
 <wire x1="-2.5" y1="2" x2="-1" y2="2" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.7" x2="-1" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.4" x2="-1" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.1" x2="-1" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-2.4" y1="0.8" x2="-1.1" y2="0.8" width="0.127" layer="21"/>
 <wire x1="0.5" y1="4.3" x2="2.9" y2="4.3" width="0.127" layer="21"/>
 <wire x1="2.9" y1="4.3" x2="2.9" y2="3.5" width="0.127" layer="21"/>
 <wire x1="2.9" y1="3.5" x2="2.5" y2="3.5" width="0.127" layer="21"/>
@@ -240,15 +227,6 @@
 <wire x1="1" y1="3.5" x2="0.5" y2="3.5" width="0.127" layer="21"/>
 <wire x1="0.5" y1="3.5" x2="0.5" y2="4.3" width="0.127" layer="21"/>
 <wire x1="1" y1="3.5" x2="1" y2="2" width="0.127" layer="21"/>
-<wire x1="1" y1="2" x2="1" y2="1.7" width="0.127" layer="21"/>
-<wire x1="1" y1="1.7" x2="1" y2="1.4" width="0.127" layer="21"/>
-<wire x1="1" y1="1.4" x2="1" y2="1.1" width="0.127" layer="21"/>
-<wire x1="1" y1="1.1" x2="1" y2="0.6" width="0.127" layer="21"/>
-<wire x1="1" y1="0.6" x2="2.5" y2="0.6" width="0.127" layer="21"/>
-<wire x1="2.5" y1="0.6" x2="2.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="2.5" y1="1.1" x2="2.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="2.5" y1="1.4" x2="2.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="2.5" y1="1.7" x2="2.5" y2="2" width="0.127" layer="21"/>
 <wire x1="2.5" y1="2" x2="2.5" y2="2.3" width="0.127" layer="21"/>
 <wire x1="2.5" y1="2.3" x2="2.5" y2="2.6" width="0.127" layer="21"/>
 <wire x1="2.5" y1="2.6" x2="2.5" y2="2.9" width="0.127" layer="21"/>
@@ -259,10 +237,6 @@
 <wire x1="1.1" y1="2.6" x2="2.5" y2="2.6" width="0.127" layer="21"/>
 <wire x1="1.1" y1="2.3" x2="2.5" y2="2.3" width="0.127" layer="21"/>
 <wire x1="1" y1="2" x2="2.5" y2="2" width="0.127" layer="21"/>
-<wire x1="1" y1="1.7" x2="2.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="1" y1="1.4" x2="2.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="1" y1="1.1" x2="2.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="1.1" y1="0.8" x2="2.4" y2="0.8" width="0.127" layer="21"/>
 <pad name="1" x="-5.25" y="0" drill="1.2" shape="long" rot="R90"/>
 <wire x1="-6.5" y1="4.3" x2="-4.1" y2="4.3" width="0.127" layer="21"/>
 <wire x1="-4.1" y1="4.3" x2="-4.1" y2="3.5" width="0.127" layer="21"/>
@@ -271,15 +245,6 @@
 <wire x1="-6" y1="3.5" x2="-6.5" y2="3.5" width="0.127" layer="21"/>
 <wire x1="-6.5" y1="3.5" x2="-6.5" y2="4.3" width="0.127" layer="21"/>
 <wire x1="-6" y1="3.5" x2="-6" y2="2" width="0.127" layer="21"/>
-<wire x1="-6" y1="2" x2="-6" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-6" y1="1.7" x2="-6" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-6" y1="1.4" x2="-6" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-6" y1="1.1" x2="-6" y2="0.6" width="0.127" layer="21"/>
-<wire x1="-6" y1="0.6" x2="-4.5" y2="0.6" width="0.127" layer="21"/>
-<wire x1="-4.5" y1="0.6" x2="-4.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-4.5" y1="1.1" x2="-4.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-4.5" y1="1.4" x2="-4.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-4.5" y1="1.7" x2="-4.5" y2="2" width="0.127" layer="21"/>
 <wire x1="-4.5" y1="2" x2="-4.5" y2="2.3" width="0.127" layer="21"/>
 <wire x1="-4.5" y1="2.3" x2="-4.5" y2="2.6" width="0.127" layer="21"/>
 <wire x1="-4.5" y1="2.6" x2="-4.5" y2="2.9" width="0.127" layer="21"/>
@@ -290,10 +255,6 @@
 <wire x1="-5.9" y1="2.6" x2="-4.5" y2="2.6" width="0.127" layer="21"/>
 <wire x1="-5.9" y1="2.3" x2="-4.5" y2="2.3" width="0.127" layer="21"/>
 <wire x1="-6" y1="2" x2="-4.5" y2="2" width="0.127" layer="21"/>
-<wire x1="-6" y1="1.7" x2="-4.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-6" y1="1.4" x2="-4.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-6" y1="1.1" x2="-4.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-5.9" y1="0.8" x2="-4.6" y2="0.8" width="0.127" layer="21"/>
 <pad name="4" x="5.25" y="0" drill="1.2" shape="long" rot="R90"/>
 <wire x1="4" y1="4.3" x2="6.4" y2="4.3" width="0.127" layer="21"/>
 <wire x1="6.4" y1="4.3" x2="6.4" y2="3.5" width="0.127" layer="21"/>
@@ -302,15 +263,6 @@
 <wire x1="4.5" y1="3.5" x2="4" y2="3.5" width="0.127" layer="21"/>
 <wire x1="4" y1="3.5" x2="4" y2="4.3" width="0.127" layer="21"/>
 <wire x1="4.5" y1="3.5" x2="4.5" y2="2" width="0.127" layer="21"/>
-<wire x1="4.5" y1="2" x2="4.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="4.5" y1="1.7" x2="4.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="4.5" y1="1.4" x2="4.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="4.5" y1="1.1" x2="4.5" y2="0.6" width="0.127" layer="21"/>
-<wire x1="4.5" y1="0.6" x2="6" y2="0.6" width="0.127" layer="21"/>
-<wire x1="6" y1="0.6" x2="6" y2="1.1" width="0.127" layer="21"/>
-<wire x1="6" y1="1.1" x2="6" y2="1.4" width="0.127" layer="21"/>
-<wire x1="6" y1="1.4" x2="6" y2="1.7" width="0.127" layer="21"/>
-<wire x1="6" y1="1.7" x2="6" y2="2" width="0.127" layer="21"/>
 <wire x1="6" y1="2" x2="6" y2="2.3" width="0.127" layer="21"/>
 <wire x1="6" y1="2.3" x2="6" y2="2.6" width="0.127" layer="21"/>
 <wire x1="6" y1="2.6" x2="6" y2="2.9" width="0.127" layer="21"/>
@@ -321,10 +273,6 @@
 <wire x1="4.6" y1="2.6" x2="6" y2="2.6" width="0.127" layer="21"/>
 <wire x1="4.6" y1="2.3" x2="6" y2="2.3" width="0.127" layer="21"/>
 <wire x1="4.5" y1="2" x2="6" y2="2" width="0.127" layer="21"/>
-<wire x1="4.5" y1="1.7" x2="6" y2="1.7" width="0.127" layer="21"/>
-<wire x1="4.5" y1="1.4" x2="6" y2="1.4" width="0.127" layer="21"/>
-<wire x1="4.5" y1="1.1" x2="6" y2="1.1" width="0.127" layer="21"/>
-<wire x1="4.6" y1="0.8" x2="5.9" y2="0.8" width="0.127" layer="21"/>
 </package>
 <package name="1X02_RA_SCRWTRM">
 <description>&lt;b&gt;1x02 Screw Terminal Block&lt;/b&gt; 
@@ -346,15 +294,6 @@
 <wire x1="-2.5" y1="3.5" x2="-3" y2="3.5" width="0.127" layer="21"/>
 <wire x1="-3" y1="3.5" x2="-3" y2="4.3" width="0.127" layer="21"/>
 <wire x1="-2.5" y1="3.5" x2="-2.5" y2="2" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="2" x2="-2.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.7" x2="-2.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.4" x2="-2.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.1" x2="-2.5" y2="0.6" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="0.6" x2="-1" y2="0.6" width="0.127" layer="21"/>
-<wire x1="-1" y1="0.6" x2="-1" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-1" y1="1.1" x2="-1" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-1" y1="1.4" x2="-1" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-1" y1="1.7" x2="-1" y2="2" width="0.127" layer="21"/>
 <wire x1="-1" y1="2" x2="-1" y2="2.3" width="0.127" layer="21"/>
 <wire x1="-1" y1="2.3" x2="-1" y2="2.6" width="0.127" layer="21"/>
 <wire x1="-1" y1="2.6" x2="-1" y2="2.9" width="0.127" layer="21"/>
@@ -365,10 +304,6 @@
 <wire x1="-2.4" y1="2.6" x2="-1" y2="2.6" width="0.127" layer="21"/>
 <wire x1="-2.4" y1="2.3" x2="-1" y2="2.3" width="0.127" layer="21"/>
 <wire x1="-2.5" y1="2" x2="-1" y2="2" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.7" x2="-1" y2="1.7" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.4" x2="-1" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-2.5" y1="1.1" x2="-1" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-2.4" y1="0.8" x2="-1.1" y2="0.8" width="0.127" layer="21"/>
 <wire x1="0.5" y1="4.3" x2="2.9" y2="4.3" width="0.127" layer="21"/>
 <wire x1="2.9" y1="4.3" x2="2.9" y2="3.5" width="0.127" layer="21"/>
 <wire x1="2.9" y1="3.5" x2="2.5" y2="3.5" width="0.127" layer="21"/>
@@ -376,15 +311,6 @@
 <wire x1="1" y1="3.5" x2="0.5" y2="3.5" width="0.127" layer="21"/>
 <wire x1="0.5" y1="3.5" x2="0.5" y2="4.3" width="0.127" layer="21"/>
 <wire x1="1" y1="3.5" x2="1" y2="2" width="0.127" layer="21"/>
-<wire x1="1" y1="2" x2="1" y2="1.7" width="0.127" layer="21"/>
-<wire x1="1" y1="1.7" x2="1" y2="1.4" width="0.127" layer="21"/>
-<wire x1="1" y1="1.4" x2="1" y2="1.1" width="0.127" layer="21"/>
-<wire x1="1" y1="1.1" x2="1" y2="0.6" width="0.127" layer="21"/>
-<wire x1="1" y1="0.6" x2="2.5" y2="0.6" width="0.127" layer="21"/>
-<wire x1="2.5" y1="0.6" x2="2.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="2.5" y1="1.1" x2="2.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="2.5" y1="1.4" x2="2.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="2.5" y1="1.7" x2="2.5" y2="2" width="0.127" layer="21"/>
 <wire x1="2.5" y1="2" x2="2.5" y2="2.3" width="0.127" layer="21"/>
 <wire x1="2.5" y1="2.3" x2="2.5" y2="2.6" width="0.127" layer="21"/>
 <wire x1="2.5" y1="2.6" x2="2.5" y2="2.9" width="0.127" layer="21"/>
@@ -395,10 +321,6 @@
 <wire x1="1.1" y1="2.6" x2="2.5" y2="2.6" width="0.127" layer="21"/>
 <wire x1="1.1" y1="2.3" x2="2.5" y2="2.3" width="0.127" layer="21"/>
 <wire x1="1" y1="2" x2="2.5" y2="2" width="0.127" layer="21"/>
-<wire x1="1" y1="1.7" x2="2.5" y2="1.7" width="0.127" layer="21"/>
-<wire x1="1" y1="1.4" x2="2.5" y2="1.4" width="0.127" layer="21"/>
-<wire x1="1" y1="1.1" x2="2.5" y2="1.1" width="0.127" layer="21"/>
-<wire x1="1.1" y1="0.8" x2="2.4" y2="0.8" width="0.127" layer="21"/>
 </package>
 <package name="1X02_SCRWTRM">
 <description>&lt;b&gt;1x02 Screw Terminal Block&lt;/b&gt; 
@@ -1063,6 +985,15 @@
 <wire x1="-0.1778" y1="-0.0762" x2="-0.1778" y2="0.0762" width="0.0254" layer="51"/>
 <text x="-2.159" y="0.6858" size="0.889" layer="25">&gt;NAME</text>
 </package>
+<package name="C_MLCC_0603">
+<wire x1="-1.275" y1="0.7" x2="-1.275" y2="-0.7" width="0.127" layer="21"/>
+<wire x1="-1.275" y1="-0.7" x2="1.275" y2="-0.7" width="0.127" layer="21"/>
+<wire x1="1.275" y1="-0.7" x2="1.275" y2="0.7" width="0.127" layer="21"/>
+<wire x1="1.275" y1="0.7" x2="-1.275" y2="0.7" width="0.127" layer="21"/>
+<smd name="P$1" x="-0.75" y="0" dx="0.8" dy="0.8" layer="1"/>
+<smd name="P$2" x="0.75" y="0" dx="0.8" dy="0.8" layer="1"/>
+<text x="-1.3" y="0.8" size="1.016" layer="25" font="vector">&gt;NAME</text>
+</package>
 </packages>
 <symbols>
 <symbol name="CAP">
@@ -1162,6 +1093,15 @@
 </technologies>
 </device>
 <device name="0201" package="0201">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0603.SMALL" package="C_MLCC_0603">
 <connects>
 <connect gate="G$1" pin="P$1" pad="P$1"/>
 <connect gate="G$1" pin="P$2" pad="P$2"/>
