@@ -13501,6 +13501,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <part name="AGND42" library="supply1" deviceset="AGND" device=""/>
 <part name="TP27" library="Lin-Temp-Controller" deviceset="TESTPT" device=""/>
 <part name="AGND43" library="supply1" deviceset="AGND" device=""/>
+<part name="JP14" library="pinhead" deviceset="PINHD-1X2" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13516,6 +13517,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <text x="243.84" y="-58.42" size="1.778" layer="91">2.5V Reference</text>
 <text x="332.74" y="95.25" size="1.778" layer="91">+5V filtered</text>
 <text x="215.9" y="88.9" size="1.778" layer="91">5V input</text>
+<text x="241.3" y="76.2" size="1.778" layer="91">jumper for internal/external vref</text>
 </plain>
 <instances>
 <instance part="C1" gate="G$1" x="154.94" y="48.26" rot="R90"/>
@@ -13618,6 +13620,7 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <instance part="L5" gate="G$1" x="304.8" y="99.06" rot="R180"/>
 <instance part="TP27" gate="G$1" x="193.04" y="-27.94"/>
 <instance part="AGND43" gate="VR1" x="193.04" y="-35.56"/>
+<instance part="JP14" gate="G$1" x="261.62" y="66.04" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -14150,6 +14153,11 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <label x="233.68" y="-35.56" size="1.778" layer="95"/>
 <pinref part="TP7" gate="G$1" pin="P$1"/>
 </segment>
+<segment>
+<pinref part="JP14" gate="G$1" pin="2"/>
+<wire x1="261.62" y1="68.58" x2="248.92" y2="68.58" width="0.1524" layer="91"/>
+<label x="248.92" y="68.58" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="SCK_B" class="0">
 <segment>
@@ -14272,6 +14280,10 @@ Source: http://www.vishay.com/docs/10129/hpc0201a.pdf</description>
 <wire x1="281.94" y1="55.88" x2="289.56" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="TP1" gate="G$1" pin="P$1"/>
 <wire x1="289.56" y1="55.88" x2="289.56" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="60.96" x2="269.24" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="60.96" x2="269.24" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="JP14" gate="G$1" pin="1"/>
+<wire x1="269.24" y1="68.58" x2="264.16" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
