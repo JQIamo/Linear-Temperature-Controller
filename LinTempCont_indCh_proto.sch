@@ -387,6 +387,130 @@
 <rectangle x1="2.25" y1="0.175" x2="3.2" y2="0.475" layer="51" rot="R180"/>
 <rectangle x1="2.25" y1="0.825" x2="3.2" y2="1.125" layer="51"/>
 </package>
+<package name="1X04_RA_SCRWTRM_ED550">
+<pad name="2" x="-1.75" y="0" drill="1.2" shape="long" rot="R90"/>
+<pad name="3" x="1.75" y="0" drill="1.2" shape="long" rot="R90"/>
+<text x="-7.775" y="-1.27" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="8.89" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<wire x1="-7" y1="6.2" x2="-7" y2="-2" width="0.127" layer="21"/>
+<wire x1="-7" y1="-2" x2="7" y2="-2" width="0.127" layer="21"/>
+<wire x1="7" y1="-2" x2="7" y2="6.2" width="0.127" layer="21"/>
+<wire x1="7" y1="6.2" x2="-7" y2="6.2" width="0.127" layer="21"/>
+<wire x1="-3" y1="4.935" x2="-0.6" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-0.6" y1="4.935" x2="-0.6" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-0.6" y1="4.135" x2="-1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-1" y1="4.135" x2="-2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="4.135" x2="-3" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-3" y1="4.135" x2="-3" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="4.135" x2="-2.5" y2="2.635" width="0.127" layer="21"/>
+<wire x1="-1" y1="2.635" x2="-1" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-1" y1="2.935" x2="-1" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.235" x2="-1" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.535" x2="-1" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.835" x2="-1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.835" x2="-1" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.535" x2="-1" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.235" x2="-1" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="2.935" x2="-1" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="2.635" x2="-1" y2="2.635" width="0.127" layer="21"/>
+<wire x1="0.5" y1="4.935" x2="2.9" y2="4.935" width="0.127" layer="21"/>
+<wire x1="2.9" y1="4.935" x2="2.9" y2="4.135" width="0.127" layer="21"/>
+<wire x1="2.9" y1="4.135" x2="2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="2.5" y1="4.135" x2="1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="1" y1="4.135" x2="0.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="0.5" y1="4.135" x2="0.5" y2="4.935" width="0.127" layer="21"/>
+<wire x1="1" y1="4.135" x2="1" y2="2.635" width="0.127" layer="21"/>
+<wire x1="2.5" y1="2.635" x2="2.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="2.5" y1="2.935" x2="2.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.235" x2="2.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.535" x2="2.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.835" x2="2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.835" x2="2.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.535" x2="2.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.235" x2="2.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="1.1" y1="2.935" x2="2.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="1" y1="2.635" x2="2.5" y2="2.635" width="0.127" layer="21"/>
+<pad name="1" x="-5.25" y="0" drill="1.2" shape="long" rot="R90"/>
+<wire x1="-6.5" y1="4.935" x2="-4.1" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-4.1" y1="4.935" x2="-4.1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-4.1" y1="4.135" x2="-4.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-4.5" y1="4.135" x2="-6" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-6" y1="4.135" x2="-6.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-6.5" y1="4.135" x2="-6.5" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-6" y1="4.135" x2="-6" y2="2.635" width="0.127" layer="21"/>
+<wire x1="-4.5" y1="2.635" x2="-4.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-4.5" y1="2.935" x2="-4.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-4.5" y1="3.235" x2="-4.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-4.5" y1="3.535" x2="-4.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-4.5" y1="3.835" x2="-4.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-5.9" y1="3.835" x2="-4.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-5.9" y1="3.535" x2="-4.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-5.9" y1="3.235" x2="-4.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-5.9" y1="2.935" x2="-4.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-6" y1="2.635" x2="-4.5" y2="2.635" width="0.127" layer="21"/>
+<pad name="4" x="5.25" y="0" drill="1.2" shape="long" rot="R90"/>
+<wire x1="4" y1="4.935" x2="6.4" y2="4.935" width="0.127" layer="21"/>
+<wire x1="6.4" y1="4.935" x2="6.4" y2="4.135" width="0.127" layer="21"/>
+<wire x1="6.4" y1="4.135" x2="6" y2="4.135" width="0.127" layer="21"/>
+<wire x1="6" y1="4.135" x2="4.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="4.5" y1="4.135" x2="4" y2="4.135" width="0.127" layer="21"/>
+<wire x1="4" y1="4.135" x2="4" y2="4.935" width="0.127" layer="21"/>
+<wire x1="4.5" y1="4.135" x2="4.5" y2="2.635" width="0.127" layer="21"/>
+<wire x1="6" y1="2.635" x2="6" y2="2.935" width="0.127" layer="21"/>
+<wire x1="6" y1="2.935" x2="6" y2="3.235" width="0.127" layer="21"/>
+<wire x1="6" y1="3.235" x2="6" y2="3.535" width="0.127" layer="21"/>
+<wire x1="6" y1="3.535" x2="6" y2="3.835" width="0.127" layer="21"/>
+<wire x1="6" y1="3.835" x2="6" y2="4.135" width="0.127" layer="21"/>
+<wire x1="4.6" y1="3.835" x2="6" y2="3.835" width="0.127" layer="21"/>
+<wire x1="4.6" y1="3.535" x2="6" y2="3.535" width="0.127" layer="21"/>
+<wire x1="4.6" y1="3.235" x2="6" y2="3.235" width="0.127" layer="21"/>
+<wire x1="4.6" y1="2.935" x2="6" y2="2.935" width="0.127" layer="21"/>
+<wire x1="4.5" y1="2.635" x2="6" y2="2.635" width="0.127" layer="21"/>
+</package>
+<package name="1X02_RA_SCRWTRM_ED550">
+<pad name="1" x="-1.75" y="0" drill="1.2" shape="long" rot="R90"/>
+<pad name="2" x="1.75" y="0" drill="1.2" shape="long" rot="R90"/>
+<text x="-4.275" y="-1.27" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="5.39" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<wire x1="-3.5" y1="6.2" x2="-3.5" y2="-2" width="0.127" layer="21"/>
+<wire x1="-3.5" y1="-2" x2="3.5" y2="-2" width="0.127" layer="21"/>
+<wire x1="3.5" y1="-2" x2="3.5" y2="6.2" width="0.127" layer="21"/>
+<wire x1="3.5" y1="6.2" x2="-3.5" y2="6.2" width="0.127" layer="21"/>
+<wire x1="-3" y1="4.935" x2="-0.6" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-0.6" y1="4.935" x2="-0.6" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-0.6" y1="4.135" x2="-1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-1" y1="4.135" x2="-2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="4.135" x2="-3" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-3" y1="4.135" x2="-3" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="4.135" x2="-2.5" y2="2.635" width="0.127" layer="21"/>
+<wire x1="-1" y1="2.635" x2="-1" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-1" y1="2.935" x2="-1" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.235" x2="-1" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.535" x2="-1" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.835" x2="-1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.835" x2="-1" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.535" x2="-1" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.235" x2="-1" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="2.935" x2="-1" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="2.635" x2="-1" y2="2.635" width="0.127" layer="21"/>
+<wire x1="0.5" y1="4.935" x2="2.9" y2="4.935" width="0.127" layer="21"/>
+<wire x1="2.9" y1="4.935" x2="2.9" y2="4.135" width="0.127" layer="21"/>
+<wire x1="2.9" y1="4.135" x2="2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="2.5" y1="4.135" x2="1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="1" y1="4.135" x2="0.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="0.5" y1="4.135" x2="0.5" y2="4.935" width="0.127" layer="21"/>
+<wire x1="1" y1="4.135" x2="1" y2="2.635" width="0.127" layer="21"/>
+<wire x1="2.5" y1="2.635" x2="2.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="2.5" y1="2.935" x2="2.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.235" x2="2.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.535" x2="2.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.835" x2="2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.835" x2="2.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.535" x2="2.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.235" x2="2.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="1.1" y1="2.935" x2="2.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="1" y1="2.635" x2="2.5" y2="2.635" width="0.127" layer="21"/>
+</package>
 </packages>
 <symbols>
 <symbol name="WTC3293">
@@ -519,6 +643,20 @@
 </technology>
 </technologies>
 </device>
+<device name="/90_ED550" package="1X04_RA_SCRWTRM_ED550">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+<connect gate="A" pin="2" pad="2"/>
+<connect gate="A" pin="3" pad="3"/>
+<connect gate="A" pin="4" pad="4"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DIGIKEY" value="ED1503-ND" constant="no"/>
+<attribute name="MFR_PN" value="ED550/4DS" constant="no"/>
+</technology>
+</technologies>
+</device>
 </devices>
 </deviceset>
 <deviceset name="SCRWTRM-1X2" prefix="JP" uservalue="yes">
@@ -548,6 +686,18 @@
 <technology name="">
 <attribute name="DIGIKEY" value="ED2635-ND" constant="no"/>
 <attribute name="MFR_PN" value="OSTTE020161" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="/90_ED550" package="1X02_RA_SCRWTRM_ED550">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DIGIKEY" value="ED1501-ND" constant="no"/>
+<attribute name="MFR_PN" value="ED550/2DS" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -11263,13 +11413,13 @@ Additional passive components (RLC and trimpots) can be added.</description>
 </classes>
 <parts>
 <part name="U1" library="Lin-Temp-Controller" deviceset="WTC3243" device=""/>
-<part name="JP1" library="Lin-Temp-Controller" deviceset="SCRWTRM-1X4" device="/90"/>
-<part name="JP2" library="Lin-Temp-Controller" deviceset="SCRWTRM-1X2" device="/90"/>
+<part name="JP1" library="Lin-Temp-Controller" deviceset="SCRWTRM-1X4" device="/90_ED550"/>
+<part name="JP2" library="Lin-Temp-Controller" deviceset="SCRWTRM-1X2" device="/90_ED550"/>
 <part name="JP3" library="pinhead" deviceset="PINHD-2X6" device=""/>
-<part name="C4" library="rlc-jqi" deviceset="CAP" device="0603" value="10nF"/>
+<part name="C4" library="rlc-jqi" deviceset="CAP" device="0805" value="10nF"/>
 <part name="C5" library="rlc-jqi" deviceset="CAP" device="0603" value="10uF"/>
 <part name="VDD15" library="supply1" deviceset="VDD" device=""/>
-<part name="L4" library="rlc-jqi" deviceset="INDUCTOR" device="-0805" value="Ferrite 1k"/>
+<part name="L1" library="rlc-jqi" deviceset="INDUCTOR" device="-0805" value="Ferrite 1k"/>
 <part name="AGND25" library="supply1" deviceset="AGND" device=""/>
 <part name="RP" library="rlc-jqi" deviceset="RES" device="0603" value="DNP"/>
 <part name="RI" library="rlc-jqi" deviceset="RES" device="0603" value="DNP"/>
@@ -11279,14 +11429,14 @@ Additional passive components (RLC and trimpots) can be added.</description>
 <part name="IC2" library="Lin-Temp-Controller" deviceset="INA159" device=""/>
 <part name="R4" library="rlc-jqi" deviceset="RES" device="0603" value="100k 1%"/>
 <part name="R5" library="rlc-jqi" deviceset="RES" device="0603" value="100k 1%"/>
-<part name="C7" library="rcl" deviceset="C-US" device="C0603" value="10uF"/>
+<part name="C7" library="rcl" deviceset="C-US" device="C0805" value="10uF"/>
 <part name="C6" library="rcl" deviceset="C-US" device="C0603" value="10nF"/>
 <part name="VDD9" library="supply1" deviceset="VDD" device=""/>
 <part name="AGND11" library="supply1" deviceset="AGND" device=""/>
 <part name="AGND12" library="supply1" deviceset="AGND" device=""/>
 <part name="CP1" library="rcl" deviceset="CPOL-US" device="F" value="220uF"/>
 <part name="CP3" library="rcl" deviceset="CPOL-US" device="CT7343" value="47uF"/>
-<part name="CP2" library="rcl" deviceset="C-US" device="C0805K" value="10uF"/>
+<part name="CP2" library="rcl" deviceset="C-US" device="C1206" value="10uF 50V"/>
 <part name="LP2" library="jqi_passives" deviceset="L_FERRITE_SMD" device="" value="587-1757-1-ND"/>
 <part name="P+2" library="supply1" deviceset="V+" device=""/>
 <part name="VSS2" library="supply1" deviceset="VSS" device=""/>
@@ -11297,15 +11447,15 @@ Additional passive components (RLC and trimpots) can be added.</description>
 <part name="C1" library="rlc-jqi" deviceset="CAP" device="0805" value="22uF"/>
 <part name="AGND4" library="supply1" deviceset="AGND" device=""/>
 <part name="C2" library="rlc-jqi" deviceset="CAP" device="0603" value="10nF"/>
-<part name="C3" library="rlc-jqi" deviceset="CAP" device="0603" value="10uF"/>
+<part name="C3" library="rlc-jqi" deviceset="CAP" device="0805" value="10uF"/>
 <part name="VDD1" library="supply1" deviceset="VDD" device=""/>
-<part name="R6" library="jqi_passives" deviceset="R_SMD" device="R0805" value="20k 1%"/>
+<part name="R6" library="jqi_passives" deviceset="R_SMD" device="R0805" value="20k 0.1%"/>
 <part name="VDD2" library="supply1" deviceset="VDD" device=""/>
 <part name="AGND5" library="supply1" deviceset="AGND" device=""/>
 <part name="AGND6" library="supply1" deviceset="AGND" device=""/>
 <part name="VDD3" library="supply1" deviceset="VDD" device=""/>
 <part name="VDD4" library="supply1" deviceset="VDD" device=""/>
-<part name="C8" library="rlc-jqi" deviceset="CAP" device="0603" value="100nF"/>
+<part name="C8" library="rlc-jqi" deviceset="CAP" device="0603" value="0.1uF"/>
 <part name="AGND1" library="supply1" deviceset="AGND" device=""/>
 <part name="RSG" library="rlc-jqi" deviceset="RES" device="0603" value="DNP"/>
 </parts>
@@ -11315,11 +11465,6 @@ Additional passive components (RLC and trimpots) can be added.</description>
 <text x="7.62" y="-58.42" size="1.778" layer="91">Header from control board</text>
 <text x="63.5" y="68.58" size="1.778" layer="91">Power Supply Filtering</text>
 <text x="78.74" y="12.7" size="1.778" layer="91">Header to thermistor/TEC from front panel</text>
-<text x="78.74" y="22.86" size="1.778" layer="91">Should I filter TEC output/Thermistor lines?</text>
-<text x="106.68" y="-27.94" size="1.778" layer="91">Sensor+
-Sensor -
-OutB (TEC+)
-OutA (TEC -)</text>
 <text x="127" y="54.61" size="1.778" layer="91">+V filtered</text>
 <text x="71.12" y="-10.16" size="1.778" layer="91">200k -&gt; 10 uA
 20k -&gt; 100 uA
@@ -11338,7 +11483,7 @@ Sensor -</text>
 <instance part="C4" gate="G$1" x="-5.08" y="22.86" rot="R90"/>
 <instance part="C5" gate="G$1" x="-12.7" y="22.86" rot="R90"/>
 <instance part="VDD15" gate="G$1" x="-27.94" y="33.02"/>
-<instance part="L4" gate="G$1" x="-20.32" y="27.94" rot="R180"/>
+<instance part="L1" gate="G$1" x="-20.32" y="27.94" rot="R180"/>
 <instance part="AGND25" gate="VR1" x="-15.24" y="15.24"/>
 <instance part="RP" gate="G$1" x="-30.48" y="-17.78" rot="R180"/>
 <instance part="RI" gate="G$1" x="-20.32" y="-17.78" rot="R180"/>
@@ -11474,7 +11619,7 @@ Sensor -</text>
 </net>
 <net name="VDD" class="0">
 <segment>
-<pinref part="L4" gate="G$1" pin="P$2"/>
+<pinref part="L1" gate="G$1" pin="P$2"/>
 <wire x1="-25.4" y1="27.94" x2="-27.94" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="VDD15" gate="G$1" pin="VDD"/>
 <wire x1="-27.94" y1="27.94" x2="-27.94" y2="30.48" width="0.1524" layer="91"/>
@@ -11531,7 +11676,7 @@ Sensor -</text>
 <pinref part="C4" gate="G$1" pin="P$2"/>
 <wire x1="5.08" y1="27.94" x2="-5.08" y2="27.94" width="0.1524" layer="91"/>
 <junction x="-5.08" y="27.94"/>
-<pinref part="L4" gate="G$1" pin="P$1"/>
+<pinref part="L1" gate="G$1" pin="P$1"/>
 <wire x1="-12.7" y1="27.94" x2="-15.24" y2="27.94" width="0.1524" layer="91"/>
 <junction x="-12.7" y="27.94"/>
 <pinref part="U1" gate="G$1" pin="1/VDD"/>

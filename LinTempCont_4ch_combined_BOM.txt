@@ -1,0 +1,39 @@
+Qty	Value	Device	Parts	Library	Description	DIGIKEY	Parts on hand	Ordered				
+4	AD5262	AD5262	"IC4, IC5, IC8, IC10"	Lin-Temp-Controller	AD5262 dual circuit digital pot	AD5262BRUZ200-ND	1	48				
+1	AD5624R	AD5624R	IC3	Lin-Temp-Controller	AD5624R Quad Output DAC w/internal Vref	AD5624RBRMZ-3-ND	1	12				
+8	BNC-H	BNC-H	"X1, X2, X3, X4, X5, X6, X7, X8"	connector-jqi	BNC Connector.	A32260-ND		45				
+5	10nF	C-EUC0603	"C1, C16, C17, C18, C19"	rcl	"CAPACITOR, European symbol"	399-1091-1-ND		100				
+7	10uF	C-USC0805K	"CP2, C2, C13, C21, C23, C25, C30"	rcl	"CAPACITOR, American symbol"	1276-2891-1-ND		100				
+15	0.1uF	CAP0603	"C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C15, C20, C22, C24, C27"	rlc-jqi	SMT Capacitor			250	"more than needed, add for ind channel board?"			
+1	1000pF	CAP0603	C14	rlc-jqi	SMT Capacitor	399-3293-1-ND		50				
+1	47uF	CPOL-USCT7343	CP3	rcl	"POLARIZED CAPACITOR, American symbol"	495-1571-1-ND	2	15	also need a bunch for ind channels			"50, 100?"
+1	220uF	CPOL-USF	CP1	rcl	"POLARIZED CAPACITOR, American symbol"	PCE3955CT-ND	2	15	also need a bunch for ind channels			50?
+4	Ferrite 1k	INDUCTOR-0805	"L1, L2, L3, L4"	rlc-jqi	SMT Inductor.	445-5223-1-ND	5	50				
+4		LED/MINI-IND	"D1, D2, D3, D4"	Lin-Temp-Controller	"Through-hole, side-view LED"	516-1417-ND		50				
+4	LM393D	LM393D	"IC1, IC2, IC7, IC9"	Lin-Temp-Controller	COMPARATOR	296-1015-5-ND	1	50				
+1	2x4Header	ML08	LCD_HEADER	mcu-accessories	HARTING	609-3530-ND		50				
+8	MMBT3904	MMBT3904	"T1, T2, T3, T4, T5, T6, T7, T8"	Lin-Temp-Controller	NPN TRANSISTOR	MMBT3904-FDICT-ND	2	100				
+8	10k	MODEL64_TRIMPOT/TOP-ADJ	"R6, R7, R41, R42, R59, R60, R77, R78"	Lin-Temp-Controller		987-1061-ND		100				
+2	PEC09	PEC09	"ENC1, ENC2"	connector-jqi	PEC09-2320F-S0015 Rotary Encoder (Bourns).	PEC09-2320F-S0015-ND		25				
+9		PINHD-1X2	"JP3, JP5, JP6, JP7, JP9, JP10, JP12, JP13, JP14"	pinhead	PIN HEADER	952-2262-ND		100				
+4		PINHD-2X6/90	"JP1, JP2, JP8, JP11"	pinhead	PIN HEADER	609-3345-ND		50				
+12	1.0k	RES0603	"R14, R15, R18, R52, R53, R54, R70, R71, R72, R88, R89, R90"	rlc-jqi	SMT Resistor	MCT0603-1.00K-CFCT-ND		150				
+8	1.5k	RES0603	"R2, R4, R38, R40, R56, R58, R74, R76"	rlc-jqi	SMT Resistor	MCT0603-1.50K-CFCT-ND		100				
+34	10k 1%	RES0603	RR1 - RR34	rlc-jqi	SMT Resistor	MCT0603-10.0K-CFCT-ND		500	more than needed			
+4	330	RES0603	"R5, R49, R67, R85"	rlc-jqi	SMT Resistor	MCT0603-330-CFCT-ND		50				
+4	33k	RES0603	"R11, R46, R64, R82"	rlc-jqi	SMT Resistor	MCT0603-33.0K-CFCT-ND		50				
+8	4.3k	RES0603	"R1, R3, R37, R39, R55, R57, R73, R75"	rlc-jqi	SMT Resistor	541-4.3KGCT-ND		100				
+4	50	RES0603	"R30, R31, R35, R36"	rlc-jqi	SMT Resistor	541-51GCT-ND		50				
+1		SCRWTRM-1X2	JP4	Lin-Temp-Controller	Screw Terminal	ED2635-ND		12				
+4		SWITCH-DPDT/VER	"S1, S2, S3, S4"	Lin-Temp-Controller	DPDT Switch	100DP1T2B4M7QE-ND		50				
+1	TEENSY_3.1+4	TEENSY_3.1+4	U$1	mcu-accessories	"Footprint for Teensy 3.1 board using all through-holes, i.e. the entire perimeter plus the 4 through-holes inboard (A10,A11,AREF, VUSB)"							
+27	TESTPT	TESTPT	"TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, TP15, TP16, TP17, TP18, TP19, TP20, TP21, TP22, TP23, TP24, TP25, TP26, TP27"	Lin-Temp-Controller		A106143CT-ND	18	330				
+1		TS6001	IC6	Lin-Temp-Controller	2.5V Reference IC	TS6001BIG325TCT-ND	1	12				
+												
+			Power Supply			CDPM1000-ND						
+			Knobs for encoders			450-1693-ND		25				
+			teensy headers									
+						avoid Murata!						
+			other circuit									
+			switching PS									
+			fans									
