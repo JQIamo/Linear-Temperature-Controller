@@ -37,14 +37,14 @@
  */
 //! @{
 
-//#define VMON4 		A1
-//#define ACT_T4		A2
+#define VMON4 		A1
+#define ACT_T4		A2
 
-//#define VMON3 		A3
-//#define ACT_T3		A4
+#define VMON3 		A3
+#define ACT_T3		A4
 
-//#define VMON2 		A5
-//#define ACT_T2		A6
+#define VMON2 		A5
+#define ACT_T2		A6
 
 #define VMON1 		A10
 #define ACT_T1		A11
@@ -59,9 +59,9 @@
  */
 //! @{
 #define CS_POT1			8
-//#define CS_POT2			9
-//#define CS_POT3			10
-//#define CS_POT4			12
+#define CS_POT2			9
+#define CS_POT3			10
+#define CS_POT4			12
 #define CS_DAC			14
 
 
@@ -82,6 +82,7 @@
 
 #define ENC_B2			3
 #define ENC_A2			4
+#define ENC_SW2                 21
 
 //! @}
 

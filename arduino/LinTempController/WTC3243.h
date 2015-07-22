@@ -93,6 +93,18 @@ class WTC3243
 		//Get the error signal (act - set temp)
 		float getTempDev();
 
+                //Set the minimum temperature
+                void setMinTemp(float minTemp);
+                
+                //Set the maximum temperature
+                void setMaxTemp(float maxTemp);
+                
+                //Get the minimum temperature
+                float getMinTemp();
+                
+                //Get the maximum temperature
+                float getMaxTemp();
+                
                 //Instance digipot object
 		AD5262 _dPOT;
 
@@ -120,7 +132,7 @@ class WTC3243
 		double _BIAS_CURRENT, _STEINHART_A, _STEINHART_B, _STEINHART_C;
 
 		//Instance variables used to store the set, actual, min/max temperatures:
-		float _actT, _setT, _MAX_TEMP, _MIN_TEMP, _tempDev;
+		float _actT, _setT, _min_temp, _max_temp, _tempDev;
 
 };
 

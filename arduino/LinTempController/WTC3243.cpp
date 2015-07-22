@@ -77,8 +77,8 @@ void WTC3243::init(double BIAS_CURRENT, double STEINHART_A, double STEINHART_B, 
 	_STEINHART_A = STEINHART_A;
 	_STEINHART_B = STEINHART_B;
 	_STEINHART_C = STEINHART_C;
-	_MIN_TEMP = MIN_TEMP;
-	_MAX_TEMP = MAX_TEMP;
+	_min_temp = MIN_TEMP;
+	_max_temp = MAX_TEMP;
 
 }
 
@@ -143,10 +143,10 @@ void WTC3243::setTempV(double V, AD56X4R &dac){
 void WTC3243::setTemp(double T, AD56X4R &dac){
 
 	  //Make sure desired temp is within the desired range
-	if (T > _MAX_TEMP){
-		T = _MAX_TEMP;
-	} else if (T < _MIN_TEMP) {
- 		T = _MIN_TEMP;
+	if (T > _max_temp){
+		T = _max_temp;
+	} else if (T < _min_temp) {
+ 		T = _min_temp;
 	}
 
 	_setT = T;
@@ -179,6 +179,8 @@ float WTC3243::getActTemp(){
 
   	//get voltage across the thermistor:
 	float V = readVoltage(_ACT_T_PIN);
+
+        
   
  	//calculate resistance of thermistor
   	double R = V/_BIAS_CURRENT;
@@ -190,6 +192,8 @@ float WTC3243::getActTemp(){
   	T -= 273.15;
 
 	_actT = T;
+
+        
   
   	return T;
 
@@ -231,3 +235,22 @@ float WTC3243::getTempDev(){
 	return _tempDev;
 }
 
+//Set the minimum temperature
+void WTC3243::setMinTemp(float minTemp){
+  _min_temp = minTemp;
+}
+
+//Set the maximum temperature
+void WTC3243::setMaxTemp(float maxTemp){
+  _max_temp = maxTemp;
+}
+
+//Get the minimum temperature
+float WTC3243::getMinTemp(){
+  return _min_temp;
+}
+
+//Get the maximum temperature
+float WTC3243::getMaxTemp(){
+  return _max_temp;
+}
