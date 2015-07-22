@@ -11,29 +11,48 @@
 #include "WTC3243.h"
 #include "TempContSettings.h"
 #include "Menu.h"
+//#include <vector>
 
 
 
-
+byte current_ch = 0; //0-3 to correspond to channel 1-4
+boolean inSettingsMenu = false;
 
 SerialCommand sCmd;
 
 LCD lcd(RST_LCD, RS_LCD, CS_LCD);
 //Encoder enc_test1(ENC_A1,ENC_B1,ENC_SW1);
 
-//Initialize Encoder Objects;
+//Initialize Encoder Objects; change these to arrays of encoders (one for each channel)
 Encoder enc_ch_select(ENC_A2, ENC_B2, 21);
 Encoder enc_set_t(ENC_A1, ENC_B1, ENC_SW1);
 Encoder enc_set_pgain(ENC_A1, ENC_B1, ENC_SW1);
 Encoder enc_set_Itc(ENC_A1, ENC_B1, ENC_SW1);
+Encoder enc_enter_settings(ENC_A1, ENC_B1, ENC_SW1);
+Encoder enc_exit_settings(ENC_A1, ENC_B1, ENC_SW1);
+
+//Encoder enc_set_t[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
+//Encoder enc_set_pgain[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
+//Encoder enc_set_Itc[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
+
+Encoder enc_set_minT(ENC_A1, ENC_B1, ENC_SW1);
+Encoder enc_set_maxT(ENC_A1, ENC_B1, ENC_SW1);
+
 
 //Initialize Menu Objects:
-Menu main_menu(4);
+Menu main_menu(5);
+Menu settings_menu(3);
 
 //Initialize DAC and Temp Controller:
 AD56X4R dac(CS_DAC, SCK_B, MOSI_B, Settings::dac_bits, Settings::dac_vref);
 WTC3243 tempCont(CS_POT1, SCK_B, MOSI_B, CS_DAC, Ch1::dac_ch, VMON1, ACT_T1, Ch1::pot_min, Ch1::pot_max);
 
+////Initialize array of temp controllers:
+//WTC3243 tempControllers[4] = {WTC3243(CS_POT1, SCK_B, MOSI_B, CS_DAC, Ch1::dac_ch, VMON1, ACT_T1, Ch1::pot_min, Ch1::pot_max), 
+//                WTC3243(CS_POT1, SCK_B, MOSI_B, CS_DAC, Ch1::dac_ch, VMON1, ACT_T1, Ch1::pot_min, Ch1::pot_max), 
+//                WTC3243(CS_POT1, SCK_B, MOSI_B, CS_DAC, Ch1::dac_ch, VMON1, ACT_T1, Ch1::pot_min, Ch1::pot_max),
+//                WTC3243(CS_POT1, SCK_B, MOSI_B, CS_DAC, Ch1::dac_ch, VMON1, ACT_T1, Ch1::pot_min, Ch1::pot_max)};
+                
 //Initialize Metro object (deals with timing):
 Metro timer(Settings::save_interval);
 
@@ -56,52 +75,52 @@ void test_hold_event(Encoder *this_encoder) {
 }
 
 void secondary_hold_event(Encoder *this_encoder) {
-  Serial.println("HELD");
-  lcd.init();
+  Serial.println("here");
 }
 
 void secondary_press_event(Encoder *this_encoder) {
   Serial.println("PUSH");
 }
 
+void enter_settings_menu_hold_event(Encoder *this_encoder) {
+  lcd.clear();
+  delay(500);
+  inSettingsMenu = true;
+  enc_ch_select.init(50001,0,100000);
+
+}
+
+void exit_settings_menu_hold_event(Encoder *this_encoder) {
+  lcd.clear();
+  delay(500);
+  
+  inSettingsMenu = false;
+  
+  //Re-initialize temp controller and encoder in case min/max temps have changed
+  tempCont.init(Ch1::bias_current, Ch1::steinhart_A, Ch1::steinhart_B, Ch1::steinhart_C, Ch1::min_temp, Ch1::max_temp);
+  enc_set_t.init(enc_set_t.position(), Ch1::min_temp, Ch1::max_temp); //what happens when position is all of a sudden out of bounds?
+  
+  enc_ch_select.init(50000,0,100000);
+
+}
 
 void test() {
-  //writeDigiPOT(address, value);
-  //writeDAC(B00111000,0,1); //enable internal voltage reference (1.247V actual)
-  //writeDAC(command,address,value);
-  //setDAC(0,0);
-  //dPOT.setI(20.1);
-  //Serial.println(dPOT.getVal(1));
-  //Serial.println(dPOT.getR(1));
-  //Serial.println(dPOT.getI());
-  //int val;
-  //Serial.println(getVoltage(VMON1),4);
-  //Serial.println(getTemp(),10);
-  //lcd.write("CH 1     23.48 C", 0x00);
-  //lcd.write("Out Mon   19.99V", 0x40);
-
-  //tempCont.setP(30);
-  //tempCont.setI(0.82);
-
-  //Serial.println(tempCont._dPOT.getR(1));
-
-  //tempCont.setTemp(25.0, dac);
-  //tempCont.setTempV(1.03,dac);
-  //dac.setVoltage(0,2.3);
-  //setDAC(0,.75);
-  //dac.setIntRefV(1);
-  Serial.println("here");
-  lcd.init();
-
 }
 
 void interruptWrapper() {
   if (main_menu.current_mode() == 0) {
     enc_set_t.interrupt();
+    //enc_set_t[current_ch].interrupt();
   } else if (main_menu.current_mode() == 1) {
     enc_set_pgain.interrupt();
+    //enc_set_pgain[current_ch].interrupt();
   } else if (main_menu.current_mode() == 2) {
     enc_set_Itc.interrupt();
+    //enc_set_Itc[current_ch].interrupt();
+  } else if (main_menu.current_mode()  == 4 && settings_menu.current_mode() == 0) {
+    enc_set_minT.interrupt();
+  } else if (main_menu.current_mode()  == 4 && settings_menu.current_mode() == 1) {
+    enc_set_maxT.interrupt();
   }
 }
 
@@ -110,6 +129,9 @@ void chSelectInterruptWrapper() {
 }
 
 void mode_temp_tune() {
+  
+  monitorTemp();
+  
   enc_set_t.button_events(); //look for button events (in this case changes step size)
   float newSetTemp = enc_set_t.position();
   float oldSetTemp = tempCont.getTempSetPt();
@@ -127,6 +149,9 @@ void mode_temp_tune() {
 }
 
 void mode_pgain_tune() {
+  
+  monitorTemp();
+  
   enc_set_pgain.button_events(); //look for button events (in this case changes step size)
 
   //read prop gain value set by encoder and the current prop gain
@@ -147,6 +172,9 @@ void mode_pgain_tune() {
 }
 
 void mode_Itc_tune() {
+  
+  monitorTemp();
+  
   enc_set_Itc.button_events(); //look for button events (in this case changes step size)
 
   //read integrator time constant value set by encoder and the current time constant
@@ -165,6 +193,8 @@ void mode_Itc_tune() {
 }
 
 void mode_out_mon() {
+  
+  monitorTemp();
 
   float outV = tempCont.getOutputVoltage();
 
@@ -172,6 +202,72 @@ void mode_out_mon() {
   snprintf(lineToDisplay, 17, "Out Mon %6.3f V", outV);
 
   lcd.write(lineToDisplay, 0x040);
+}
+
+void mode_enter_settings() {
+  lcd.write("Hold R knob to  ", 0x000);
+  lcd.write("change settings ", 0x040);
+//  while ((int(enc_ch_select.position()) % 5) == 4) {
+//    enc_enter_settings.button_events();
+//  }
+  enc_enter_settings.button_events();
+  
+}
+
+void mode_exit_settings() {
+  lcd.write("Hold R knob to  ", 0x000);
+  lcd.write(" exit settings. ", 0x040);
+//  while ((int(enc_ch_select.position()) % 5) == 4) {
+//    enc_exit_settings.button_events();
+//  }
+  enc_exit_settings.button_events();
+  
+}
+
+void mode_min_temp() {
+   
+  enc_set_minT.button_events(); //look for button events (in this case changes step size)
+  
+  float newMinTemp = enc_set_minT.position();
+  float oldMinTemp = Ch1::min_temp;
+
+  //compare old to new value, update only if necessary
+  if (int(newMinTemp * 1000) != int(oldMinTemp * 1000)) { //since we're comparing floating pt #s, cast to ints to avoid problems)
+    Ch1::min_temp = newMinTemp;
+  }
+
+  //update display
+  char lineToDisplay[17];
+  snprintf(lineToDisplay, 17, "MinT(%3s) %5.1fC", enc_set_minT.step_size_label().c_str(), newMinTemp);
+  //lcd.write("SetT(" + enc_set_t.step_size_label() + ") " + String(newSetTemp, 2) + "C", 0x040);
+  lcd.write(lineToDisplay, 0x040);
+  
+
+  lcd.write("  Ch1 Min Temp  ", 0x000);
+  
+}
+
+void mode_max_temp() {
+
+  enc_set_maxT.button_events(); //look for button events (in this case changes step size)
+    
+  float newMaxTemp = enc_set_maxT.position();
+  float oldMaxTemp = Ch1::max_temp;
+
+  //compare old to new value, update only if necessary
+  if (int(newMaxTemp * 1000) != int(oldMaxTemp * 1000)) { //since we're comparing floating pt #s, cast to ints to avoid problems)
+    Ch1::max_temp = newMaxTemp;
+  }
+
+  //update display
+  char lineToDisplay[17];
+  snprintf(lineToDisplay, 17, "MaxT(%3s) %5.1fC", enc_set_maxT.step_size_label().c_str(), newMaxTemp);
+  //lcd.write("SetT(" + enc_set_t.step_size_label() + ") " + String(newSetTemp, 2) + "C", 0x040);
+  lcd.write(lineToDisplay, 0x040);
+  
+
+  lcd.write("  Ch1 Max Temp  ", 0x000);
+  
 }
 
 void monitorTemp() {
@@ -201,6 +297,12 @@ int Settings::addressTempSetPt;
 int Settings::addressPgain;
 int Settings::addressItc;
 
+//Declare calibration/setting variables:
+float Ch1::min_temp;
+float Ch1::max_temp;
+
+float Settings::min_temp[4];
+float Settings::max_temp[4];
 
 
 void setup() {
@@ -212,6 +314,9 @@ void setup() {
   Settings::addressTempSetPt = EEPROM.getAddress(sizeof(float));
   Settings::addressItc = EEPROM.getAddress(sizeof(float));
   Settings::addressPgain = EEPROM.getAddress(sizeof(byte));
+  
+  Ch1::min_temp = 10.0; //temporary
+  Ch1::max_temp = 35.0;
 
   //Initialize communication pins
   pinMode(MOSI_B, OUTPUT);
@@ -232,7 +337,7 @@ void setup() {
   pinMode(ENC_SW1, INPUT);
   pinMode(ENC_A2, INPUT);
   pinMode(ENC_B2, INPUT);
-  pinMode(21, INPUT); //push botton for 2nd encoder, not currently hooked up but could add jumper wire
+  pinMode(21, INPUT); //push botton for 2nd encoder
 
   //Initialize the LCD
   SPI.begin();
@@ -282,24 +387,34 @@ void setup() {
   enc_ch_select.init(50000, 0, 100000);
   enc_ch_select.attach_button_press_event(secondary_press_event); 
   enc_ch_select.attach_button_hold_event(secondary_hold_event);//Just for testing right now
+  
+  enc_enter_settings.attach_button_hold_event(enter_settings_menu_hold_event);
+  enc_exit_settings.attach_button_hold_event(exit_settings_menu_hold_event);
+  
+  enc_set_minT.init(Ch1::min_temp, -99.9, 999.9);
+  double minTemp_step_sizes[] = {0.1, 1.0, 5.0};
+  String minTemp_step_labels[] = {"0.1", "1.0", "5.0"};
+  enc_set_minT.define_step_sizes(3, minTemp_step_sizes, minTemp_step_labels);
+  enc_set_minT.attach_button_press_event(incrementStepSize_pressEvent);
+  
+  enc_set_maxT.init(Ch1::max_temp, -99.9, 999.9);
+  double maxTemp_step_sizes[] = {0.1, 1.0, 5.0};
+  String maxTemp_step_labels[] = {"0.1", "1.0", "5.0"};
+  enc_set_maxT.define_step_sizes(3, maxTemp_step_sizes, maxTemp_step_labels);
+  enc_set_maxT.attach_button_press_event(incrementStepSize_pressEvent);
 
   attachInterrupt(ENC_A1, interruptWrapper, CHANGE);
   main_menu.attach_mode(0, "Temperature", mode_temp_tune);
   main_menu.attach_mode(1, "Proportional Gain", mode_pgain_tune);
   main_menu.attach_mode(2, "Int Time Constant", mode_Itc_tune);
   main_menu.attach_mode(3, "Voltage Monitor", mode_out_mon);
-
-
-  //enc_test1.attach_button_press_event(test_press_event);
-  ///enc_test1.attach_button_hold_event(test_hold_event);
-
-  //enc_test1.init(1.0, 0.0, 100.0);
-  //double step_sizes[]={1,5,10};
-  //String step_labels[]={"LSB","5 sec","10 apples"};
-  //enc_test1.define_step_sizes(3,step_sizes,step_labels);
-
-
+  main_menu.attach_mode(4, "Enter Settings",mode_enter_settings);
   
+  settings_menu.attach_mode(0,"Min Temperature",mode_min_temp);
+  settings_menu.attach_mode(1,"Max Temperature",mode_max_temp);
+  settings_menu.attach_mode(2,"Exit Settings",mode_exit_settings);
+
+
 
   sCmd.addCommand("T", test);
   sCmd.setDefaultHandler(unrecognizedCmd);
@@ -318,10 +433,14 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   enc_ch_select.button_events();
-
-  monitorTemp(); //function that displays the current measured temperature (of selected channel)
-  main_menu.switch_to_mode(int(enc_ch_select.position()) % 4);  //turning ch select knob changes the menu mode
-  main_menu.run_mode();  //run currently selected mode
+  Serial.println(enc_ch_select.position());
+  if (inSettingsMenu == false) {
+    main_menu.switch_to_mode(int(enc_ch_select.position()) % 5);  //turning ch select knob changes the menu mode
+    main_menu.run_mode();  //run currently selected mode
+  } else {
+    settings_menu.switch_to_mode(int(enc_ch_select.position()) % 3);
+    settings_menu.run_mode(); //run settings mode
+  }
 
   sCmd.readSerial();
 

@@ -20,7 +20,10 @@ namespace Settings
         extern int addressTempSetPt;
         extern int addressItc;
         extern int addressPgain;
-
+        
+        extern float min_temp[4];
+        extern float max_temp[4];
+        
 }
 
 namespace Ch1
@@ -41,8 +44,9 @@ namespace Ch1
         const byte dac_ch(0);
         
         //Define min and max allowed commandable temperatures:
-        const float min_temp(10.0);
-        const float max_temp(35.0);
+        //const float min_temp(10.0);
+        extern float min_temp;
+        extern float max_temp;
         
 }
 #endif
