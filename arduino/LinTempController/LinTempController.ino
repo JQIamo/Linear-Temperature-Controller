@@ -14,25 +14,33 @@
 //#include <vector>
 
 
-
+//Declare global variables:
 byte current_ch = 0; //0-3 to correspond to channel 1-4
 boolean inSettingsMenu = false;
+
+//Declare variables used to store EEPROM addresses:
+int Settings::addressTempSetPt[4];
+int Settings::addressPgain[4];
+int Settings::addressItc[4];
+int Settings::addressMinTemp[4];
+int Settings::addressMaxTemp[4];
+int Settings::addressFirstSave;
 
 SerialCommand sCmd;
 
 LCD lcd(RST_LCD, RS_LCD, CS_LCD);
 
-//Initialize Encoder Objects; change these to arrays of encoders (one for each channel)
+//Initialize Encoder Objects
 Encoder enc_ch_select(ENC_A2, ENC_B2, ENC_SW2);
 Encoder enc_enter_settings(ENC_A1, ENC_B1, ENC_SW1);
 Encoder enc_exit_settings(ENC_A1, ENC_B1, ENC_SW1);
+Encoder enc_voltage_mon(ENC_A1, ENC_B1, ENC_SW1);
 
 Encoder enc_set_t[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
 Encoder enc_set_pgain[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
 Encoder enc_set_Itc[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
 Encoder enc_set_minT[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
 Encoder enc_set_maxT[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
-
 
 //Initialize Menu Objects:
 Menu main_menu(5);
@@ -79,7 +87,7 @@ void enter_settings_menu_hold_event(Encoder *this_encoder) {
   lcd.clear();
   delay(750);
   inSettingsMenu = true;
-  enc_ch_select.init(50001,0,100000);
+  enc_ch_select.init(50001,0,100000); //The initial position of this encoder is chosen to open the settings menu at the min temp submode
 
 }
 
@@ -116,7 +124,7 @@ void exit_settings_menu_hold_event(Encoder *this_encoder) {
 }
 
 void test() {
-  
+
 }
 
 void interruptWrapper() {
@@ -141,9 +149,10 @@ void mode_temp_tune() {
   
   monitorTemp();
   
-  enc_set_t[current_ch].button_events(); //look for button events (in this case changes step size)
+  enc_set_t[current_ch].button_events(); //look for button events
   enc_ch_select.button_events();
   
+  //read temperature set by encoder and the current set point
   float newSetTemp = enc_set_t[current_ch].position();
   float oldSetTemp = tempControllers[current_ch].getTempSetPt();
 
@@ -163,13 +172,14 @@ void mode_pgain_tune() {
   
   monitorTemp();
   
-  enc_set_pgain[current_ch].button_events(); //look for button events (in this case changes step size)
+  enc_set_pgain[current_ch].button_events(); //look for button events
   enc_ch_select.button_events();
 
   //read prop gain value set by encoder and the current prop gain
   byte newPgain = enc_set_pgain[current_ch].position();
   byte oldPgain = tempControllers[current_ch].getP();
 
+  //compare old to new value, update only if necessary
   if (newPgain != oldPgain) {
     tempControllers[current_ch].setP(newPgain);
   }
@@ -187,7 +197,7 @@ void mode_Itc_tune() {
   
   monitorTemp();
   
-  enc_set_Itc[current_ch].button_events(); //look for button events (in this case changes step size)
+  enc_set_Itc[current_ch].button_events(); //look for button events
   enc_ch_select.button_events();
 
   //read integrator time constant value set by encoder and the current time constant
@@ -208,6 +218,7 @@ void mode_Itc_tune() {
 void mode_out_mon() {
   
   enc_ch_select.button_events();
+  enc_voltage_mon.button_events();
   
   monitorTemp();
 
@@ -304,16 +315,10 @@ void writeSettingstoMemory() {
       EEPROM.updateFloat(Settings::addressMinTemp[i], tempControllers[i].getMinTemp());
       EEPROM.updateFloat(Settings::addressMaxTemp[i], tempControllers[i].getMaxTemp());
     }
+    EEPROM.updateBit(Settings::addressFirstSave,0,0); //Toggle this bit from 1 (default if nothing has ever been written at this location) to 0 to indicate that we have made at least one save
     sei(); //set interrupts 
     delay(1500);
 }
-
-//Declare variables used to store EEPROM addresses:
-int Settings::addressTempSetPt[4];
-int Settings::addressPgain[4];
-int Settings::addressItc[4];
-int Settings::addressMinTemp[4];
-int Settings::addressMaxTemp[4];
 
 void setup() {
   // put your setup code here, to run once:
@@ -328,6 +333,7 @@ void setup() {
     Settings::addressMinTemp[i] = EEPROM.getAddress(sizeof(float));
     Settings::addressMaxTemp[i] = EEPROM.getAddress(sizeof(float));
   }
+  Settings::addressFirstSave = EEPROM.getAddress(sizeof(boolean));
   
   //Initialize communication pins
   pinMode(MOSI_B, OUTPUT);
@@ -358,20 +364,19 @@ void setup() {
   //Turn on DAC's internal voltage reference:
   dac.setIntRefV(1);
   
-  //Read min/max temperatures from memory (or if that value isn't valid, initialize to default values
-  float initialMinTemp;
-  float initialMaxTemp;
+  
+  //Loop through the 4 channels, performing various set-up commands:
   for (int i = 0; i < 4; i++) {
-    initialMinTemp = EEPROM.readFloat(Settings::addressMinTemp[i]);
-    initialMaxTemp = EEPROM.readFloat(Settings::addressMaxTemp[i]);
-
+    
+    //Read min/max temperatures from memory (or if that value isn't valid, initialize to default values
+    float initialMinTemp = EEPROM.readFloat(Settings::addressMinTemp[i]);
+    float initialMaxTemp = EEPROM.readFloat(Settings::addressMaxTemp[i]);
     if (isnan(initialMinTemp) || initialMinTemp < -99.9 || initialMinTemp > 999.9){
       initialMinTemp = Settings::default_min_temp;
     }
     if (isnan(initialMaxTemp) || initialMaxTemp < -99.9 || initialMaxTemp > 999.9){
       initialMaxTemp = Settings::default_max_temp;
     } 
-    
     //Initialize temperature controllers with min/max temp values
     tempControllers[i].init(Settings::bias_current[i], Settings::steinhart_A[i], Settings::steinhart_B[i], Settings::steinhart_C[i], initialMinTemp, initialMaxTemp);
     
@@ -391,12 +396,11 @@ void setup() {
     enc_set_maxT[i].define_step_sizes(3, maxTemp_step_sizes, maxTemp_step_labels);
     enc_set_maxT[i].attach_button_press_event(incrementStepSize_pressEvent);
     enc_set_maxT[i].attach_button_hold_event(dummy_hold_event);
-  }
 
-  float initialTempSetPt;
-  for (int i = 0; i < 4; i++) {
-    //Read saved temp set point
-    initialTempSetPt = EEPROM.readFloat(Settings::addressTempSetPt[i]);
+
+    
+    //Read temp set point from memory:
+    float initialTempSetPt = EEPROM.readFloat(Settings::addressTempSetPt[i]);
     if (isnan(initialTempSetPt) || initialTempSetPt < tempControllers[i].getMinTemp() || initialTempSetPt > tempControllers[i].getMaxTemp()){
       initialTempSetPt = Settings::default_set_temp;
     }
@@ -412,13 +416,13 @@ void setup() {
     
     //Update set temperatures:
     tempControllers[i].setTemp(initialTempSetPt, dac);
-  }
 
-  byte initialPgain;
-  for (int i = 0; i < 4; i++) {
+
+
+
     //Read saved proportional gain
     byte initialPgain = EEPROM.readByte(Settings::addressPgain[i]);
-    if (initialPgain < Settings::prop_min || initialPgain > Settings::prop_max){
+    if (initialPgain < Settings::prop_min || initialPgain > Settings::prop_max || EEPROM.readBit(Settings::addressFirstSave,0) == 1){ //Use default value if read value is out of bounds OR if flag indicates that no saves have been made to memory yet
       initialPgain = Settings::default_prop;
     }
   
@@ -433,12 +437,12 @@ void setup() {
     
     //Update proportional gain settings:
     tempControllers[i].setP(initialPgain);
-  }
 
-  float initialItc;
-  for (int i = 0; i < 4; i++) {
+
+
+
     //Read saved integrator time constant
-    initialItc = EEPROM.readFloat(Settings::addressItc[i]);
+    float initialItc = EEPROM.readFloat(Settings::addressItc[i]);
     if (isnan(initialItc) || initialItc < Settings::int_tc_min || initialItc > Settings::int_tc_max){
       initialItc = Settings::default_Itc;
     }
@@ -454,7 +458,8 @@ void setup() {
     
     //Update integrator time constants:
     tempControllers[i].setI(initialItc);
-  }
+    
+  } //end for loop
   
   attachInterrupt(ENC_A2, chSelectInterruptWrapper, CHANGE);
   enc_ch_select.init(50000, 0, 100000);
@@ -466,6 +471,9 @@ void setup() {
   
   enc_exit_settings.attach_button_hold_event(exit_settings_menu_hold_event);
   enc_exit_settings.attach_button_press_event(dummy_press_event);
+  
+  enc_voltage_mon.attach_button_press_event(dummy_press_event);
+  enc_voltage_mon.attach_button_hold_event(save_settings_hold_event);
   
   
   attachInterrupt(ENC_A1, interruptWrapper, CHANGE);

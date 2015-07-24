@@ -24,6 +24,9 @@ namespace Settings
         extern int addressPgain[4];
         extern int addressMinTemp[4];
         extern int addressMaxTemp[4];
+        extern int addressFirstSave;
+        
+        //extern boolean firstSave;
         
         //extern float min_temp[4];
         //extern float max_temp[4];
