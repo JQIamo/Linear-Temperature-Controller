@@ -55,29 +55,38 @@ namespace Settings
         
 }
 
-//namespace Ch1
-//{
-//        //Settings used to calibrate the digipot (resistance at max and min setting)
-//        const unsigned long pot_max(227500UL);
-//        const unsigned long pot_min(1100UL);
-//        
-//        //Define constants used to convert temp to voltage
-//        //Current values use the Steinhart-Hart model and the following thermistor:
-//        //Epcos B57862S0103F040 (digikey PN 495-2166-ND), 10kOhm, NTC
-//        const double steinhart_A(1.1254e-3);
-//        const double steinhart_B(2.3469e-4);
-//        const double steinhart_C(0.8584e-7);
-//        const double bias_current(100e-6);
-//        
-//        //DAC address (0 -> DAC A, 1 -> DAC B, 2 -> DAC C, 3 -> DAC D)
-//        const byte dac_ch(0);
-//        
-//        //Define min and max allowed commandable temperatures:
-//        //const float min_temp(10.0);
-//        extern float min_temp;
-//        extern float max_temp;
-//        
-//}
-//
-//
+namespace PinMappings
+{
+  const byte VMON4(A1);
+  const byte ACT_T4(A2);
+  const byte VMON3(A3);
+  const byte ACT_T3(A4);
+  const byte VMON2(A5);
+  const byte ACT_T2(A6);
+  const byte VMON1(A10);
+  const byte ACT_T1(A11);
+  
+  const byte CS_POT1(8);
+  const byte CS_POT2(9);
+  const byte CS_POT3(10);
+  const byte CS_POT4(12);
+  const byte CS_DAC(14);
+  
+  const byte RST_LCD(7);
+  const byte RS_LCD(6);
+  const byte CS_LCD(5);
+  
+  const byte ENC_A1(2);
+  const byte ENC_B1(1);
+  const byte ENC_SW1(0);
+  
+  const byte ENC_A2(4);
+  const byte ENC_B2(3);
+  const byte ENC_SW2(21);
+  
+  const byte SCK_B(22);
+  const byte MOSI_B(23);
+  
+}
+
 #endif

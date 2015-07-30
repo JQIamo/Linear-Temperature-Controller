@@ -3,7 +3,7 @@
 #include <Metro.h>
 #include <SPI.h>
 #include <SerialCommand.h>
-#include "Teensy_TempController.h"
+//#include "Teensy_TempController.h"
 #include "Encoder.h"
 #include "LCD.h"
 #include "AD5262.h"
@@ -28,32 +28,32 @@ int Settings::addressFirstSave;
 
 SerialCommand sCmd;
 
-LCD lcd(RST_LCD, RS_LCD, CS_LCD);
+LCD lcd(PinMappings::RST_LCD, PinMappings::RS_LCD, PinMappings::CS_LCD);
 
 //Initialize Encoder Objects
-Encoder enc_ch_select(ENC_A2, ENC_B2, ENC_SW2);
-Encoder enc_enter_settings(ENC_A1, ENC_B1, ENC_SW1);
-Encoder enc_exit_settings(ENC_A1, ENC_B1, ENC_SW1);
-Encoder enc_voltage_mon(ENC_A1, ENC_B1, ENC_SW1);
+Encoder enc_ch_select(PinMappings::ENC_A2, PinMappings::ENC_B2, PinMappings::ENC_SW2);
+Encoder enc_enter_settings(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1);
+Encoder enc_exit_settings(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1);
+Encoder enc_voltage_mon(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1);
 
-Encoder enc_set_t[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
-Encoder enc_set_pgain[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
-Encoder enc_set_Itc[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
-Encoder enc_set_minT[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
-Encoder enc_set_maxT[4] = {Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1), Encoder(ENC_A1, ENC_B1, ENC_SW1)};
+Encoder enc_set_t[4] = {Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1)};
+Encoder enc_set_pgain[4] = {Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1)};
+Encoder enc_set_Itc[4] = {Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1)};
+Encoder enc_set_minT[4] = {Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1)};
+Encoder enc_set_maxT[4] = {Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1), Encoder(PinMappings::ENC_A1, PinMappings::ENC_B1, PinMappings::ENC_SW1)};
 
 //Initialize Menu Objects:
 Menu main_menu(5);
 Menu settings_menu(3);
 
 //Initialize DAC
-AD56X4R dac(CS_DAC, SCK_B, MOSI_B, Settings::dac_bits, Settings::dac_vref);
+AD56X4R dac(PinMappings::CS_DAC, PinMappings::SCK_B, PinMappings::MOSI_B, Settings::dac_bits, Settings::dac_vref);
 
 ////Initialize array of temp controllers:
-WTC3243 tempControllers[4] = {WTC3243(CS_POT1, SCK_B, MOSI_B, CS_DAC, Settings::dac_ch[0], VMON1, ACT_T1, Settings::pot_min[0], Settings::pot_max[0]), 
-                              WTC3243(CS_POT2, SCK_B, MOSI_B, CS_DAC, Settings::dac_ch[1], VMON2, ACT_T2, Settings::pot_min[1], Settings::pot_max[1]), 
-                              WTC3243(CS_POT3, SCK_B, MOSI_B, CS_DAC, Settings::dac_ch[2], VMON3, ACT_T3, Settings::pot_min[2], Settings::pot_max[2]),
-                              WTC3243(CS_POT4, SCK_B, MOSI_B, CS_DAC, Settings::dac_ch[3], VMON4, ACT_T4, Settings::pot_min[3], Settings::pot_max[3])};
+WTC3243 tempControllers[4] = {WTC3243(PinMappings::CS_POT1, PinMappings::SCK_B, PinMappings::MOSI_B, PinMappings::CS_DAC, Settings::dac_ch[0], PinMappings::VMON1, PinMappings::ACT_T1, Settings::pot_min[0], Settings::pot_max[0]), 
+                              WTC3243(PinMappings::CS_POT2, PinMappings::SCK_B, PinMappings::MOSI_B, PinMappings::CS_DAC, Settings::dac_ch[1], PinMappings::VMON2, PinMappings::ACT_T2, Settings::pot_min[1], Settings::pot_max[1]), 
+                              WTC3243(PinMappings::CS_POT3, PinMappings::SCK_B, PinMappings::MOSI_B, PinMappings::CS_DAC, Settings::dac_ch[2], PinMappings::VMON3, PinMappings::ACT_T3, Settings::pot_min[2], Settings::pot_max[2]),
+                              WTC3243(PinMappings::CS_POT4, PinMappings::SCK_B, PinMappings::MOSI_B, PinMappings::CS_DAC, Settings::dac_ch[3], PinMappings::VMON4, PinMappings::ACT_T4, Settings::pot_min[3], Settings::pot_max[3])};
                 
 //Initialize Metro object (deals with timing):
 Metro timer(Settings::save_interval);
@@ -124,7 +124,7 @@ void exit_settings_menu_hold_event(Encoder *this_encoder) {
 }
 
 void test() {
-
+  //code to test here
 }
 
 void interruptWrapper() {
@@ -336,12 +336,12 @@ void setup() {
   Settings::addressFirstSave = EEPROM.getAddress(sizeof(boolean));
   
   //Initialize communication pins
-  pinMode(MOSI_B, OUTPUT);
-  pinMode(SCK_B, OUTPUT);
+  pinMode(PinMappings::MOSI_B, OUTPUT);
+  pinMode(PinMappings::SCK_B, OUTPUT);
 
   //Initialize DAC CS PIN
-  pinMode(CS_DAC, OUTPUT);
-  digitalWrite(CS_DAC, HIGH);
+  pinMode(PinMappings::CS_DAC, OUTPUT);
+  digitalWrite(PinMappings::CS_DAC, HIGH);
 
   //Set Up Analog Read Pins
   analogReference(EXTERNAL);
@@ -349,12 +349,12 @@ void setup() {
   analogReadAveraging(Settings::analog_read_avg); 
 
   //Set up encoder pins:
-  pinMode(ENC_A1, INPUT);
-  pinMode(ENC_B1, INPUT);
-  pinMode(ENC_SW1, INPUT);
-  pinMode(ENC_A2, INPUT);
-  pinMode(ENC_B2, INPUT);
-  pinMode(ENC_SW2, INPUT); 
+  pinMode(PinMappings::ENC_A1, INPUT);
+  pinMode(PinMappings::ENC_B1, INPUT);
+  pinMode(PinMappings::ENC_SW1, INPUT);
+  pinMode(PinMappings::ENC_A2, INPUT);
+  pinMode(PinMappings::ENC_B2, INPUT);
+  pinMode(PinMappings::ENC_SW2, INPUT); 
 
   //Initialize the LCD
   SPI.begin();
@@ -461,7 +461,7 @@ void setup() {
     
   } //end for loop
   
-  attachInterrupt(ENC_A2, chSelectInterruptWrapper, CHANGE);
+  attachInterrupt(PinMappings::ENC_A2, chSelectInterruptWrapper, CHANGE);
   enc_ch_select.init(50000, 0, 100000);
   enc_ch_select.attach_button_press_event(incrementChannel_pressEvent); 
   enc_ch_select.attach_button_hold_event(dummy_hold_event);
@@ -476,7 +476,7 @@ void setup() {
   enc_voltage_mon.attach_button_hold_event(save_settings_hold_event);
   
   
-  attachInterrupt(ENC_A1, interruptWrapper, CHANGE);
+  attachInterrupt(PinMappings::ENC_A1, interruptWrapper, CHANGE);
   main_menu.attach_mode(0, "Temperature", mode_temp_tune);
   main_menu.attach_mode(1, "Proportional Gain", mode_pgain_tune);
   main_menu.attach_mode(2, "Int Time Constant", mode_Itc_tune);
