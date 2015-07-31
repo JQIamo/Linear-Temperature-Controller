@@ -11,7 +11,6 @@
 #include "WTC3243.h"
 #include "TempContSettings.h"
 #include "Menu.h"
-//#include <vector>
 
 
 //Declare global variables:
@@ -125,6 +124,49 @@ void exit_settings_menu_hold_event(Encoder *this_encoder) {
 
 void test() {
   //code to test here
+}
+
+void calibrate_hold_event(Encoder *this_encoder) {
+  
+  boolean click = false;
+  
+  lcd.write("DPots=Max, Click",0x000);
+  lcd.write("R Knob to Cont. ",0x040);
+  
+  //Set digipots to max R values to give user an opportunity to measure them:
+  for (int i = 0 ; i < 4 ; i++) {
+    tempControllers[i]._dPOT.writeDigiPOT(0,255);
+    tempControllers[i]._dPOT.writeDigiPOT(1,255);
+  }
+  
+  //while loop to stay here until click
+  while (click == false) {
+    if (enc_enter_settings.button_pressed() == true){  //This could be any of the encoders mapped to the right knob
+      click = true; 
+      lcd.clear();
+      delay(1000);
+    }
+  }
+  
+  //Set digipots to min R values to give users an opportunity to measure them:
+  lcd.write("DPots=Min, Click",0x000);
+  lcd.write("R Knob to Cont. ",0x040);
+  
+  for (int i = 0 ; i < 4 ; i++) {
+    tempControllers[i]._dPOT.writeDigiPOT(0,0);
+    tempControllers[i]._dPOT.writeDigiPOT(1,0);
+  }
+  
+  //while loop to stay here until click
+  while (click == true) {
+    if (enc_enter_settings.button_pressed() == true){  //This could be any of the encoders mapped to the right knob
+      click = false; 
+      lcd.clear();
+      delay(1000);
+    }
+  }
+  
+  
 }
 
 void interruptWrapper() {
@@ -464,7 +506,8 @@ void setup() {
   attachInterrupt(PinMappings::ENC_A2, chSelectInterruptWrapper, CHANGE);
   enc_ch_select.init(50000, 0, 100000);
   enc_ch_select.attach_button_press_event(incrementChannel_pressEvent); 
-  enc_ch_select.attach_button_hold_event(dummy_hold_event);
+  enc_ch_select.change_hold_time(3000); //make hold time extra long
+  enc_ch_select.attach_button_hold_event(calibrate_hold_event);
   
   enc_enter_settings.attach_button_hold_event(enter_settings_menu_hold_event);
   enc_enter_settings.attach_button_press_event(dummy_press_event);

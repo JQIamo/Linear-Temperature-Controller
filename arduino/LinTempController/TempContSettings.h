@@ -53,6 +53,8 @@ namespace Settings
         const byte default_prop(50);
         const float default_Itc(1.0);
         
+        //Future: calibration constants for voltage monitoring:
+        
 }
 
 namespace PinMappings
