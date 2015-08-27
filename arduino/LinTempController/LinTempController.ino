@@ -124,6 +124,12 @@ void exit_settings_menu_hold_event(Encoder *this_encoder) {
 
 void test() {
   //code to test here
+  Serial.println("test...");
+}
+
+void printVersion() {
+    Serial.print("Current loaded version: ");
+  Serial.println(Settings::versionNum);
 }
 
 void calibrate_hold_event(Encoder *this_encoder) {
@@ -533,6 +539,7 @@ void setup() {
 
 
   sCmd.addCommand("T", test);
+  sCmd.addCommand("Ver",printVersion);
   sCmd.setDefaultHandler(unrecognizedCmd);
 
 }
@@ -553,5 +560,6 @@ void loop() {
   if (timer.check() == 1) {
     writeSettingstoMemory();
   }
+
 
 }
