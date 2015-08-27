@@ -53,41 +53,76 @@ namespace Settings
         const byte default_prop(50);
         const float default_Itc(1.0);
         
+        //Version constant so you can read what version of the settings are being used
+        const byte versionNum(2);
+        
         //Future: calibration constants for voltage monitoring:
+        
         
 }
 
 namespace PinMappings
 {
-  const byte VMON4(A1);
-  const byte ACT_T4(A2);
-  const byte VMON3(A3);
-  const byte ACT_T3(A4);
-  const byte VMON2(A5);
-  const byte ACT_T2(A6);
+  const byte VMON4(A4);
+  const byte ACT_T4(A5);
+  const byte VMON3(A6);
+  const byte ACT_T3(A7);
+  const byte VMON2(A8);
+  const byte ACT_T2(A9);
   const byte VMON1(A10);
   const byte ACT_T1(A11);
   
-  const byte CS_POT1(8);
-  const byte CS_POT2(9);
-  const byte CS_POT3(10);
-  const byte CS_POT4(12);
-  const byte CS_DAC(14);
+  const byte CS_POT1(2);
+  const byte CS_POT2(3);
+  const byte CS_POT3(4);
+  const byte CS_POT4(5);
+  const byte CS_DAC(6);
   
-  const byte RST_LCD(7);
-  const byte RS_LCD(6);
-  const byte CS_LCD(5);
+  const byte RST_LCD(9);
+  const byte RS_LCD(10);
+  const byte CS_LCD(12);
   
-  const byte ENC_A1(2);
-  const byte ENC_B1(1);
-  const byte ENC_SW1(0);
+  const byte ENC_A1(17);
+  const byte ENC_B1(7);
+  const byte ENC_SW1(8);
   
-  const byte ENC_A2(4);
-  const byte ENC_B2(3);
-  const byte ENC_SW2(21);
+  const byte ENC_A2(14);
+  const byte ENC_B2(16);
+  const byte ENC_SW2(15);
   
-  const byte SCK_B(22);
-  const byte MOSI_B(23);
+  const byte SCK_B(1);
+  const byte MOSI_B(0);
+  
+//These were for the first prototype:
+//  const byte VMON4(A1);
+//  const byte ACT_T4(A2);
+//  const byte VMON3(A3);
+//  const byte ACT_T3(A4);
+//  const byte VMON2(A5);
+//  const byte ACT_T2(A6);
+//  const byte VMON1(A10);
+//  const byte ACT_T1(A11);
+//  
+//  const byte CS_POT1(8);
+//  const byte CS_POT2(9);
+//  const byte CS_POT3(10);
+//  const byte CS_POT4(12);
+//  const byte CS_DAC(14);
+//  
+//  const byte RST_LCD(7);
+//  const byte RS_LCD(6);
+//  const byte CS_LCD(5);
+//  
+//  const byte ENC_A1(2);
+//  const byte ENC_B1(1);
+//  const byte ENC_SW1(0);
+//  
+//  const byte ENC_A2(4);
+//  const byte ENC_B2(3);
+//  const byte ENC_SW2(21);
+//  
+//  const byte SCK_B(22);
+//  const byte MOSI_B(23);
   
 }
 
