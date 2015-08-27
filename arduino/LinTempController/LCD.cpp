@@ -4,7 +4,7 @@ LCD::LCD(int pin_reset, int pin_register_select, int pin_chip_select) {
     pin_reset_ = pin_reset;
     pin_register_select_ = pin_register_select;
     pin_chip_select_ = pin_chip_select;
-    SPISettings SPI_settings_lcd_(5000000, MSBFIRST, SPI_MODE0);
+    SPI_settings_lcd_ = SPISettings(500000, MSBFIRST, SPI_MODE0);
 
     pinMode(pin_reset_, OUTPUT);
     pinMode(pin_register_select_, OUTPUT);
@@ -44,18 +44,29 @@ void LCD::init(){
     Base methods (write commands for other types are derived from these)
 */
 void LCD::write(char data){
+    SPI.beginTransaction(SPI_settings_lcd_);
+  
+    pinMode(pin_chip_select_, OUTPUT); //This line is only needed when pin 12 (MISO) is used as the LCD chip select
+  
     digitalWrite(pin_chip_select_, LOW);
     digitalWrite(pin_register_select_, HIGH);
     delay(2);
     SPI.transfer(data);
     delay(2);
     digitalWrite(pin_chip_select_, HIGH);
+    SPI.endTransaction();
+    
 }
 
 void LCD::write_cmd(byte data){
+    
+    SPI.beginTransaction(SPI_settings_lcd_);
+    
+    pinMode(pin_chip_select_, OUTPUT); //This line is only needed when pin 12 (MISO) is used as the LCD chip select
+    
     digitalWrite(pin_chip_select_, LOW);
     digitalWrite(pin_register_select_, LOW);
-    SPI.beginTransaction(SPI_settings_lcd_);
+    
     delay(2);
     SPI.transfer(data);
     delay(2);
