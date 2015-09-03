@@ -5,12 +5,14 @@ namespace Settings
 {
         //single variables are global settings, variables in an array may vary for each channel:
         
-	const float analog_vref(2.4974);  //value of voltage reference used for analog inputs
+	const float analog_vref(2.4984);  //value of voltage reference used for analog inputs
 	const byte analog_read_bits(12); //precision for analog inputs
 	const byte analog_read_avg(32); //number of analog measurements to average over, max of 32
 
-	const float dac_vref(1.2478); //value of DAC's internal voltage reference
+	const float dac_vref(1.2466); //value of DAC's internal voltage reference
         const byte dac_bits(12); //number of bits used by DAC
+        const float dac_offset(0.0022); //offset between the commanded and actual DAC voltage, typically ~1-2 mV
+        const boolean internal_dac_ref(true); //True=use internal vref, False=use external 2.5 voltage ref (jumper on board to switch)
 	
 	const byte prop_max(65);  //max allowed proportional gain (V/A)
 	const byte prop_min(1);  //min allowed proportional gain (V/A)
@@ -40,14 +42,15 @@ namespace Settings
         const double bias_current[4] = {100e-6, 100e-6, 100e-6, 100e-6};
         
         //Settings used to calibrate the digipot (resistance at max and min setting)
-        const unsigned long pot_max[4] = {227500UL, 227500UL, 227500UL, 227500UL};
-        const unsigned long pot_min[4] = {1100UL, 1100UL, 1100UL, 1100UL};
+        //(Currently only one value per digipot device is used even though there are two pots per chip)
+        const unsigned long pot_max[4] = {227000UL, 230000UL, 224300UL, 228800UL};
+        const unsigned long pot_min[4] = {1045UL, 1140UL, 1180UL, 1130UL};
         
         //DAC address (0 -> DAC A, 1 -> DAC B, 2 -> DAC C, 3 -> DAC D)
         const byte dac_ch[4] = {0, 1, 2, 3};
         
         //Default initial settings if none are read from memory:
-        const float default_min_temp(10.0);
+        const float default_min_temp(15.0);
         const float default_max_temp(40.0);
         const float default_set_temp(20.0);
         const byte default_prop(50);
