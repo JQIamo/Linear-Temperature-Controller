@@ -37,7 +37,7 @@
  /* CONSTRUCTOR */
 
 // Constructor function; initializes communication pinouts
-AD56X4R::AD56X4R(byte CS_PIN, byte SCK_PIN, byte MOSI_PIN, byte num_bits, double volt_ref){
+AD56X4R::AD56X4R(byte CS_PIN, byte SCK_PIN, byte MOSI_PIN, byte num_bits, double volt_ref, double volt_offset, boolean int_ext_ref){
         _CS_PIN = CS_PIN;
         _SCK_PIN = SCK_PIN;
         _MOSI_PIN = MOSI_PIN;
@@ -53,7 +53,13 @@ AD56X4R::AD56X4R(byte CS_PIN, byte SCK_PIN, byte MOSI_PIN, byte num_bits, double
 		_dac_precision = 12; //choose a reasonable default
 	}
 	_volt_ref = volt_ref;
-	_volt_max = _volt_ref*2.0; //This factor of two is only valid for internal voltage reference
+        _volt_offset = volt_offset;
+        
+        if (int_ext_ref) {
+            _volt_max = _volt_ref*2.0; //This factor of two is only valid for internal voltage reference
+        } else {
+            _volt_max = _volt_ref;
+        }
 	
 	// sets up the pinmodes for output
         pinMode(_CS_PIN, OUTPUT);
@@ -83,11 +89,15 @@ void AD56X4R::setVoltage(byte ch, double Vout){
 			_val[ch] = 0;
 			_voltage[ch] = 0.0;
 		} else {
-			data = round(maxVal*Vout/_volt_max); //DAC transfer function
+			data = round(maxVal*(Vout-_volt_offset)/_volt_max); //DAC transfer function
 			_val[ch] = data;
 			_voltage[ch] = Vout;
 		}
 		
+                Serial.println(data);
+                Serial.print("Commanded Voltage: ");
+                Serial.println(Vout,5);
+
 		byte bit_shift;
 		if (_dac_precision == 12) {
 			bit_shift = 4;
