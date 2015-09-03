@@ -95,11 +95,14 @@ bool Encoder::button_pressed() {
 			return true;
 		}
 		else {
-			return false;
+                        return false;
 		}
 	}
 
 	if ((millis() - button_change_time_) > bounce_time_) bouncing_ = false;
+        
+        return false;
+        
 }
 
 bool Encoder::button_held() {

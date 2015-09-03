@@ -46,7 +46,7 @@ Menu main_menu(5);
 Menu settings_menu(3);
 
 //Initialize DAC
-AD56X4R dac(PinMappings::CS_DAC, PinMappings::SCK_B, PinMappings::MOSI_B, Settings::dac_bits, Settings::dac_vref);
+AD56X4R dac(PinMappings::CS_DAC, PinMappings::SCK_B, PinMappings::MOSI_B, Settings::dac_bits, Settings::dac_vref, Settings::dac_offset, Settings::internal_dac_ref);
 
 ////Initialize array of temp controllers:
 WTC3243 tempControllers[4] = {WTC3243(PinMappings::CS_POT1, PinMappings::SCK_B, PinMappings::MOSI_B, PinMappings::CS_DAC, Settings::dac_ch[0], PinMappings::VMON1, PinMappings::ACT_T1, Settings::pot_min[0], Settings::pot_max[0]), 
@@ -136,7 +136,32 @@ void calibrate_hold_event(Encoder *this_encoder) {
   
   boolean click = false;
   
-  lcd.write("DPots=Max, Click",0x000);
+  //Have a msg to make sure users want to enter calibration mode
+  lcd.clear();
+  lcd.write(" Enter Cal Mode ",0x000);
+  lcd.write(" Are you sure? ",0x040);
+  delay(3000);
+  
+  lcd.clear();
+  lcd.write("R Knob to Cont. ",0x000);
+  lcd.write("L Knob to Cancel",0x040);
+  
+  while (click == false) {
+    
+    if (enc_enter_settings.button_pressed() == true){  //This could be any of the encoders mapped to the right knob
+      click = true; 
+      lcd.clear();
+      delay(1000);
+    }
+    
+    if (digitalRead(PinMappings::ENC_SW2) == LOW) {
+      return; //exit the calibration mode and return to normal operation
+    }
+  }
+  
+  click = false;
+  
+  lcd.write("DPots=Min, Click",0x000);
   lcd.write("R Knob to Cont. ",0x040);
   
   //Set digipots to max R values to give user an opportunity to measure them:
@@ -152,10 +177,11 @@ void calibrate_hold_event(Encoder *this_encoder) {
       lcd.clear();
       delay(1000);
     }
+
   }
   
   //Set digipots to min R values to give users an opportunity to measure them:
-  lcd.write("DPots=Min, Click",0x000);
+  lcd.write("DPots=Max, Click",0x000);
   lcd.write("R Knob to Cont. ",0x040);
   
   for (int i = 0 ; i < 4 ; i++) {
@@ -163,14 +189,23 @@ void calibrate_hold_event(Encoder *this_encoder) {
     tempControllers[i]._dPOT.writeDigiPOT(1,0);
   }
   
+  click = false;
+  
   //while loop to stay here until click
-  while (click == true) {
+  while (click == false) {
     if (enc_enter_settings.button_pressed() == true){  //This could be any of the encoders mapped to the right knob
-      click = false; 
+      click = true; 
       lcd.clear();
       delay(1000);
     }
   }
+  
+  //set digipots back to their previous values
+  for (int i = 0 ; i < 4 ; i++) {
+    tempControllers[i].setP(tempControllers[i].getP());
+    tempControllers[i].setI(tempControllers[i].getI());
+  }
+
   
   
 }
@@ -409,8 +444,8 @@ void setup() {
   delay(100);
   lcd.init();
   
-  //Turn on DAC's internal voltage reference:
-  dac.setIntRefV(1);
+  //Turn on/off DAC's internal voltage reference:
+  dac.setIntRefV(Settings::internal_dac_ref);
   
   
   //Loop through the 4 channels, performing various set-up commands:
@@ -560,6 +595,5 @@ void loop() {
   if (timer.check() == 1) {
     writeSettingstoMemory();
   }
-
-
+  
 }
