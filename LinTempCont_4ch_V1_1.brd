@@ -4501,14 +4501,14 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <contactref element="TP1" pad="P$1"/>
 <wire x1="66.42" y1="49.8" x2="66.42" y2="49.785" width="0.3048" layer="1"/>
 <wire x1="66.42" y1="49.785" x2="66.675" y2="49.53" width="0.3048" layer="1"/>
-<wire x1="66.675" y1="49.53" x2="66.675" y2="46.355" width="0.4064" layer="1"/>
+<wire x1="66.675" y1="49.53" x2="66.675" y2="46.355" width="0.8128" layer="1"/>
 <wire x1="66.675" y1="46.355" x2="66.04" y2="45.72" width="0.3048" layer="1"/>
 <wire x1="66.42" y1="46.1" x2="66.04" y2="45.72" width="0.3048" layer="1"/>
 <contactref element="JP14" pad="3"/>
 <contactref element="JP14" pad="4"/>
-<wire x1="66.294" y1="42.672" x2="66.294" y2="45.466" width="0.4064" layer="1"/>
+<wire x1="66.294" y1="42.672" x2="66.294" y2="45.466" width="0.8128" layer="1"/>
 <wire x1="66.294" y1="45.466" x2="66.04" y2="45.72" width="0.4064" layer="1"/>
-<wire x1="66.294" y1="42.672" x2="63.754" y2="42.672" width="0.4064" layer="1"/>
+<wire x1="66.294" y1="42.672" x2="63.754" y2="42.672" width="0.8128" layer="1"/>
 </signal>
 <signal name="N$15">
 <contactref element="ENC1" pad="C"/>
