@@ -1224,67 +1224,48 @@ Source: &lt;a href="http://cds.linear.com/docs/Datasheet/3592fc.pdf"&gt; Data sh
 <wire x1="2.99" y1="2.71" x2="2.99" y2="-3.62" width="0.127" layer="21"/>
 </package>
 <package name="SOT-23">
-<wire x1="1.422" y1="0.66" x2="1.422" y2="-0.66" width="0.1524" layer="51"/>
-<wire x1="1.422" y1="-0.66" x2="-1.422" y2="-0.66" width="0.1524" layer="51"/>
-<wire x1="-1.422" y1="-0.66" x2="-1.422" y2="0.66" width="0.1524" layer="51"/>
-<wire x1="-1.422" y1="0.66" x2="1.422" y2="0.66" width="0.1524" layer="51"/>
-<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
-<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
-<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
-<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
-<rectangle x1="-0.5001" y1="-0.3" x2="0.5001" y2="0.3" layer="35"/>
-</package>
-<package name="DIL08">
-<description>&lt;b&gt;Dual In Line Package&lt;/b&gt;</description>
-<wire x1="5.08" y1="2.921" x2="-5.08" y2="2.921" width="0.1524" layer="21"/>
-<wire x1="-5.08" y1="-2.921" x2="5.08" y2="-2.921" width="0.1524" layer="21"/>
-<wire x1="5.08" y1="2.921" x2="5.08" y2="-2.921" width="0.1524" layer="21"/>
-<wire x1="-5.08" y1="2.921" x2="-5.08" y2="1.016" width="0.1524" layer="21"/>
-<wire x1="-5.08" y1="-2.921" x2="-5.08" y2="-1.016" width="0.1524" layer="21"/>
-<wire x1="-5.08" y1="1.016" x2="-5.08" y2="-1.016" width="0.1524" layer="21" curve="-180"/>
-<pad name="1" x="-3.81" y="-3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<pad name="2" x="-1.27" y="-3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<pad name="7" x="-1.27" y="3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<pad name="8" x="-3.81" y="3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<pad name="3" x="1.27" y="-3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<pad name="4" x="3.81" y="-3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<pad name="6" x="1.27" y="3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<pad name="5" x="3.81" y="3.81" drill="0.8128" diameter="1.27" rot="R90"/>
-<text x="-5.334" y="-2.921" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
-<text x="-3.556" y="-0.635" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<wire x1="0.66" y1="-1.422" x2="-0.66" y2="-1.422" width="0.1524" layer="51"/>
+<wire x1="-0.66" y1="-1.422" x2="-0.66" y2="1.422" width="0.1524" layer="51"/>
+<wire x1="-0.66" y1="1.422" x2="0.66" y2="1.422" width="0.1524" layer="51"/>
+<wire x1="0.66" y1="1.422" x2="0.66" y2="-1.422" width="0.1524" layer="51"/>
+<smd name="3" x="1.1" y="0" dx="1" dy="1.4" layer="1" rot="R270"/>
+<smd name="2" x="-1.1" y="-0.95" dx="1" dy="1.4" layer="1" rot="R270"/>
+<smd name="1" x="-1.1" y="0.95" dx="1" dy="1.4" layer="1" rot="R270"/>
+<text x="1.905" y="1.905" size="1.27" layer="25" rot="R270">&gt;NAME</text>
+<text x="-3.175" y="1.905" size="1.27" layer="27" rot="R270">&gt;VALUE</text>
+<rectangle x1="0.7747" y1="-0.2921" x2="1.2319" y2="0.2921" layer="51" rot="R270"/>
+<rectangle x1="-1.2319" y1="-1.2319" x2="-0.7747" y2="-0.6477" layer="51" rot="R270"/>
+<rectangle x1="-1.2319" y1="0.6477" x2="-0.7747" y2="1.2319" layer="51" rot="R270"/>
+<rectangle x1="-0.5001" y1="-0.3" x2="0.5001" y2="0.3" layer="35" rot="R270"/>
 </package>
 <package name="SO08">
 <description>&lt;b&gt;Small Outline Package 8&lt;/b&gt;&lt;br&gt;
 NS Package M08A</description>
-<wire x1="2.4" y1="1.9" x2="2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.9" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.4" x2="-2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="1.9" x2="2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<smd name="2" x="-0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="7" x="-0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="1" x="-1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="3" x="0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="4" x="1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="8" x="-1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="6" x="0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="5" x="1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<text x="-2.667" y="-1.905" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="3.937" y="-1.905" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-<rectangle x1="-2.15" y1="-3.1" x2="-1.66" y2="-2" layer="51"/>
-<rectangle x1="-0.88" y1="-3.1" x2="-0.39" y2="-2" layer="51"/>
-<rectangle x1="0.39" y1="-3.1" x2="0.88" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="-3.1" x2="2.15" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="2" x2="2.15" y2="3.1" layer="51"/>
-<rectangle x1="0.39" y1="2" x2="0.88" y2="3.1" layer="51"/>
-<rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
-<rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
+<wire x1="1.9" y1="-2.4" x2="-1.4" y2="-2.4" width="0.2032" layer="51"/>
+<wire x1="-1.4" y1="-2.4" x2="-1.9" y2="-2.4" width="0.2032" layer="51"/>
+<wire x1="-1.9" y1="-2.4" x2="-1.9" y2="2.4" width="0.2032" layer="51"/>
+<wire x1="-1.9" y1="2.4" x2="-1.4" y2="2.4" width="0.2032" layer="51"/>
+<wire x1="-1.4" y1="2.4" x2="1.9" y2="2.4" width="0.2032" layer="51"/>
+<wire x1="1.9" y1="2.4" x2="1.9" y2="-2.4" width="0.2032" layer="51"/>
+<wire x1="-1.4" y1="-2.4" x2="-1.4" y2="2.4" width="0.2032" layer="51"/>
+<smd name="2" x="-2.6" y="0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="7" x="2.6" y="0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="1" x="-2.6" y="1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="3" x="-2.6" y="-0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="4" x="-2.6" y="-1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="8" x="2.6" y="1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="6" x="2.6" y="-0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="5" x="2.6" y="-1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<text x="-1.905" y="2.667" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.937" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-2.795" y1="1.355" x2="-2.305" y2="2.455" layer="51" rot="R270"/>
+<rectangle x1="-2.795" y1="0.085" x2="-2.305" y2="1.185" layer="51" rot="R270"/>
+<rectangle x1="-2.795" y1="-1.185" x2="-2.305" y2="-0.085" layer="51" rot="R270"/>
+<rectangle x1="-2.795" y1="-2.455" x2="-2.305" y2="-1.355" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="-2.455" x2="2.795" y2="-1.355" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="-1.185" x2="2.795" y2="-0.085" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="0.085" x2="2.795" y2="1.185" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="1.355" x2="2.795" y2="2.455" layer="51" rot="R270"/>
 </package>
 <package name="64WPOT">
 <pad name="P$3" x="-1.27" y="-2.54" drill="0.8"/>
@@ -1406,31 +1387,31 @@ Source: 8x ADG1408_1409.pdf</description>
 <package name="HLMP--F0010">
 <description>Subminiature right angle indicator from Avago Technologies
 &lt;p&gt;Digikey PN: 516-1417-ND</description>
-<pad name="A" x="-1.27" y="0" drill="0.7"/>
-<pad name="C" x="1.27" y="0" drill="0.7"/>
-<wire x1="-0.508" y1="0.762" x2="-0.508" y2="-0.762" width="0.127" layer="21"/>
-<wire x1="-0.508" y1="-0.762" x2="0.254" y2="0" width="0.127" layer="21"/>
-<wire x1="0.254" y1="0" x2="-0.508" y2="0.762" width="0.127" layer="21"/>
-<wire x1="0.254" y1="0.762" x2="0.254" y2="-0.762" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="1.27" x2="-2.54" y2="1.016" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="1.016" x2="-2.54" y2="-1.016" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="-1.016" x2="-2.54" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="-1.27" x2="2.54" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="2.54" y1="-1.27" x2="2.54" y2="1.27" width="0.127" layer="21"/>
+<pad name="A" x="1.27" y="0" drill="0.7" rot="R180"/>
+<pad name="C" x="-1.27" y="0" drill="0.7" rot="R180"/>
+<wire x1="0.508" y1="-0.762" x2="0.508" y2="0.762" width="0.127" layer="21"/>
+<wire x1="0.508" y1="0.762" x2="-0.254" y2="0" width="0.127" layer="21"/>
+<wire x1="-0.254" y1="0" x2="0.508" y2="-0.762" width="0.127" layer="21"/>
+<wire x1="-0.254" y1="-0.762" x2="-0.254" y2="0.762" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-1.27" x2="2.54" y2="-1.016" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-1.016" x2="2.54" y2="1.016" width="0.127" layer="21"/>
+<wire x1="2.54" y1="1.016" x2="2.54" y2="1.27" width="0.127" layer="21"/>
 <wire x1="2.54" y1="1.27" x2="-2.54" y2="1.27" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="1.016" x2="-2.54" y2="-1.016" width="0.127" layer="21" curve="180"/>
-<text x="-2.286" y="1.524" size="1.27" layer="25">&gt;NAME</text>
-<text x="-2.54" y="-2.794" size="1.27" layer="27">&gt;VALUE</text>
+<wire x1="-2.54" y1="1.27" x2="-2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-1.27" x2="2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-1.016" x2="2.54" y2="1.016" width="0.127" layer="21" curve="180"/>
+<text x="2.286" y="-1.524" size="1.27" layer="25" rot="R180">&gt;NAME</text>
+<text x="2.54" y="2.794" size="1.27" layer="27" rot="R180">&gt;VALUE</text>
 </package>
 <package name="E-SWITCH-100-M7">
-<pad name="P$1" x="2.413" y="0" drill="1.8542"/>
-<pad name="P$2" x="2.413" y="-3.81" drill="1.8542"/>
-<pad name="P$3" x="2.413" y="-7.62" drill="1.8542"/>
-<pad name="P$4" x="-2.413" y="0" drill="1.8542"/>
-<pad name="P$5" x="-2.413" y="-3.81" drill="1.8542"/>
-<pad name="P$6" x="-2.413" y="-7.62" drill="1.8542"/>
-<pad name="P$7" x="-2.54" y="12.7" drill="1.8542"/>
-<pad name="P$8" x="2.54" y="12.7" drill="1.8542"/>
+<pad name="P$1" x="2.413" y="0" drill="1.651"/>
+<pad name="P$2" x="2.413" y="-3.81" drill="1.651"/>
+<pad name="P$3" x="2.413" y="-7.62" drill="1.651"/>
+<pad name="P$4" x="-2.413" y="0" drill="1.651"/>
+<pad name="P$5" x="-2.413" y="-3.81" drill="1.651"/>
+<pad name="P$6" x="-2.413" y="-7.62" drill="1.651"/>
+<pad name="P$7" x="-2.54" y="12.7" drill="1.651"/>
+<pad name="P$8" x="2.54" y="12.7" drill="1.651"/>
 <wire x1="-3.683" y1="13.97" x2="-3.683" y2="21.2852" width="0.127" layer="21"/>
 <wire x1="-3.683" y1="21.2852" x2="-1.27" y2="21.2852" width="0.127" layer="21"/>
 <wire x1="-1.27" y1="21.2852" x2="1.27" y2="21.2852" width="0.127" layer="21"/>
@@ -1495,6 +1476,69 @@ Source: 8x ADG1408_1409.pdf</description>
 <wire x1="1.1" y1="2.6" x2="2.5" y2="2.6" width="0.127" layer="21"/>
 <wire x1="1.1" y1="2.3" x2="2.5" y2="2.3" width="0.127" layer="21"/>
 <wire x1="1" y1="2" x2="2.5" y2="2" width="0.127" layer="21"/>
+</package>
+<package name="1X02_RA_SCRWTRM_ED550">
+<pad name="1" x="-1.75" y="0" drill="1.2" shape="long" rot="R90"/>
+<pad name="2" x="1.75" y="0" drill="1.2" shape="long" rot="R90"/>
+<text x="-4.275" y="-1.27" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="5.39" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<wire x1="-3.5" y1="6.2" x2="-3.5" y2="-2" width="0.127" layer="21"/>
+<wire x1="-3.5" y1="-2" x2="3.5" y2="-2" width="0.127" layer="21"/>
+<wire x1="3.5" y1="-2" x2="3.5" y2="6.2" width="0.127" layer="21"/>
+<wire x1="3.5" y1="6.2" x2="-3.5" y2="6.2" width="0.127" layer="21"/>
+<wire x1="-3" y1="4.935" x2="-0.6" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-0.6" y1="4.935" x2="-0.6" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-0.6" y1="4.135" x2="-1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-1" y1="4.135" x2="-2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="4.135" x2="-3" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-3" y1="4.135" x2="-3" y2="4.935" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="4.135" x2="-2.5" y2="2.635" width="0.127" layer="21"/>
+<wire x1="-1" y1="2.635" x2="-1" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-1" y1="2.935" x2="-1" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.235" x2="-1" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.535" x2="-1" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-1" y1="3.835" x2="-1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.835" x2="-1" y2="3.835" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.535" x2="-1" y2="3.535" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="3.235" x2="-1" y2="3.235" width="0.127" layer="21"/>
+<wire x1="-2.4" y1="2.935" x2="-1" y2="2.935" width="0.127" layer="21"/>
+<wire x1="-2.5" y1="2.635" x2="-1" y2="2.635" width="0.127" layer="21"/>
+<wire x1="0.5" y1="4.935" x2="2.9" y2="4.935" width="0.127" layer="21"/>
+<wire x1="2.9" y1="4.935" x2="2.9" y2="4.135" width="0.127" layer="21"/>
+<wire x1="2.9" y1="4.135" x2="2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="2.5" y1="4.135" x2="1" y2="4.135" width="0.127" layer="21"/>
+<wire x1="1" y1="4.135" x2="0.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="0.5" y1="4.135" x2="0.5" y2="4.935" width="0.127" layer="21"/>
+<wire x1="1" y1="4.135" x2="1" y2="2.635" width="0.127" layer="21"/>
+<wire x1="2.5" y1="2.635" x2="2.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="2.5" y1="2.935" x2="2.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.235" x2="2.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.535" x2="2.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="2.5" y1="3.835" x2="2.5" y2="4.135" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.835" x2="2.5" y2="3.835" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.535" x2="2.5" y2="3.535" width="0.127" layer="21"/>
+<wire x1="1.1" y1="3.235" x2="2.5" y2="3.235" width="0.127" layer="21"/>
+<wire x1="1.1" y1="2.935" x2="2.5" y2="2.935" width="0.127" layer="21"/>
+<wire x1="1" y1="2.635" x2="2.5" y2="2.635" width="0.127" layer="21"/>
+</package>
+<package name="DIL08">
+<description>&lt;b&gt;Dual In Line Package&lt;/b&gt;</description>
+<wire x1="2.921" y1="-5.08" x2="2.921" y2="5.08" width="0.1524" layer="21"/>
+<wire x1="-2.921" y1="5.08" x2="-2.921" y2="-5.08" width="0.1524" layer="21"/>
+<wire x1="2.921" y1="-5.08" x2="-2.921" y2="-5.08" width="0.1524" layer="21"/>
+<wire x1="2.921" y1="5.08" x2="1.016" y2="5.08" width="0.1524" layer="21"/>
+<wire x1="-2.921" y1="5.08" x2="-1.016" y2="5.08" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="5.08" x2="-1.016" y2="5.08" width="0.1524" layer="21" curve="-180"/>
+<pad name="1" x="-3.81" y="3.81" drill="0.8128" diameter="1.27"/>
+<pad name="2" x="-3.81" y="1.27" drill="0.8128" diameter="1.27"/>
+<pad name="7" x="3.81" y="1.27" drill="0.8128" diameter="1.27"/>
+<pad name="8" x="3.81" y="3.81" drill="0.8128" diameter="1.27"/>
+<pad name="3" x="-3.81" y="-1.27" drill="0.8128" diameter="1.27"/>
+<pad name="4" x="-3.81" y="-3.81" drill="0.8128" diameter="1.27"/>
+<pad name="6" x="3.81" y="-1.27" drill="0.8128" diameter="1.27"/>
+<pad name="5" x="3.81" y="-3.81" drill="0.8128" diameter="1.27"/>
+<text x="-2.921" y="5.334" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-0.635" y="3.556" size="1.27" layer="27" ratio="10" rot="R270">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -1746,6 +1790,18 @@ Source: 8x ADG1408_1409.pdf</description>
 <technology name="">
 <attribute name="DIGIKEY" value="ED2635-ND" constant="no"/>
 <attribute name="MFR_PN" value="OSTTE020161" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="/90_ED550" package="1X02_RA_SCRWTRM_ED550">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DIGIKEY" value="ED1501-ND" constant="no"/>
+<attribute name="MFR_PN" value="ED550/2DS" constant="no"/>
 </technology>
 </technologies>
 </device>

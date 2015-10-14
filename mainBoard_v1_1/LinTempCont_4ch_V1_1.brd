@@ -493,48 +493,48 @@ Source: &lt;a href="http://cds.linear.com/docs/Datasheet/3592fc.pdf"&gt; Data sh
 <wire x1="2.99" y1="2.71" x2="2.99" y2="-3.62" width="0.127" layer="21"/>
 </package>
 <package name="SOT-23">
-<wire x1="1.422" y1="0.66" x2="1.422" y2="-0.66" width="0.1524" layer="51"/>
-<wire x1="1.422" y1="-0.66" x2="-1.422" y2="-0.66" width="0.1524" layer="51"/>
-<wire x1="-1.422" y1="-0.66" x2="-1.422" y2="0.66" width="0.1524" layer="51"/>
-<wire x1="-1.422" y1="0.66" x2="1.422" y2="0.66" width="0.1524" layer="51"/>
-<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
-<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
-<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
-<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
-<rectangle x1="-0.5001" y1="-0.3" x2="0.5001" y2="0.3" layer="35"/>
+<wire x1="0.66" y1="-1.422" x2="-0.66" y2="-1.422" width="0.1524" layer="51"/>
+<wire x1="-0.66" y1="-1.422" x2="-0.66" y2="1.422" width="0.1524" layer="51"/>
+<wire x1="-0.66" y1="1.422" x2="0.66" y2="1.422" width="0.1524" layer="51"/>
+<wire x1="0.66" y1="1.422" x2="0.66" y2="-1.422" width="0.1524" layer="51"/>
+<smd name="3" x="1.1" y="0" dx="1" dy="1.4" layer="1" rot="R270"/>
+<smd name="2" x="-1.1" y="-0.95" dx="1" dy="1.4" layer="1" rot="R270"/>
+<smd name="1" x="-1.1" y="0.95" dx="1" dy="1.4" layer="1" rot="R270"/>
+<text x="1.905" y="1.905" size="1.27" layer="25" rot="R270">&gt;NAME</text>
+<text x="-3.175" y="1.905" size="1.27" layer="27" rot="R270">&gt;VALUE</text>
+<rectangle x1="0.7747" y1="-0.2921" x2="1.2319" y2="0.2921" layer="51" rot="R270"/>
+<rectangle x1="-1.2319" y1="-1.2319" x2="-0.7747" y2="-0.6477" layer="51" rot="R270"/>
+<rectangle x1="-1.2319" y1="0.6477" x2="-0.7747" y2="1.2319" layer="51" rot="R270"/>
+<rectangle x1="-0.5001" y1="-0.3" x2="0.5001" y2="0.3" layer="35" rot="R270"/>
 </package>
 <package name="SO08">
 <description>&lt;b&gt;Small Outline Package 8&lt;/b&gt;&lt;br&gt;
 NS Package M08A</description>
-<wire x1="2.4" y1="1.9" x2="2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.9" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.4" x2="-2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="1.9" x2="2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<smd name="2" x="-0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="7" x="-0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="1" x="-1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="3" x="0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="4" x="1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="8" x="-1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="6" x="0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="5" x="1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<text x="-2.667" y="-1.905" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="3.937" y="-1.905" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-<rectangle x1="-2.15" y1="-3.1" x2="-1.66" y2="-2" layer="51"/>
-<rectangle x1="-0.88" y1="-3.1" x2="-0.39" y2="-2" layer="51"/>
-<rectangle x1="0.39" y1="-3.1" x2="0.88" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="-3.1" x2="2.15" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="2" x2="2.15" y2="3.1" layer="51"/>
-<rectangle x1="0.39" y1="2" x2="0.88" y2="3.1" layer="51"/>
-<rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
-<rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
+<wire x1="1.9" y1="-2.4" x2="-1.4" y2="-2.4" width="0.2032" layer="51"/>
+<wire x1="-1.4" y1="-2.4" x2="-1.9" y2="-2.4" width="0.2032" layer="51"/>
+<wire x1="-1.9" y1="-2.4" x2="-1.9" y2="2.4" width="0.2032" layer="51"/>
+<wire x1="-1.9" y1="2.4" x2="-1.4" y2="2.4" width="0.2032" layer="51"/>
+<wire x1="-1.4" y1="2.4" x2="1.9" y2="2.4" width="0.2032" layer="51"/>
+<wire x1="1.9" y1="2.4" x2="1.9" y2="-2.4" width="0.2032" layer="51"/>
+<wire x1="-1.4" y1="-2.4" x2="-1.4" y2="2.4" width="0.2032" layer="51"/>
+<smd name="2" x="-2.6" y="0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="7" x="2.6" y="0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="1" x="-2.6" y="1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="3" x="-2.6" y="-0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="4" x="-2.6" y="-1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="8" x="2.6" y="1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="6" x="2.6" y="-0.635" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<smd name="5" x="2.6" y="-1.905" dx="0.6" dy="2.2" layer="1" rot="R270"/>
+<text x="-1.905" y="2.667" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.937" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-2.795" y1="1.355" x2="-2.305" y2="2.455" layer="51" rot="R270"/>
+<rectangle x1="-2.795" y1="0.085" x2="-2.305" y2="1.185" layer="51" rot="R270"/>
+<rectangle x1="-2.795" y1="-1.185" x2="-2.305" y2="-0.085" layer="51" rot="R270"/>
+<rectangle x1="-2.795" y1="-2.455" x2="-2.305" y2="-1.355" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="-2.455" x2="2.795" y2="-1.355" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="-1.185" x2="2.795" y2="-0.085" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="0.085" x2="2.795" y2="1.185" layer="51" rot="R270"/>
+<rectangle x1="2.305" y1="1.355" x2="2.795" y2="2.455" layer="51" rot="R270"/>
 </package>
 <package name="64WPOT">
 <pad name="P$3" x="-1.27" y="-2.54" drill="0.8"/>
@@ -549,14 +549,14 @@ NS Package M08A</description>
 <circle x="1.27" y="2.54" radius="0.508" width="0.127" layer="21"/>
 </package>
 <package name="E-SWITCH-100-M7">
-<pad name="P$1" x="2.413" y="0" drill="1.8542"/>
-<pad name="P$2" x="2.413" y="-3.81" drill="1.8542"/>
-<pad name="P$3" x="2.413" y="-7.62" drill="1.8542"/>
-<pad name="P$4" x="-2.413" y="0" drill="1.8542"/>
-<pad name="P$5" x="-2.413" y="-3.81" drill="1.8542"/>
-<pad name="P$6" x="-2.413" y="-7.62" drill="1.8542"/>
-<pad name="P$7" x="-2.54" y="12.7" drill="1.8542"/>
-<pad name="P$8" x="2.54" y="12.7" drill="1.8542"/>
+<pad name="P$1" x="2.413" y="0" drill="1.651"/>
+<pad name="P$2" x="2.413" y="-3.81" drill="1.651"/>
+<pad name="P$3" x="2.413" y="-7.62" drill="1.651"/>
+<pad name="P$4" x="-2.413" y="0" drill="1.651"/>
+<pad name="P$5" x="-2.413" y="-3.81" drill="1.651"/>
+<pad name="P$6" x="-2.413" y="-7.62" drill="1.651"/>
+<pad name="P$7" x="-2.54" y="12.7" drill="1.651"/>
+<pad name="P$8" x="2.54" y="12.7" drill="1.651"/>
 <wire x1="-3.683" y1="13.97" x2="-3.683" y2="21.2852" width="0.127" layer="21"/>
 <wire x1="-3.683" y1="21.2852" x2="-1.27" y2="21.2852" width="0.127" layer="21"/>
 <wire x1="-1.27" y1="21.2852" x2="1.27" y2="21.2852" width="0.127" layer="21"/>
@@ -577,21 +577,21 @@ NS Package M08A</description>
 <package name="HLMP--F0010">
 <description>Subminiature right angle indicator from Avago Technologies
 &lt;p&gt;Digikey PN: 516-1417-ND</description>
-<pad name="A" x="-1.27" y="0" drill="0.7"/>
-<pad name="C" x="1.27" y="0" drill="0.7"/>
-<wire x1="-0.508" y1="0.762" x2="-0.508" y2="-0.762" width="0.127" layer="21"/>
-<wire x1="-0.508" y1="-0.762" x2="0.254" y2="0" width="0.127" layer="21"/>
-<wire x1="0.254" y1="0" x2="-0.508" y2="0.762" width="0.127" layer="21"/>
-<wire x1="0.254" y1="0.762" x2="0.254" y2="-0.762" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="1.27" x2="-2.54" y2="1.016" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="1.016" x2="-2.54" y2="-1.016" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="-1.016" x2="-2.54" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="-1.27" x2="2.54" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="2.54" y1="-1.27" x2="2.54" y2="1.27" width="0.127" layer="21"/>
+<pad name="A" x="1.27" y="0" drill="0.7" rot="R180"/>
+<pad name="C" x="-1.27" y="0" drill="0.7" rot="R180"/>
+<wire x1="0.508" y1="-0.762" x2="0.508" y2="0.762" width="0.127" layer="21"/>
+<wire x1="0.508" y1="0.762" x2="-0.254" y2="0" width="0.127" layer="21"/>
+<wire x1="-0.254" y1="0" x2="0.508" y2="-0.762" width="0.127" layer="21"/>
+<wire x1="-0.254" y1="-0.762" x2="-0.254" y2="0.762" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-1.27" x2="2.54" y2="-1.016" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-1.016" x2="2.54" y2="1.016" width="0.127" layer="21"/>
+<wire x1="2.54" y1="1.016" x2="2.54" y2="1.27" width="0.127" layer="21"/>
 <wire x1="2.54" y1="1.27" x2="-2.54" y2="1.27" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="1.016" x2="-2.54" y2="-1.016" width="0.127" layer="21" curve="180"/>
-<text x="-2.286" y="1.524" size="1.27" layer="25">&gt;NAME</text>
-<text x="-2.54" y="-2.794" size="1.27" layer="27">&gt;VALUE</text>
+<wire x1="-2.54" y1="1.27" x2="-2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-1.27" x2="2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-1.016" x2="2.54" y2="1.016" width="0.127" layer="21" curve="180"/>
+<text x="2.286" y="-1.524" size="1.27" layer="25" rot="R180">&gt;NAME</text>
+<text x="2.54" y="2.794" size="1.27" layer="27" rot="R180">&gt;VALUE</text>
 </package>
 <package name="TSSOP16">
 <description>&lt;b&gt;16-Lead Thin Shrink Small Outline Package&lt;/b&gt; [TSSOP] (RU-16)&lt;p&gt;
@@ -2489,20 +2489,20 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="100.2538" y="28.9306" size="0.889" layer="25" font="vector"/>
 <attribute name="VALUE" x="95.885" y="27.305" size="0.889" layer="27"/>
 </element>
-<element name="T1" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="78.74" y="34.29" smashed="yes" rot="R90">
-<attribute name="NAME" x="76.2" y="35.56" size="0.889" layer="25" font="vector" rot="R180"/>
-<attribute name="VALUE" x="81.915" y="32.385" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="78.74" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="T1" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="78.74" y="34.29" smashed="yes" rot="R180">
+<attribute name="NAME" x="77.47" y="31.75" size="0.889" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="80.645" y="37.465" size="1.27" layer="27" rot="R180"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="78.74" y="34.29" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="T2" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="97.79" y="34.29" smashed="yes" rot="R270">
-<attribute name="NAME" x="100.965" y="33.655" size="0.889" layer="25" font="vector"/>
-<attribute name="VALUE" x="94.615" y="36.195" size="1.27" layer="27" rot="R270"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="97.79" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="T2" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="97.79" y="34.29" smashed="yes">
+<attribute name="NAME" x="98.425" y="37.465" size="0.889" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="95.885" y="31.115" size="1.27" layer="27"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="97.79" y="34.29" size="1.778" layer="27" display="off"/>
 </element>
-<element name="IC1" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="87.63" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="85.725" y="35.687" size="1.27" layer="25" font="vector"/>
-<attribute name="VALUE" x="85.725" y="29.083" size="1.27" layer="27"/>
-<attribute name="DIGIKEY" value="296-1015-5-ND" x="87.63" y="33.02" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IC1" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="87.63" y="33.02" smashed="yes">
+<attribute name="NAME" x="84.963" y="31.115" size="1.27" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="91.567" y="31.115" size="1.27" layer="27" rot="R90"/>
+<attribute name="DIGIKEY" value="296-1015-5-ND" x="87.63" y="33.02" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R6" library="Lin-Temp-Controller" package="64WPOT" value="10k" x="85.09" y="41.91" smashed="yes" rot="R180">
 <attribute name="DIGIKEY" value="987-1061-ND" x="-5.08" y="121.92" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2550,10 +2550,10 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="90.17" y="11.43" size="1.27" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="91.44" y="7.62" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="D1" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="78.74" y="3.175" smashed="yes" rot="R90">
-<attribute name="NAME" x="81.026" y="5.969" size="1.27" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="81.534" y="0.635" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="516-1417-ND" x="78.74" y="3.175" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="D1" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="78.74" y="3.175" smashed="yes" rot="R270">
+<attribute name="NAME" x="76.454" y="0.381" size="1.27" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="75.946" y="5.715" size="1.27" layer="27" rot="R270"/>
+<attribute name="DIGIKEY" value="516-1417-ND" x="78.74" y="3.175" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R5" library="rlc-jqi" package="0603" value="330" x="78.74" y="8.89" smashed="yes" rot="R270">
 <attribute name="NAME" x="80.01" y="10.795" size="0.889" layer="25" font="vector" rot="R270"/>
@@ -2589,10 +2589,10 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="DIGIKEY" value="A32260-ND" x="13.97" y="15.24" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="71.755" y="3.81" size="1.27" layer="25" font="vector" rot="R180"/>
 </element>
-<element name="IC6" library="Lin-Temp-Controller" package="SOT-23" value="" x="57.785" y="66.675" smashed="yes" rot="R90">
-<attribute name="DIGIKEY" value="TS6001BIG325TCT-ND" x="168.275" y="156.845" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="54.61" y="64.77" size="1.27" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="60.96" y="64.77" size="1.27" layer="27" rot="R90"/>
+<element name="IC6" library="Lin-Temp-Controller" package="SOT-23" value="" x="57.785" y="66.675" smashed="yes" rot="R180">
+<attribute name="DIGIKEY" value="TS6001BIG325TCT-ND" x="-32.385" y="177.165" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="59.69" y="63.5" size="1.27" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="59.69" y="69.85" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C14" library="rlc-jqi" package="0603" value="1000pF" x="58.42" y="69.85" smashed="yes">
 <attribute name="NAME" x="56.515" y="71.12" size="0.889" layer="25" font="vector"/>
@@ -2704,20 +2704,20 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="172.72" y="28.575" size="0.889" layer="25" font="vector"/>
 <attribute name="VALUE" x="168.275" y="27.305" size="0.889" layer="27"/>
 </element>
-<element name="T3" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="151.13" y="34.29" smashed="yes" rot="R90">
-<attribute name="NAME" x="147.955" y="34.29" size="0.889" layer="25" font="vector" rot="R180"/>
-<attribute name="VALUE" x="154.305" y="32.385" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="151.13" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="T3" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="151.13" y="34.29" smashed="yes" rot="R180">
+<attribute name="NAME" x="151.13" y="31.115" size="0.889" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="153.035" y="37.465" size="1.27" layer="27" rot="R180"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="151.13" y="34.29" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="T4" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="170.18" y="34.29" smashed="yes" rot="R270">
-<attribute name="NAME" x="171.45" y="36.195" size="0.889" layer="25" font="vector"/>
-<attribute name="VALUE" x="167.005" y="36.195" size="1.27" layer="27" rot="R270"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="170.18" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="T4" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="170.18" y="34.29" smashed="yes">
+<attribute name="NAME" x="168.275" y="35.56" size="0.889" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="168.275" y="31.115" size="1.27" layer="27"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="170.18" y="34.29" size="1.778" layer="27" display="off"/>
 </element>
-<element name="IC2" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="160.02" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="158.115" y="35.687" size="1.27" layer="25" font="vector"/>
-<attribute name="VALUE" x="158.115" y="29.083" size="1.27" layer="27"/>
-<attribute name="DIGIKEY" value="296-1015-5-ND" x="160.02" y="33.02" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IC2" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="160.02" y="33.02" smashed="yes">
+<attribute name="NAME" x="157.353" y="31.115" size="1.27" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="163.957" y="31.115" size="1.27" layer="27" rot="R90"/>
+<attribute name="DIGIKEY" value="296-1015-5-ND" x="160.02" y="33.02" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R41" library="Lin-Temp-Controller" package="64WPOT" value="10k" x="157.48" y="41.91" smashed="yes" rot="R180">
 <attribute name="DIGIKEY" value="987-1061-ND" x="54.61" y="121.92" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2765,10 +2765,10 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="162.56" y="11.43" size="1.27" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="163.83" y="7.62" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="D2" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="151.13" y="3.175" smashed="yes" rot="R90">
-<attribute name="NAME" x="154.051" y="4.699" size="1.27" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="153.924" y="0.635" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="516-1417-ND" x="151.13" y="3.175" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="D2" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="151.13" y="3.175" smashed="yes" rot="R270">
+<attribute name="NAME" x="148.209" y="1.651" size="1.27" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="148.336" y="5.715" size="1.27" layer="27" rot="R270"/>
+<attribute name="DIGIKEY" value="516-1417-ND" x="151.13" y="3.175" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R49" library="rlc-jqi" package="0603" value="330" x="151.13" y="8.89" smashed="yes" rot="R270">
 <attribute name="NAME" x="152.4" y="10.795" size="0.889" layer="25" font="vector" rot="R270"/>
@@ -2847,20 +2847,20 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="244.475" y="29.21" size="0.889" layer="25" font="vector"/>
 <attribute name="VALUE" x="240.665" y="27.305" size="0.889" layer="27"/>
 </element>
-<element name="T5" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="223.52" y="34.29" smashed="yes" rot="R90">
-<attribute name="NAME" x="221.615" y="36.83" size="0.889" layer="25" font="vector" rot="R180"/>
-<attribute name="VALUE" x="226.695" y="32.385" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="223.52" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="T5" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="223.52" y="34.29" smashed="yes" rot="R180">
+<attribute name="NAME" x="220.98" y="32.385" size="0.889" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="225.425" y="37.465" size="1.27" layer="27" rot="R180"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="223.52" y="34.29" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="T6" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="242.57" y="34.29" smashed="yes" rot="R270">
-<attribute name="NAME" x="244.475" y="35.56" size="0.889" layer="25" font="vector"/>
-<attribute name="VALUE" x="239.395" y="36.195" size="1.27" layer="27" rot="R270"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="242.57" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="T6" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="242.57" y="34.29" smashed="yes">
+<attribute name="NAME" x="241.3" y="36.195" size="0.889" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="240.665" y="31.115" size="1.27" layer="27"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="242.57" y="34.29" size="1.778" layer="27" display="off"/>
 </element>
-<element name="IC7" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="232.41" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="230.505" y="35.687" size="0.889" layer="25" font="vector"/>
-<attribute name="VALUE" x="230.505" y="29.083" size="1.27" layer="27"/>
-<attribute name="DIGIKEY" value="296-1015-5-ND" x="232.41" y="33.02" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IC7" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="232.41" y="33.02" smashed="yes">
+<attribute name="NAME" x="229.743" y="31.115" size="0.889" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="236.347" y="31.115" size="1.27" layer="27" rot="R90"/>
+<attribute name="DIGIKEY" value="296-1015-5-ND" x="232.41" y="33.02" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R59" library="Lin-Temp-Controller" package="64WPOT" value="10k" x="229.87" y="41.91" smashed="yes" rot="R180">
 <attribute name="DIGIKEY" value="987-1061-ND" x="114.3" y="121.92" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2908,10 +2908,10 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="234.95" y="11.43" size="1.27" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="236.22" y="7.62" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="D3" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="223.52" y="3.175" smashed="yes" rot="R90">
-<attribute name="NAME" x="226.441" y="4.699" size="1.27" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="226.314" y="0.635" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="516-1417-ND" x="223.52" y="3.175" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="D3" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="223.52" y="3.175" smashed="yes" rot="R270">
+<attribute name="NAME" x="220.599" y="1.651" size="1.27" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="220.726" y="5.715" size="1.27" layer="27" rot="R270"/>
+<attribute name="DIGIKEY" value="516-1417-ND" x="223.52" y="3.175" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R67" library="rlc-jqi" package="0603" value="330" x="223.52" y="8.89" smashed="yes" rot="R270">
 <attribute name="NAME" x="224.79" y="10.795" size="0.889" layer="25" font="vector" rot="R270"/>
@@ -2990,20 +2990,20 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="316.865" y="28.575" size="0.889" layer="25" font="vector"/>
 <attribute name="VALUE" x="313.055" y="27.305" size="0.889" layer="27"/>
 </element>
-<element name="T7" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="295.91" y="34.29" smashed="yes" rot="R90">
-<attribute name="NAME" x="294.005" y="36.195" size="0.889" layer="25" font="vector" rot="R180"/>
-<attribute name="VALUE" x="299.085" y="32.385" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="295.91" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="T7" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="295.91" y="34.29" smashed="yes" rot="R180">
+<attribute name="NAME" x="294.005" y="32.385" size="0.889" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="297.815" y="37.465" size="1.27" layer="27" rot="R180"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="295.91" y="34.29" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="T8" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="314.96" y="34.29" smashed="yes" rot="R270">
-<attribute name="NAME" x="316.865" y="35.56" size="0.889" layer="25" font="vector"/>
-<attribute name="VALUE" x="311.785" y="36.195" size="1.27" layer="27" rot="R270"/>
-<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="314.96" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="T8" library="Lin-Temp-Controller" package="SOT-23" value="MMBT3904" x="314.96" y="34.29" smashed="yes">
+<attribute name="NAME" x="313.69" y="36.195" size="0.889" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="313.055" y="31.115" size="1.27" layer="27"/>
+<attribute name="DIGIKEY" value="MMBT3904-FDICT-ND" x="314.96" y="34.29" size="1.778" layer="27" display="off"/>
 </element>
-<element name="IC9" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="304.8" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="302.895" y="35.687" size="0.889" layer="25" font="vector"/>
-<attribute name="VALUE" x="302.895" y="29.083" size="1.27" layer="27"/>
-<attribute name="DIGIKEY" value="296-1015-5-ND" x="304.8" y="33.02" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IC9" library="Lin-Temp-Controller" package="SO08" value="LM393D" x="304.8" y="33.02" smashed="yes">
+<attribute name="NAME" x="302.133" y="31.115" size="0.889" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="308.737" y="31.115" size="1.27" layer="27" rot="R90"/>
+<attribute name="DIGIKEY" value="296-1015-5-ND" x="304.8" y="33.02" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R77" library="Lin-Temp-Controller" package="64WPOT" value="10k" x="300.99" y="41.91" smashed="yes" rot="R180">
 <attribute name="DIGIKEY" value="987-1061-ND" x="172.72" y="121.92" size="1.778" layer="27" rot="R180" display="off"/>
@@ -3051,10 +3051,10 @@ This Sunstone Circuits 4 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="NAME" x="307.34" y="11.43" size="1.27" layer="25" font="vector" rot="R180"/>
 <attribute name="VALUE" x="308.61" y="7.62" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="D4" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="295.91" y="3.175" smashed="yes" rot="R90">
-<attribute name="NAME" x="298.831" y="5.334" size="1.27" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="298.704" y="0.635" size="1.27" layer="27" rot="R90"/>
-<attribute name="DIGIKEY" value="516-1417-ND" x="295.91" y="3.175" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="D4" library="Lin-Temp-Controller" package="HLMP--F0010" value="" x="295.91" y="3.175" smashed="yes" rot="R270">
+<attribute name="NAME" x="292.989" y="1.016" size="1.27" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="293.116" y="5.715" size="1.27" layer="27" rot="R270"/>
+<attribute name="DIGIKEY" value="516-1417-ND" x="295.91" y="3.175" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R85" library="rlc-jqi" package="0603" value="330" x="295.91" y="10.16" smashed="yes" rot="R270">
 <attribute name="NAME" x="297.18" y="12.065" size="0.889" layer="25" font="vector" rot="R270"/>
