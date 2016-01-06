@@ -3,15 +3,26 @@
 #include <Metro.h>
 #include <SPI.h>
 #include <SerialCommand.h>
-//#include "Teensy_TempController.h"
 #include "Encoder.h"
 #include "LCD.h"
 #include "AD5262.h"
 #include "AD56X4R.h"
 #include "WTC3243.h"
-#include "TempContSettings.h"
+//#include "TempContSettings.h"
 #include "Menu.h"
 
+//Choose one of the following settings files:
+#include "TempContSettingsVer1.h"
+//#include "TempContSettingsVer2.h"
+//#include "TempContSettingsVer3.h"
+//#include "TempContSettingsVer4.h"
+//#include "TempContSettingsVer5.h"
+//#include "TempContSettingsVer6.h"
+//#include "TempContSettingsVer7.h"
+//#include "TempContSettingsVer8.h"
+//#include "TempContSettingsVer9.h"
+//#include "TempContSettingsVer10.h"
+//#include "TempContSettingsVer11.h"
 
 //Declare global variables:
 byte current_ch = 0; //0-3 to correspond to channel 1-4
@@ -143,8 +154,8 @@ void calibrate_hold_event(Encoder *this_encoder) {
   delay(3000);
   
   lcd.clear();
-  lcd.write("R Knob to Cont. ",0x000);
-  lcd.write("L Knob to Cancel",0x040);
+  lcd.write(" Enc B to Cont. ",0x000);
+  lcd.write(" Enc A to Cancel",0x040);
   
   while (click == false) {
     
@@ -162,7 +173,7 @@ void calibrate_hold_event(Encoder *this_encoder) {
   click = false;
   
   lcd.write("DPots=Min, Click",0x000);
-  lcd.write("R Knob to Cont. ",0x040);
+  lcd.write(" Enc B to Cont. ",0x040);
   
   //Set digipots to max R values to give user an opportunity to measure them:
   for (int i = 0 ; i < 4 ; i++) {
@@ -182,7 +193,7 @@ void calibrate_hold_event(Encoder *this_encoder) {
   
   //Set digipots to min R values to give users an opportunity to measure them:
   lcd.write("DPots=Max, Click",0x000);
-  lcd.write("R Knob to Cont. ",0x040);
+  lcd.write(" Enc B to Cont. ",0x040);
   
   for (int i = 0 ; i < 4 ; i++) {
     tempControllers[i]._dPOT.writeDigiPOT(0,0);
@@ -314,7 +325,7 @@ void mode_out_mon() {
 }
 
 void mode_enter_settings() {
-  lcd.write("Hold R knob to  ", 0x000);
+  lcd.write(" Hold Enc B to  ", 0x000);
   lcd.write("change settings ", 0x040);
 
   enc_enter_settings.button_events();
@@ -322,7 +333,7 @@ void mode_enter_settings() {
 }
 
 void mode_exit_settings() {
-  lcd.write("Hold R knob to  ", 0x000);
+  lcd.write(" Hold Enc B to  ", 0x000);
   lcd.write(" exit settings. ", 0x040);
 
   enc_exit_settings.button_events();
