@@ -5,13 +5,13 @@ namespace Settings
 {
         //single variables are global settings, variables in an array may vary for each channel:
         
-	const float analog_vref(2.4984);  //value of voltage reference used for analog inputs
+	const float analog_vref(2.49993);  //value of voltage reference used for analog inputs
 	const byte analog_read_bits(12); //precision for analog inputs
 	const byte analog_read_avg(32); //number of analog measurements to average over, max of 32
 
-	const float dac_vref(1.2466); //value of DAC's internal voltage reference
+	const float dac_vref(1.2479); //value of DAC's internal voltage reference
         const byte dac_bits(12); //number of bits used by DAC
-        const float dac_offset(0.0022); //offset between the commanded and actual DAC voltage, typically ~1-2 mV
+        const float dac_offset[4] = {0.0016,0.0040,0.0019,0.0}; //offset between the commanded and actual DAC voltage, typically ~1-2 mV
         const boolean internal_dac_ref(true); //True=use internal vref, False=use external 2.5 voltage ref (jumper on board to switch)
 	
 	const byte prop_max(65);  //max allowed proportional gain (V/A)
@@ -43,8 +43,8 @@ namespace Settings
         
         //Settings used to calibrate the digipot (resistance at max and min setting)
         //(Currently only one value per digipot device is used even though there are two pots per chip)
-        const unsigned long pot_max[4] = {227000UL, 230000UL, 224300UL, 228800UL};
-        const unsigned long pot_min[4] = {1045UL, 1140UL, 1180UL, 1130UL};
+        const unsigned long pot_max[4] = {223300UL, 222500UL, 222400UL, 223400UL};
+        const unsigned long pot_min[4] = {1070UL, 1050UL, 1050UL, 1050UL};
         
         //DAC address (0 -> DAC A, 1 -> DAC B, 2 -> DAC C, 3 -> DAC D)
         const byte dac_ch[4] = {0, 1, 2, 3};
@@ -57,7 +57,7 @@ namespace Settings
         const float default_Itc(1.0);
         
         //Version constant so you can read what version of the settings are being used
-        const byte versionNum(1);
+        const byte versionNum(1); //calibration date: 1/8/16, BJR
         
         //Future: calibration constants for voltage monitoring:
         

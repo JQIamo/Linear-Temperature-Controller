@@ -40,7 +40,7 @@ class AD56X4R
 {
     public: 
         // Constructor function. 
-        AD56X4R(byte CS_PIN, byte SCK_PIN, byte MOSI_PIN, byte num_bits, double volt_ref, double volt_offset, boolean int_ext_ref);
+        AD56X4R(byte CS_PIN, byte SCK_PIN, byte MOSI_PIN, byte num_bits, double volt_ref, const float volt_offset[4], boolean int_ext_ref);
 		
 		//function that writes the voltage val to the DAC channel ch (executes immediately):
 		void setVoltage(byte ch, double Vout);
@@ -61,9 +61,10 @@ class AD56X4R
 		//Instance variable to hold pin mappings:
 		byte _CS_PIN, _SCK_PIN, _MOSI_PIN;
 		
-		//Instance variable to hold DAC precision (12, 14, or 16 bits) and refernce voltage:
+		//Instance variable to hold DAC precision (12, 14, or 16 bits) and reference voltage:
 		byte _dac_precision;
-		double _volt_ref, _volt_max, _volt_offset;
+		double _volt_ref, _volt_max;
+                float _volt_offset[4];
 		
 		//Instance variables to hold DAC set values and voltages for channels 0-3:
 		word _val[4];
