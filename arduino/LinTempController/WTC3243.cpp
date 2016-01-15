@@ -139,7 +139,6 @@ void WTC3243::setTempV(double V, AD56X4R &dac){
 }
 
 //Set desired temperature
-//finalize after making DAC class
 void WTC3243::setTemp(double T, AD56X4R &dac){
 
 	  //Make sure desired temp is within the desired range

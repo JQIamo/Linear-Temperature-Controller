@@ -12,14 +12,14 @@
 #include "Menu.h"
 
 //Choose one of the following settings files:
-#include "TempContSettingsVer1.h"
+//#include "TempContSettingsVer1.h"
 //#include "TempContSettingsVer2.h"
 //#include "TempContSettingsVer3.h"
 //#include "TempContSettingsVer4.h"
 //#include "TempContSettingsVer5.h"
 //#include "TempContSettingsVer6.h"
 //#include "TempContSettingsVer7.h"
-//#include "TempContSettingsVer8.h"
+#include "TempContSettingsVer8.h"
 //#include "TempContSettingsVer9.h"
 //#include "TempContSettingsVer10.h"
 //#include "TempContSettingsVer11.h"
@@ -175,10 +175,20 @@ void calibrate_hold_event(Encoder *this_encoder) {
   lcd.write("DPots=Min, Click",0x000);
   lcd.write(" Enc B to Cont. ",0x040);
   
-  //Set digipots to max R values to give user an opportunity to measure them:
+  //intitialize variable to store current temperature set values;
+  float tempSetPoint[4];
+    
+  
   for (int i = 0 ; i < 4 ; i++) {
+    //Set digipots to max R values to give user an opportunity to measure them:
     tempControllers[i]._dPOT.writeDigiPOT(0,255);
     tempControllers[i]._dPOT.writeDigiPOT(1,255);
+    
+    //Store current set point
+    tempSetPoint[i] = tempControllers[i].getTempSetPt();
+    
+    //Write temperature to 25C to calibrate DAC offset voltage:
+    tempControllers[i].setTemp(25.0, dac);
   }
   
   //while loop to stay here until click
@@ -211,14 +221,12 @@ void calibrate_hold_event(Encoder *this_encoder) {
     }
   }
   
-  //set digipots back to their previous values
+  //set digipots and dac back to their previous values
   for (int i = 0 ; i < 4 ; i++) {
     tempControllers[i].setP(tempControllers[i].getP());
     tempControllers[i].setI(tempControllers[i].getI());
+    tempControllers[i].setTemp(tempSetPoint[i],dac);
   }
-
-  
-  
 }
 
 void interruptWrapper() {
