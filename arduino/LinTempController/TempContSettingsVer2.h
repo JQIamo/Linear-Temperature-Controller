@@ -11,7 +11,7 @@ namespace Settings
 
 	const float dac_vref(1.2466); //value of DAC's internal voltage reference
         const byte dac_bits(12); //number of bits used by DAC
-        const float dac_offset(0.0022); //offset between the commanded and actual DAC voltage, typically ~1-2 mV
+        const float dac_offset[4] = {0.0022,0.0022,0.0022,0.0022}; //offset between the commanded and actual DAC voltage, typically ~1-2 mV
         const boolean internal_dac_ref(true); //True=use internal vref, False=use external 2.5 voltage ref (jumper on board to switch)
 	
 	const byte prop_max(65);  //max allowed proportional gain (V/A)
