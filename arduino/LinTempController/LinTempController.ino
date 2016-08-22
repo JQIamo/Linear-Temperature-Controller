@@ -13,13 +13,13 @@
 
 //Choose one of the following settings files:
 //#include "TempContSettingsVer1.h"
-//#include "TempContSettingsVer2.h"
+#include "TempContSettingsVer2.h"
 //#include "TempContSettingsVer3.h"
 //#include "TempContSettingsVer4.h"
 //#include "TempContSettingsVer5.h"
 //#include "TempContSettingsVer6.h"
 //#include "TempContSettingsVer7.h"
-#include "TempContSettingsVer8.h"
+//#include "TempContSettingsVer8.h"
 //#include "TempContSettingsVer9.h"
 //#include "TempContSettingsVer10.h"
 //#include "TempContSettingsVer11.h"
@@ -27,6 +27,7 @@
 //Declare global variables:
 byte current_ch = 0; //0-3 to correspond to channel 1-4
 boolean inSettingsMenu = false;
+boolean printTemps = false;
 
 //Declare variables used to store EEPROM addresses:
 int Settings::addressTempSetPt[4];
@@ -67,6 +68,7 @@ WTC3243 tempControllers[4] = {WTC3243(PinMappings::CS_POT1, PinMappings::SCK_B, 
                 
 //Initialize Metro object (deals with timing):
 Metro timer(Settings::save_interval);
+Metro serialPrintTimer(1000); //If printing temperatures to the serial line, this specifies the interval between readings in ms;
 
 void unrecognizedCmd(const char *command) {
   Serial.println("UNRECOGNIZED COMMAND");
@@ -141,6 +143,14 @@ void test() {
 void printVersion() {
     Serial.print("Current loaded version: ");
   Serial.println(Settings::versionNum);
+}
+
+void printTemperatures() {
+  if (printTemps == true){
+    printTemps = false;
+  } else {
+    printTemps = true;
+  }
 }
 
 void calibrate_hold_event(Encoder *this_encoder) {
@@ -594,6 +604,7 @@ void setup() {
 
   sCmd.addCommand("T", test);
   sCmd.addCommand("Ver",printVersion);
+  sCmd.addCommand("P",printTemperatures);
   sCmd.setDefaultHandler(unrecognizedCmd);
 
 }
@@ -613,6 +624,16 @@ void loop() {
 
   if (timer.check() == 1) {
     writeSettingstoMemory();
+  }
+  
+  if (printTemps == true && serialPrintTimer.check() == 1) {
+    for (int i = 0; i < 4; i++){
+      float currTemp = tempControllers[i].getActTemp();
+      byte ch_num = i + 1;
+      char lineToDisplay[20];
+      snprintf(lineToDisplay, 20, "%u  %7.6f", ch_num, currTemp);
+      Serial.println(lineToDisplay);
+    }
   }
   
 }
