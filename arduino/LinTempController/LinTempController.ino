@@ -631,7 +631,7 @@ void loop() {
       float currTemp = tempControllers[i].getActTemp();
       byte ch_num = i + 1;
       char lineToDisplay[20];
-      snprintf(lineToDisplay, 20, "%u  %7.6f", ch_num, currTemp);
+      snprintf(lineToDisplay, 20, "%u\t%7.6f", ch_num, currTemp);
       Serial.println(lineToDisplay);
     }
   }
