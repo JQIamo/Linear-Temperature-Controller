@@ -102,8 +102,8 @@ void AD56X4R::setVoltage(byte ch, double Vout){
 		}
 		
                 //Serial.println(data);
-                Serial.print("Commanded Voltage: ");
-                Serial.println(Vout,5);
+                //Serial.print("Commanded Voltage: ");
+                //Serial.println(Vout,5);
 
 		byte bit_shift;
 		if (_dac_precision == 12) {
