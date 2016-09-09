@@ -1,4 +1,4 @@
-#include <EEPROMex.h>
+#include <EEPROMex.h> //Make sure _EEPROMex_DEBUG definition is commented out, otherwise saving will fail after 100 write attempts
 #include <EEPROMVar.h>
 #include <Metro.h>
 #include <SPI.h>
